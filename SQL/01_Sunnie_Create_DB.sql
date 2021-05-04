@@ -95,7 +95,7 @@ CREATE TABLE [Precaution] (
   [Id] integer PRIMARY KEY IDENTITY,
   [SkinTypeId] integer NOT NULL,
   [UVLevelId] integer NOT NULL,
-  [Description] nvarchar(255)
+  [Precaution] nvarchar(255)
 
   CONSTRAINT [FK_SkinType_Precaution] FOREIGN KEY ([SkinTypeId]) REFERENCES [SkinType] ([Id]),
   CONSTRAINT [FK_UVLevel_Precaution] FOREIGN KEY ([UVLevelId]) REFERENCES [UVLevel] ([Id])
@@ -160,5 +160,6 @@ CREATE TABLE [Follower] (
   [UserProfileId] integer NOT NULL,
   [OtherUserId] integer NOT NULL,
 
-  CONSTRAINT [FK_Follower_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
+  CONSTRAINT [FK_Follower_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id]),
+  CONSTRAINT [FK_OtherFollower_UserProfile] FOREIGN KEY ([OtherUserId]) REFERENCES [UserProfile] ([Id])
 )
