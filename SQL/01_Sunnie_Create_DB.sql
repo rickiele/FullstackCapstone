@@ -59,7 +59,7 @@ CREATE TABLE [SkinType] (
   CONSTRAINT [FK_SkinType_SkinColor] FOREIGN KEY ([SkinColorId]) REFERENCES [SkinColor] ([Id]),
   CONSTRAINT [FK_SkinType_EyeColor] FOREIGN KEY ([EyeColorId]) REFERENCES [EyeColor] ([Id]),
   CONSTRAINT [FK_SkinType_HairColor] FOREIGN KEY ([HairColorId]) REFERENCES [HairColor] ([Id]),
-  CONSTRAINT [FK_SkinType_SunReaction] FOREIGN KEY ([SunReaction]) REFERENCES [SunReaction] ([Id])
+  CONSTRAINT [FK_SkinType_SunReaction] FOREIGN KEY ([SunReactionId]) REFERENCES [SunReaction] ([Id])
 )
 
 CREATE TABLE [Precaution] (
@@ -83,6 +83,7 @@ CREATE TABLE [UserProfile] (
   [FirebaseId] NVARCHAR(28) NOT NULL,
   [FirstName] nvarchar(50) NOT NULL,
   [LastName] nvarchar(50) NOT NULL,
+  [CreateDateTime] datetime NOT NULL,
   [Age] nvarchar(3),
   [Email] nvarchar(255) NOT NULL,
   [Image] nvarchar(255),
@@ -95,6 +96,7 @@ CREATE TABLE [UserProfile] (
 CREATE TABLE [Product] (
   [Id] integer PRIMARY KEY IDENTITY,
   [UserProfileId] integer NOT NULL,
+  [CreateDateTime] datetime NOT NULL,
   [Name] nvarchar(255) NOT NULL,
   [Image] nvarchar(255),
   [TypeId] integer NOT NULL,
@@ -119,7 +121,7 @@ CREATE TABLE [ProductUser] (
   [Id] integer PRIMARY KEY IDENTITY,
   [UserProfileId] integer NOT NULL,
   [ProductId] integer NOT NULL,
-  [IsLiked] boolean NOT NULL,
+  [IsLiked] BIT NOT NULL,
 
   CONSTRAINT [FK_ProductUser_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id]),
   CONSTRAINT [FK_ProductUser_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [Product] ([Id])
@@ -130,6 +132,5 @@ CREATE TABLE [Follower] (
   [UserProfileId] integer NOT NULL,
   [OtherUserId] integer NOT NULL,
 
-  CONSTRAINT [FK_Follower_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id]),
-  CONSTRAINT [FK_Follower_UserProfile] FOREIGN KEY ([OtherUserId]) REFERENCES [UserProfile] ([Id])
+  CONSTRAINT [FK_Follower_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
 )
