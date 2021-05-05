@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Sunnie.Repositories;
+using Sunnie.Repositories.Quiz;
 
 namespace Sunnie
 {
@@ -24,6 +25,8 @@ namespace Sunnie
         {
             // Register the UserProfileRepository with ASP.NET
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+            services.AddTransient<IFrecklesRepository, FrecklesRepository>();
+
 
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");

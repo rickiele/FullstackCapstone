@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 
 namespace Sunnie.Models.Quiz
 {
-    public class Freckles
+    public class SunBurn
     {
         public int Id { get; set; }
         public string Answer { get; set; }
         public int Score { get; set; }
-
     }
 }

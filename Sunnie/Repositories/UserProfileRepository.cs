@@ -4,8 +4,6 @@ using Microsoft.Data.SqlClient;
 using Sunnie.Models;
 using Sunnie.Utils;
 
-
-// TODO: Don't forget about CreateDateTime
 namespace Sunnie.Repositories
 {
     public class UserProfileRepository : BaseRepository, IUserProfileRepository

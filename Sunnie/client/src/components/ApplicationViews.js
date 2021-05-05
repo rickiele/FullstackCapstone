@@ -5,7 +5,8 @@ import Login from "../Login";
 import Register from "../Register";
 import Hello from "./Hello";
 
-import { CommunityList } from "./community/CommunityList"
+import { QuizList } from "./quiz/QuizList";
+import { FrecklesProvider } from "../providers/quiz/FrecklesProvider";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
@@ -26,7 +27,9 @@ export default function ApplicationViews() {
                 </Route>
 
                 <Route path="/quiz">
-                    {/* <CommunityList /> */}
+                    <FrecklesProvider>
+                        <QuizList />
+                    </FrecklesProvider>
                 </Route>
             </Switch>
         </main>
