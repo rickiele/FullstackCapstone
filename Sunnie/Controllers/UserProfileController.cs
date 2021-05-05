@@ -18,10 +18,10 @@ namespace Sunnie.Controllers
             _userProfileRepository = userProfileRepository;
         }
 
-        [HttpGet("{firebaseUserId}")]
-        public IActionResult GetUserProfile(string firebaseUserId)
+        [HttpGet("{FirebaseId}")]
+        public IActionResult GetUserProfile(string FirebaseId)
         {
-            return Ok(_userProfileRepository.GetByFirebaseUserId(firebaseUserId));
+            return Ok(_userProfileRepository.GetByFirebaseUserId(FirebaseId));
         }
 
         [HttpPost]
