@@ -177,7 +177,7 @@ namespace Sunnie.Repositories
                                         OUTPUT INSERTED.ID
                                         VALUES (@FirebaseId, @FirstName, @LastName, @Age, 
                                                 @CreateDateTime, @Email, @ImageLocation, @SkinTypeId)";
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", userProfile.FirebaseId);
+                    DbUtils.AddParameter(cmd, "@FirebaseId", userProfile.FirebaseId);
                     DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
                     DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
                     DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);

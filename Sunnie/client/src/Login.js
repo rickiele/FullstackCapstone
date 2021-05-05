@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, FormLabel } from 'react-bootstrap';
 import { useHistory, Link } from "react-router-dom";
-import { UserProfileContext } from "../providers/UserProfileProvider";
+import { UserProfileContext } from "./providers/UserProfileProvider";
 
 export default function Login() {
     const history = useHistory();
@@ -21,12 +21,12 @@ export default function Login() {
         <Form onSubmit={loginSubmit}>
             <fieldset>
                 <FormGroup>
-                    <Label for="email">Email</Label>
-                    <Input id="email" type="text" onChange={e => setEmail(e.target.value)} />
+                    <Form.Label for="email">Email</Form.Label>
+                    <Form.Control id="email" type="text" onChange={e => setEmail(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="password">Password</Label>
-                    <Input id="password" type="password" onChange={e => setPassword(e.target.value)} />
+                    <Form.Label for="password">Password</Form.Label>
+                    <Form.Control id="password" type="password" onChange={e => setPassword(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
                     <Button>Login</Button>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
-import { Spinner } from "reactstrap";
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/auth";
 
 export const UserProfileContext = createContext();
@@ -100,9 +99,7 @@ export function UserProfileProvider(props) {
 
     return (
         <UserProfileContext.Provider value={{ userProfiles, isLoggedIn, login, logout, register, getToken, getUserProfile, getAllUserProfiles, getUserProfileById }}>
-            {isFirebaseReady
-                ? props.children
-                : <Spinner className="app-spinner dark" />}
+            {props.children}
         </UserProfileContext.Provider>
     );
 }
