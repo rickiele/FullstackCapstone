@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Button, Form, FormGroup, FormLabel } from 'react-bootstrap';
+import { Button, Form, FormGroup } from 'react-bootstrap';
 import { useHistory, Link } from "react-router-dom";
 import { UserProfileContext } from "./providers/UserProfileProvider";
 
@@ -18,7 +18,7 @@ export default function Login() {
     };
 
     return (
-        <Form onSubmit={loginSubmit}>
+        <Form>
             <fieldset>
                 <FormGroup>
                     <Form.Label for="email">Email</Form.Label>
@@ -29,7 +29,7 @@ export default function Login() {
                     <Form.Control id="password" type="password" onChange={e => setPassword(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <Button>Login</Button>
+                    <Button onClick={loginSubmit}>Login</Button>
                 </FormGroup>
                 <em>
                     Not registered? <Link to="register">Register</Link>

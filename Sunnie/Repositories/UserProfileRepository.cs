@@ -76,6 +76,7 @@ namespace Sunnie.Repositories
                               
                        FROM UserProfile u
                               LEFT JOIN SkinType st ON st.Id = u.SkinTypeId
+
                        WHERE FirebaseId = @FirebaseId";
 
                     DbUtils.AddParameter(cmd, "@FirebaseId", firebaseId);

@@ -9,7 +9,7 @@ export default function Register() {
 
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
-    const [displayName, setDisplayName] = useState();
+    const [age, setAge] = useState();
     const [email, setEmail] = useState();
     const [imageLocation, setImageLocation] = useState();
     const [password, setPassword] = useState();
@@ -20,14 +20,14 @@ export default function Register() {
         if (password && password !== confirmPassword) {
             alert("Passwords don't match. Do better.");
         } else {
-            const userProfile = { firstName, lastName, displayName, imageLocation, email };
+            const userProfile = { firstName, lastName, age, imageLocation, email };
             register(userProfile, password)
                 .then(() => history.push("/"));
         }
     };
 
     return (
-        <Form onSubmit={registerClick}>
+        <Form>
             <fieldset>
                 <FormGroup>
                     <Form.Label htmlFor="firstName">First Name</Form.Label>
@@ -38,8 +38,8 @@ export default function Register() {
                     <Form.Control id="lastName" type="text" onChange={e => setLastName(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <Form.Label htmlFor="displayName">Display Name</Form.Label>
-                    <Form.Control id="displayName" type="text" onChange={e => setDisplayName(e.target.value)} />
+                    <Form.Label htmlFor="age">Age</Form.Label>
+                    <Form.Control id="age" type="text" onChange={e => setAge(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
                     <Form.Label for="email">Email</Form.Label>
@@ -58,7 +58,7 @@ export default function Register() {
                     <Form.Control id="confirmPassword" type="password" onChange={e => setConfirmPassword(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <Button>Register</Button>
+                    <Button onClick={registerClick}>Register</Button>
                 </FormGroup>
             </fieldset>
         </Form>
