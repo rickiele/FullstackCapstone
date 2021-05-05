@@ -17,7 +17,7 @@ export const CommunityList = () => {
             <h3>User Profiles</h3>
             {
                 userProfiles.map(userProfile => {
-                    return <UserProfile key={userProfile.id} userProfile={userProfile} />
+                    return <UserCard key={userProfile.id} userProfile={userProfile} />
                 })
             }
         </div>

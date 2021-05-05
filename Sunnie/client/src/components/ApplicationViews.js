@@ -26,7 +26,7 @@ export default function ApplicationViews() {
                 </Route>
 
                 <Route path="/community">
-                    <CommunityList />
+                    {/* <CommunityList /> */}
                 </Route>
             </Switch>
         </main>
