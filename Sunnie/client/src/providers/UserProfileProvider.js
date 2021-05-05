@@ -1,6 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
-import { Spinner } from "reactstrap";
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/auth";
 
 export const UserProfileContext = createContext();
@@ -53,7 +52,7 @@ export function UserProfileProvider(props) {
 
     const register = (userProfile, password) => {
         return firebase.auth().createUserWithEmailAndPassword(userProfile.email, password)
-            .then((createResponse) => saveUser({ ...userProfile, firebaseUserId: createResponse.user.uid }))
+            .then((createResponse) => saveUser({ ...userProfile, firebaseId: createResponse.user.uid }))
             .then((savedUserProfile) => {
                 sessionStorage.setItem("userProfile", JSON.stringify(savedUserProfile))
                 setIsLoggedIn(true);
@@ -62,9 +61,9 @@ export function UserProfileProvider(props) {
 
     const getToken = () => firebase.auth().currentUser.getIdToken();
 
-    const getUserProfile = (firebaseUserId) => {
+    const getUserProfile = (firebaseId) => {
         return getToken().then((token) =>
-            fetch(`${apiUrl}/${firebaseUserId}`, {
+            fetch(`${apiUrl}/${firebaseId}`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -100,9 +99,7 @@ export function UserProfileProvider(props) {
 
     return (
         <UserProfileContext.Provider value={{ userProfiles, isLoggedIn, login, logout, register, getToken, getUserProfile, getAllUserProfiles, getUserProfileById }}>
-            {isFirebaseReady
-                ? props.children
-                : <Spinner className="app-spinner dark" />}
+            {props.children}
         </UserProfileContext.Provider>
     );
 }

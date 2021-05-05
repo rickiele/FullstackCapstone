@@ -76,6 +76,7 @@ namespace Sunnie.Repositories
                               
                        FROM UserProfile u
                               LEFT JOIN SkinType st ON st.Id = u.SkinTypeId
+
                        WHERE FirebaseId = @FirebaseId";
 
                     DbUtils.AddParameter(cmd, "@FirebaseId", firebaseId);
@@ -173,18 +174,17 @@ namespace Sunnie.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"INSERT INTO UserProfile (FirebaseId, FirstName, LastName, Age, 
-                                                                 CreateDateTime, Email, ImageLocation, SkinTypeId)
+                                                                 CreateDateTime, Email, ImageLocation)
                                         OUTPUT INSERTED.ID
                                         VALUES (@FirebaseId, @FirstName, @LastName, @Age, 
-                                                @CreateDateTime, @Email, @ImageLocation, @SkinTypeId)";
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", userProfile.FirebaseId);
+                                                @CreateDateTime, @Email, @ImageLocation)";
+                    DbUtils.AddParameter(cmd, "@FirebaseId", userProfile.FirebaseId);
                     DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
                     DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
                     DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);
                     DbUtils.AddParameter(cmd, "@Age", userProfile.Age);
                     DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
                     DbUtils.AddParameter(cmd, "@ImageLocation", userProfile.ImageLocation);
-                    DbUtils.AddParameter(cmd, "@SkinTypeId", userProfile.SkinTypeId);
 
                     userProfile.Id = (int)cmd.ExecuteScalar();
                 }
