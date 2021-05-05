@@ -22,12 +22,9 @@ namespace Sunnie
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddTransient<IUserProfileRepository, UserProfileRepository>();
-            //services.AddTransient<ICommentRepository, CommentRepository>();
-            //services.AddTransient<ITagRepository, TagRepository>();
-            //services.AddTransient<ICategoryRepository, CategoryRepository>();
-            //services.AddTransient<IPostRepository, PostRepository>();
-            //services.AddTransient<IPostTagRepository, PostTagRepository>();
+            // Register the UserProfileRepository with ASP.NET
+            services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";

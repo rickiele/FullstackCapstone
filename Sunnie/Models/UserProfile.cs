@@ -25,11 +25,9 @@ namespace Sunnie.Models
         public int Age { get; set; }
 
         [Required]
-        [DataType(DataType.EmailAddress)]
         [MaxLength(255)]
         public string Email { get; set; }
 
-        [DataType(DataType.Url)]
         [MaxLength(255)]
         public string ImageLocation { get; set; }
 
