@@ -25,7 +25,7 @@ export default function ApplicationViews() {
                     <Register />
                 </Route>
 
-                <Route path="/community">
+                <Route path="/quiz">
                     {/* <CommunityList /> */}
                 </Route>
             </Switch>

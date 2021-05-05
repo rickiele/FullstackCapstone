@@ -22,6 +22,7 @@ export default function Header() {
                     {isLoggedIn &&
                         <Nav.Item className="nav-bar-link-container">
                             <NavLink className="nav-link" to="/">Sunnie</NavLink>
+                            <NavLink className="nav-link" to="/quiz">Quiz</NavLink>
                             <NavLink className="nav-link" to="/community">Community</NavLink>
                         </Nav.Item>
                     }

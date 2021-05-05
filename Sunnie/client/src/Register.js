@@ -22,7 +22,7 @@ export default function Register() {
         } else {
             const userProfile = { firstName, lastName, age, imageLocation, email };
             register(userProfile, password)
-                .then(() => history.push("/"));
+                .then(() => history.push("/quiz"));
         }
     };
 
