@@ -20,11 +20,12 @@ namespace Sunnie.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                       SELECT u.Id, u.FirebaseId, u.FirstName, u.LastName, u.Age, u.Email,
-                              u.ImageLocation, u.SkinTypeId
+                       SELECT u.Id, u.FirebaseId, u.FirstName, u.LastName, u.Age, u.Email, u.CreateDateTime,
+                              u.ImageLocation, u.SkinTypeId,
+                              st.Id, st.TypeDescription, st.Minimum, st.Maximum
                               
-                       FROM UserProfile u
-                              LEFT JOIN SkinType st ON u.UserProfileId = st.id";
+                          FROM UserProfile u
+                              LEFT JOIN SkinType st ON st.Id = u.SkinTypeId";
 
                     UserProfile userProfile = null;
                     var reader = cmd.ExecuteReader();
@@ -38,6 +39,7 @@ namespace Sunnie.Repositories
                             FirebaseId = reader.GetString(reader.GetOrdinal("FirebaseId")),
                             FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                             LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                             Age = reader.GetInt32(reader.GetOrdinal("Age")),
                             Email = reader.GetString(reader.GetOrdinal("Email")),
                             ImageLocation = DbUtils.GetNullableString(reader, "ImageLocation"),
@@ -68,11 +70,12 @@ namespace Sunnie.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                       SELECT u.Id, u.FirebaseId, u.FirstName, u.LastName, u.Age, u.Email,
-                              u.ImageLocation, u.SkinTypeId
+                       SELECT u.Id, u.FirebaseId, u.FirstName, u.LastName, u.Age, u.Email, u.CreateDateTime,
+                              u.ImageLocation, u.SkinTypeId,
+                              st.Id, st.TypeDescription, st.Minimum, st.Maximum
                               
                        FROM UserProfile u
-                              LEFT JOIN SkinType st ON u.UserProfileId = st.id
+                              LEFT JOIN SkinType st ON st.Id = u.SkinTypeId
                        WHERE FirebaseId = @FirebaseId";
 
                     DbUtils.AddParameter(cmd, "@FirebaseId", firebaseId);
@@ -88,6 +91,7 @@ namespace Sunnie.Repositories
                             FirebaseId = reader.GetString(reader.GetOrdinal("FirebaseId")),
                             FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                             LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                             Age = reader.GetInt32(reader.GetOrdinal("Age")),
                             Email = reader.GetString(reader.GetOrdinal("Email")),
                             ImageLocation = DbUtils.GetNullableString(reader, "ImageLocation"),
@@ -117,13 +121,14 @@ namespace Sunnie.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                          SELECT u.Id, u.FirebaseId, u.FirstName, u.LastName, u.Age, u.Email,
-                              u.ImageLocation, u.SkinTypeId
+                          SELECT u.Id, u.FirebaseId, u.FirstName, u.LastName, u.Age, u.Email, u.CreateDateTime,
+                              u.ImageLocation, u.SkinTypeId,
+                              st.Id, st.TypeDescription, st.Minimum, st.Maximum
                               
                           FROM UserProfile u
-                              LEFT JOIN SkinType st ON u.UserProfileId = st.id
+                              LEFT JOIN SkinType st ON st.Id = u.SkinTypeId
                                
-                         WHERE up.Id = @Id";
+                         WHERE u.Id = @Id";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
 
@@ -137,6 +142,7 @@ namespace Sunnie.Repositories
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             FirebaseId = reader.GetString(reader.GetOrdinal("FirebaseId")),
                             FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                             LastName = reader.GetString(reader.GetOrdinal("LastName")),
                             Age = reader.GetInt32(reader.GetOrdinal("Age")),
                             Email = reader.GetString(reader.GetOrdinal("Email")),
@@ -167,13 +173,14 @@ namespace Sunnie.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"INSERT INTO UserProfile (FirebaseId, FirstName, LastName, Age, 
-                                                                 Email, ImageLocation, SkinTypeId)
+                                                                 CreateDateTime, Email, ImageLocation, SkinTypeId)
                                         OUTPUT INSERTED.ID
                                         VALUES (@FirebaseId, @FirstName, @LastName, @Age, 
-                                                @Email, @ImageLocation, @SkinTypeId)";
+                                                @CreateDateTime, @Email, @ImageLocation, @SkinTypeId)";
                     DbUtils.AddParameter(cmd, "@FirebaseUserId", userProfile.FirebaseId);
                     DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
                     DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
+                    DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);
                     DbUtils.AddParameter(cmd, "@Age", userProfile.Age);
                     DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
                     DbUtils.AddParameter(cmd, "@ImageLocation", userProfile.ImageLocation);
