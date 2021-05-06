@@ -29,8 +29,7 @@ export const Home = () => {
 
     let userSkinType = currentUser.skinTypeId;
     console.log(userSkinType, "userSkinType")
-
-    // let st = uvLevel.result.safe_exposure_time
+    console.log(uvLevel.result, "result")
 
     return (
         <div className="userProfiles">
@@ -38,10 +37,10 @@ export const Home = () => {
                 <h1>Welcome back, {currentUser.firstName} {currentUser.lastName}.</h1>
                 <Row>
                     <Col>
-                        <h1>Current UV Level: {uvLevel.result.uv}</h1>
+                        <h1>Current UV Level: {uvLevel.result?.uv}</h1>
                     </Col>
                     <Col>
-                        <h1>Safe Exposure Time:{uvLevel.result.safe_exposure_time.st1}</h1>
+                        <h1>Safe Exposure Time:{uvLevel.result?.safe_exposure_time['st' + userSkinType]} mins</h1>
                     </Col>
                 </Row>
             </Card>
