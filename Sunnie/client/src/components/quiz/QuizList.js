@@ -5,13 +5,14 @@ export const QuizList = () => {
 
     const questions = [
         {
-            questionText: "How many freckles do you have on unexposed areas of your skin?",
+            questionText: "What is your natural eye color?",
             answerOptions: [
-                { answerText: "Many", weight: 0 },
-                { answerText: "Several", weight: 1 },
-                { answerText: "A few", weight: 2 },
-                { answerText: "Very few", weight: 3 },
-            ],
+                { answerText: "Light blue, light gray or light green", weight: 0 },
+                { answerText: "Blue, gray or green", weight: 1 },
+                { answerText: "Hazel or light brown", weight: 2 },
+                { answerText: "Dark brown", weight: 3 },
+                { answerText: "Brownish black", weight: 4 },
+            ]
         },
         {
             questionText: "What is your natural hair color?",
@@ -21,16 +22,6 @@ export const QuizList = () => {
                 { answerText: "Dark blonde or light brown", weight: 2 },
                 { answerText: "Dark brown", weight: 3 },
                 { answerText: "Black", weight: 4 },
-            ]
-        },
-        {
-            questionText: "What is your natural eye color?",
-            answerOptions: [
-                { answerText: "Light blue, light gray or light green", weight: 0 },
-                { answerText: "Blue, gray or green", weight: 1 },
-                { answerText: "Hazel or light brown", weight: 2 },
-                { answerText: "Dark brown", weight: 3 },
-                { answerText: "Brownish black", weight: 4 },
             ]
         },
         {
@@ -44,6 +35,26 @@ export const QuizList = () => {
             ]
         },
         {
+            questionText: "How many freckles do you have on unexposed areas of your skin?",
+            answerOptions: [
+                { answerText: "Many", weight: 0 },
+                { answerText: "Several", weight: 1 },
+                { answerText: "Few", weight: 2 },
+                { answerText: "Very few", weight: 3 },
+                { answerText: "None", weight: 4 },
+            ],
+        },
+        {
+            questionText: "How does your skin respond to the sun?",
+            answerOptions: [
+                { answerText: "Always burns, blisters and peels", weight: 0 },
+                { answerText: "Often burns, blisters and peels", weight: 1 },
+                { answerText: "Burns moderately", weight: 2 },
+                { answerText: "Burns rarely, if at all", weight: 3 },
+                { answerText: "Never burns", weight: 4 },
+            ]
+        },
+        {
             questionText: "Does your skin tan?",
             answerOptions: [
                 { answerText: "Never, I always burn", weight: 0 },
@@ -54,13 +65,13 @@ export const QuizList = () => {
             ]
         },
         {
-            questionText: "How does your skin repsond to the sun?",
+            questionText: "How deeply do you tan?",
             answerOptions: [
-                { answerText: "Always burns, blisters and peels", weight: 0 },
-                { answerText: "Often burns, blisters and peels", weight: 1 },
-                { answerText: "Burns moderately", weight: 2 },
-                { answerText: "Burns rarely, if at all", weight: 3 },
-                { answerText: "Never burns", weight: 4 },
+                { answerText: "Not at all, or very little", weight: 0 },
+                { answerText: "Lightly", weight: 1 },
+                { answerText: "Moderately", weight: 2 },
+                { answerText: "Deeply", weight: 3 },
+                { answerText: "My skin is naturally dark", weight: 4 },
             ]
         },
         {
@@ -71,16 +82,6 @@ export const QuizList = () => {
                 { answerText: "Normal", weight: 2 },
                 { answerText: "Resistant", weight: 3 },
                 { answerText: "Very resistant/Never had a problem", weight: 4 },
-            ]
-        },
-        {
-            questionText: "How deeply do you tan?",
-            answerOptions: [
-                { answerText: "Not at all or very little", weight: 0 },
-                { answerText: "Lightly", weight: 1 },
-                { answerText: "Moderately", weight: 2 },
-                { answerText: "Deeply", weight: 3 },
-                { answerText: "My skin is naturally dark", weight: 4 },
             ]
         }
     ]
