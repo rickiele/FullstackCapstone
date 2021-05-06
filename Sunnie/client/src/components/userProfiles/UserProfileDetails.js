@@ -23,12 +23,30 @@ export const UserProfileDetails = () => {
     return (
         <section>
             <Row>
-                <Col>
+                <Col md={3}>
                     <Card className="userDetails">
+                        <h3>Profile pic here</h3>
                         <h3>{userProfile.firstName} {userProfile.lastName}</h3>
+                        <h3>Age: {userProfile.age}</h3>
+                        <h3>Skin Type {userProfile.skinTypeId}</h3>
                     </Card>
                 </Col>
                 <Col>
+                    <Row>
+                        <Card>
+                            <h3>Favorites</h3>
+                        </Card>
+                    </Row>
+                    <Row>
+                        <Card>
+                            <h3>Likes</h3>
+                            <p>populate top 3 liked here</p>
+                        </Card>
+                        <Card>
+                            <h3>Dislikes</h3>
+                            <p>populate  top 3 disliked here</p>
+                        </Card>
+                    </Row>
                 </Col>
             </Row>
         </section>
