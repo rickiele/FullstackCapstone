@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { OpenUVContext } from "../../providers/OpenUVProvider";
+import { Card, Row, Col } from "react-bootstrap";
 
 export const Home = () => {
 
     const { userProfiles, getUserProfileById } = useContext(UserProfileContext);
-    const { getTheCurrentUVLevel } = useContext(OpenUVContext);
+    const { uvLevel, getTheCurrentUVLevel } = useContext(OpenUVContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
     const successCallback = (position) => {
@@ -14,7 +15,6 @@ export const Home = () => {
         let long = position.coords.longitude;
 
         getTheCurrentUVLevel(lat, long, currentDateTime);
-        console.log(position, "location")
     };
 
     const errorCallback = (error) => {
@@ -26,16 +26,26 @@ export const Home = () => {
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     }, []);
 
+
+    let userSkinType = currentUser.skinTypeId;
+    console.log(userSkinType, "userSkinType")
+
+    // let st = uvLevel.result.safe_exposure_time
+
     return (
         <div className="userProfiles">
+            <Card>
+                <h1>Welcome back, {currentUser.firstName} {currentUser.lastName}.</h1>
+                <Row>
+                    <Col>
+                        <h1>Current UV Level: {uvLevel.result.uv}</h1>
+                    </Col>
+                    <Col>
+                        <h1>Safe Exposure Time:{uvLevel.result.safe_exposure_time}</h1>
+                    </Col>
+                </Row>
+            </Card>
 
-            <h1>Welcome back, {currentUser.firstName} {currentUser.lastName}.</h1>
-            <div>
-                <h1>UV Level here</h1>
-            </div>
-            <div>
-                <h1>Curent exposure time for skin type here</h1>
-            </div>
         </div>
 
     );

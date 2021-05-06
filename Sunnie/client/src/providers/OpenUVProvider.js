@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserProfileContext } from "./UserProfileProvider";
+import { settings } from "../Settings.js";
 
 export const OpenUVContext = React.createContext();
 
@@ -8,7 +9,11 @@ export const OpenUVProvider = (props) => {
 
     const getTheCurrentUVLevel = (lat, long, currentDateTime) => {
         return fetch(`https://api.openuv.io/api/v1/uv?lat=${lat}&lng=${long}&dt=${currentDateTime}`, {
-            method: "GET"
+            method: "GET",
+            headers: {
+                'content-type': 'application/json',
+                'x-access-token': `${settings.openUVKey}`
+            }
         })
             .then((res) => res.json())
             .then(setUVLevel);
