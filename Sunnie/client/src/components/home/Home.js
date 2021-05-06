@@ -41,7 +41,7 @@ export const Home = () => {
                         <h1>Current UV Level: {uvLevel.result.uv}</h1>
                     </Col>
                     <Col>
-                        <h1>Safe Exposure Time:{uvLevel.result.safe_exposure_time}</h1>
+                        <h1>Safe Exposure Time:{uvLevel.result.safe_exposure_time.st1}</h1>
                     </Col>
                 </Row>
             </Card>
