@@ -4,8 +4,6 @@ using Microsoft.Data.SqlClient;
 using Sunnie.Models;
 using Sunnie.Utils;
 
-
-// TODO: Don't forget about CreateDateTime
 namespace Sunnie.Repositories
 {
     public class UserProfileRepository : BaseRepository, IUserProfileRepository
@@ -46,10 +44,10 @@ namespace Sunnie.Repositories
                             SkinTypeId = reader.GetInt32(reader.GetOrdinal("SkinTypeId")),
                             SkinType = new SkinType()
                             {
-                                Id = reader.GetInt32(reader.GetOrdinal("SkinTypeId")),
-                                TypeDescription = reader.GetString(reader.GetOrdinal("TypeDescription")),
-                                Minimum = reader.GetInt32(reader.GetOrdinal("Minimum")),
-                                Maximum = reader.GetInt32(reader.GetOrdinal("Maximum"))
+                                Id = reader.GetInt32(reader.GetOrdinal ("SkinTypeId")),
+                                TypeDescription = reader.GetString(reader.GetOrdinal ("TypeDescription")),
+                                Minimum = reader.GetInt32(reader.GetOrdinal ("Minimum")),
+                                Maximum = reader.GetInt32(reader.GetOrdinal ("Maximum"))
                             },
                         };
 
@@ -165,7 +163,6 @@ namespace Sunnie.Repositories
             }
         }
 
-
         public void Add(UserProfile userProfile)
         {
             using (var conn = Connection)
@@ -187,6 +184,36 @@ namespace Sunnie.Repositories
                     DbUtils.AddParameter(cmd, "@ImageLocation", userProfile.ImageLocation);
 
                     userProfile.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        public void Update(UserProfile userProfile)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE UserProfile
+                           SET FirstName = @FirstName,
+                               LastName = @LastName,
+                               Age = @Age,
+                               Email = @Email,
+                               ImageLocation = @ImageLocation,  
+                               SkinTypeId = @SkinTypeId
+                         WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
+                    DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
+                    DbUtils.AddParameter(cmd, "@Age", userProfile.Age);
+                    DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
+                    DbUtils.AddParameter(cmd, "ImageLocation", userProfile.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@Id", userProfile.Id);
+                    DbUtils.AddParameter(cmd, "@SkinTypeId", userProfile.SkinTypeId);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }

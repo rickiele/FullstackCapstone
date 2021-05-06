@@ -24,6 +24,8 @@ namespace Sunnie
         {
             // Register the UserProfileRepository with ASP.NET
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+            services.AddTransient<ISkinTypeRepository, SkinTypeRepository>();
+
 
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");

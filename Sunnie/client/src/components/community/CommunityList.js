@@ -4,16 +4,15 @@ import { UserCard } from "./UserCard";
 
 export const CommunityList = () => {
 
-    const { userProfiles, getAllUserProfiles } = useContext(UserProfileContext)
+    const { userProfiles, getAllUserProfiles } = useContext(UserProfileContext);
 
     useEffect(() => {
-        console.log("UserList: useEffect - getUsers")
-        getAllUserProfiles()
-    }, [])
+        getAllUserProfiles();
+    }, []);
 
+    console.log(userProfiles, "hello??")
     return (
         <div className="userProfiles">
-            {console.log("UserList: Render", userProfiles)}
             <h3>User Profiles</h3>
             {
                 userProfiles.map(userProfile => {
@@ -21,5 +20,5 @@ export const CommunityList = () => {
                 })
             }
         </div>
-    )
+    );
 }

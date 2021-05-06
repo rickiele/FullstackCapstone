@@ -5,7 +5,11 @@ import Login from "../Login";
 import Register from "../Register";
 import Hello from "./Hello";
 
-import { CommunityList } from "./community/CommunityList"
+import { QuizList } from "./quiz/QuizList";
+import { SkinTypeProvider } from "../providers/SkinTypeProvider";
+import { CommunityList } from "./community/CommunityList";
+import { Home } from "./home/Home";
+
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
@@ -14,7 +18,7 @@ export default function ApplicationViews() {
         <main>
             <Switch>
                 <Route path="/" exact>
-                    {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <Home /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/login">
@@ -25,8 +29,12 @@ export default function ApplicationViews() {
                     <Register />
                 </Route>
 
+                <Route path="/quiz">
+                    <QuizList />
+                </Route>
+
                 <Route path="/community">
-                    {/* <CommunityList /> */}
+                    <CommunityList />
                 </Route>
             </Switch>
         </main>

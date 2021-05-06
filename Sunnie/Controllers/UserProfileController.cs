@@ -6,7 +6,7 @@ using Sunnie.Repositories;
 
 namespace Sunnie.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
 
@@ -55,6 +55,20 @@ namespace Sunnie.Controllers
             return Ok(up);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, UserProfile userProfile)
+        {
+            if (id != userProfile.Id)
+            {
+                return BadRequest();
+            }
+
+            _userProfileRepository.Update(userProfile);
+            return NoContent();
+        }
+
 
     }
+
+
 }

@@ -12,20 +12,6 @@ export function UserProfileProvider(props) {
 
     const [userProfiles, setUserProfiles] = useState([])
 
-    const getAllUserProfiles = () => {
-
-        return getToken().then((token) =>
-
-            fetch(`${apiUrl}`, {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-                .then(res => res.json())
-                .then(setUserProfiles))
-    }
-
     const [isFirebaseReady, setIsFirebaseReady] = useState(false);
     useEffect(() => {
         firebase.auth().onAuthStateChanged((u) => {
@@ -97,8 +83,33 @@ export function UserProfileProvider(props) {
             }).then(resp => resp.json()));
     };
 
+    const getAllUserProfiles = () => {
+        return getToken().then((token) =>
+
+            fetch(`${apiUrl}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then(res => res.json())
+                .then(setUserProfiles))
+    };
+
+    const updateUserProfile = (userProfile) =>
+        getToken().then((token) =>
+            fetch(`${apiUrl}/${userProfile.id}`, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userProfile),
+            }));
+    // .then(getUserProfileById(userProfile.id)));
+
     return (
-        <UserProfileContext.Provider value={{ userProfiles, isLoggedIn, login, logout, register, getToken, getUserProfile, getAllUserProfiles, getUserProfileById }}>
+        <UserProfileContext.Provider value={{ userProfiles, isLoggedIn, login, logout, register, getToken, getUserProfile, getAllUserProfiles, getUserProfileById, updateUserProfile }}>
             {props.children}
         </UserProfileContext.Provider>
     );
