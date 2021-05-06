@@ -4,14 +4,17 @@ import { UserProfileProvider } from "./providers/UserProfileProvider";
 import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
 import { SkinTypeProvider } from './providers/SkinTypeProvider';
+import { OpenUVProvider } from './providers/OpenUVProvider';
 
 function App() {
   return (
     <Router>
       <UserProfileProvider>
         <SkinTypeProvider>
-          <Header />
-          <ApplicationViews />
+          <OpenUVProvider>
+            <Header />
+            <ApplicationViews />
+          </OpenUVProvider>
         </SkinTypeProvider>
       </UserProfileProvider>
     </Router>

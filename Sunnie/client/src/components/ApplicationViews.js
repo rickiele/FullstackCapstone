@@ -30,15 +30,11 @@ export default function ApplicationViews() {
                 </Route>
 
                 <Route path="/quiz">
-                    <SkinTypeProvider>
-                        <QuizList />
-                    </SkinTypeProvider>
+                    <QuizList />
                 </Route>
 
                 <Route path="/community">
-                    <SkinTypeProvider>
-                        <CommunityList />
-                    </SkinTypeProvider>
+                    <CommunityList />
                 </Route>
             </Switch>
         </main>
