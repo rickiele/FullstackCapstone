@@ -10,6 +10,9 @@ export const CommunityList = () => {
         getAllUserProfiles();
     }, []);
 
+    //Need to add a filter by skin type
+    // Need to not show the current user in the array
+
     console.log(userProfiles, "hello??")
     return (
         <div className="userProfiles">

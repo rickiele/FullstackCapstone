@@ -116,7 +116,7 @@ export const QuizList = () => {
                     imageLocation: currentUser.imageLocation
                 })
         }
-        else if (score >= 7 && score <= 13) {
+        else if (score >= 7 && score <= 12) {
             updateUserProfile(
                 {
                     id: currentUser.id,
@@ -126,13 +126,58 @@ export const QuizList = () => {
                     age: currentUser.age,
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
-
                 })
         }
-        else {
+        else if (score >= 13 && score <= 18) {
+            updateUserProfile(
+                {
+                    id: currentUser.id,
+                    skinTypeId: 3,
+                    firstName: currentUser.firstName,
+                    lastName: currentUser.lastName,
+                    age: currentUser.age,
+                    email: currentUser.email,
+                    imageLocation: currentUser.imageLocation
+                })
+        }
+        else if (score >= 19 && score <= 24) {
+            updateUserProfile(
+                {
+                    id: currentUser.id,
+                    skinTypeId: 4,
+                    firstName: currentUser.firstName,
+                    lastName: currentUser.lastName,
+                    age: currentUser.age,
+                    email: currentUser.email,
+                    imageLocation: currentUser.imageLocation
+                })
+        }
+        else if (score >= 25 && score <= 30) {
+            updateUserProfile(
+                {
+                    id: currentUser.id,
+                    skinTypeId: 5,
+                    firstName: currentUser.firstName,
+                    lastName: currentUser.lastName,
+                    age: currentUser.age,
+                    email: currentUser.email,
+                    imageLocation: currentUser.imageLocation
+                })
+        }
+        else if (score >= 31 && score <= 35) {
+            updateUserProfile(
+                {
+                    id: currentUser.id,
+                    skinTypeId: 6,
+                    firstName: currentUser.firstName,
+                    lastName: currentUser.lastName,
+                    age: currentUser.age,
+                    email: currentUser.email,
+                    imageLocation: currentUser.imageLocation
+                })
+        } else {
             console.log("nahh")
         }
-
     }
 
     const handleAnswerClick = (weight) => {

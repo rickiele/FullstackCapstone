@@ -1,5 +1,6 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
 
 
 export const UserCard = ({ userProfile }) => {
@@ -7,9 +8,12 @@ export const UserCard = ({ userProfile }) => {
     return (
         <section className="userProfile">
             <h3 className="userProfileTitle">
-                <Link to={`/userProfiles/detail/getById/${userProfile.id}`}>
-                    {userProfile.firstName} {userProfile.skinType.typeDescription}
-                </Link>
+                <Card>
+                    <Link to={`/userProfiles/detail/getById/${userProfile.id}`}>
+                        {userProfile.firstName}
+                    </Link>
+                    {userProfile.skinType.typeDescription}
+                </Card>
             </h3>
         </section>
     )

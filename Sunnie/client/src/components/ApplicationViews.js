@@ -8,6 +8,7 @@ import Hello from "./Hello";
 import { QuizList } from "./quiz/QuizList";
 import { UserProfileDetails } from "./userProfiles/UserProfileDetails";
 import { CommunityList } from "./community/CommunityList";
+import { UserProfile } from "./userProfiles/UserProfile";
 import { Home } from "./home/Home";
 
 
@@ -35,6 +36,10 @@ export default function ApplicationViews() {
 
                 <Route path="/community">
                     <CommunityList />
+                </Route>
+
+                <Route path="/userProfiles/detail/getById/:userProfileId(\d+)">
+                    <UserProfile />
                 </Route>
 
                 <Route exact path="/userProfiles/detail/getById/:userProfileId(\d+)">
