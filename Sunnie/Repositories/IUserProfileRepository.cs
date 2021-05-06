@@ -9,5 +9,6 @@ namespace Sunnie.Repositories
         List<UserProfile> GetAllUserProfiles();
         UserProfile GetByFirebaseUserId(string firebaseId);
         UserProfile GetUserProfileById(int id);
+        void Update(UserProfile userProfile);
     }
 }

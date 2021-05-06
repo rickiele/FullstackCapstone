@@ -4,12 +4,12 @@ import { UserCard } from "./UserCard";
 
 export const CommunityList = () => {
 
-    const { userProfiles, getAllUserProfiles } = useContext(UserProfileContext)
+    const { userProfiles, getAllUserProfiles } = useContext(UserProfileContext);
 
     useEffect(() => {
         console.log("UserList: useEffect - getUsers")
-        getAllUserProfiles()
-    }, [])
+        getAllUserProfiles();
+    }, []);
 
     return (
         <div className="userProfiles">
@@ -21,5 +21,5 @@ export const CommunityList = () => {
                 })
             }
         </div>
-    )
+    );
 }

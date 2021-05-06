@@ -163,7 +163,6 @@ namespace Sunnie.Repositories
             }
         }
 
-
         public void Add(UserProfile userProfile)
         {
             using (var conn = Connection)
@@ -185,6 +184,40 @@ namespace Sunnie.Repositories
                     DbUtils.AddParameter(cmd, "@ImageLocation", userProfile.ImageLocation);
 
                     userProfile.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        public void Update(UserProfile userProfile)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE UserProfile
+                           SET FirebaseId = @FirebaseId,
+                               FirstName = @FirstName,
+                               LastName = @LastName,
+                               Age = @Age,
+                               CreateDateTime = @CreateDateTime,
+                               Email = @Email,
+                               ImageLocation = @ImageLocation,  
+                               SkinTypeId = @SkinTypeId
+                         WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@FirebaseId", userProfile.FirebaseId);
+                    DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
+                    DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
+                    DbUtils.AddParameter(cmd, "@Age", userProfile.Age);
+                    DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);
+                    DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
+                    DbUtils.AddParameter(cmd, "ImageLocation", userProfile.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@Id", userProfile.Id);
+                    DbUtils.AddParameter(cmd, "@SkinTypeId", userProfile.SkinTypeId);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }

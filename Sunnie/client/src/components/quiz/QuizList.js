@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { Button } from "react-bootstrap";
 
 export const QuizList = () => {
@@ -86,9 +87,23 @@ export const QuizList = () => {
         }
     ]
 
+
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
+
+    const { userProfiles, getUserProfileById } = useContext(UserProfileContext);
+    const [userProfile, setUserProfile] = useState([]);
+    // after the user takes the quiz
+    // get the current user
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+
+    // and let's get the user's profile by using the id
+    useEffect(() => {
+        getUserProfileById(currentUser.id);
+    });
+
+    // We will need to update the user
 
 
     const handleAnswerClick = (weight) => {
@@ -119,7 +134,7 @@ export const QuizList = () => {
                     </div>
                     <div className='answer-section'>
                         {questions[currentQuestion].answerOptions.map((answerOption) => (
-                            <button onClick={() => handleAnswerClick(answerOption.weight)}>{answerOption.answerText}</button>
+                            <Button onClick={() => handleAnswerClick(answerOption.weight)}>{answerOption.answerText}</Button>
                         ))}
                     </div>
                 </>
