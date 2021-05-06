@@ -6,7 +6,7 @@ import Register from "../Register";
 import Hello from "./Hello";
 
 import { QuizList } from "./quiz/QuizList";
-import { FrecklesProvider } from "../providers/quiz/FrecklesProvider";
+import { FrecklesProvider } from "../providers/SkinTypeProvider";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
