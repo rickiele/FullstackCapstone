@@ -92,7 +92,7 @@ export const QuizList = () => {
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
 
-    const { userProfiles, getUserProfileById } = useContext(UserProfileContext);
+    const { userProfiles, getUserProfileById, updateUserProfile } = useContext(UserProfileContext);
     const [userProfile, setUserProfile] = useState([]);
     // after the user takes the quiz
     // get the current user
@@ -100,11 +100,35 @@ export const QuizList = () => {
 
     // and let's get the user's profile by using the id
     useEffect(() => {
-        getUserProfileById(currentUser.id);
+        getUserProfileById(currentUser.id)
+            .then((response) => setUserProfile(response))
     });
 
     // We will need to update the user
+    // We will need to get the skin type ranges from the server side 
+    // Does this score match any of the skinType user ranges?
+    // Find the skintype where the score is between the minimum
 
+    const userSkinType = () => {
+        if (score >= 0 && score <= 6) {
+            updateUserProfile(
+                {
+                    id: userProfile.id,
+                    skinTypeId: 1
+                })
+        }
+        else if (score >= 7 && score <= 13) {
+            updateUserProfile(
+                {
+                    id: userProfile.id,
+                    skinTypeId: 2
+                })
+        }
+        else {
+            console.log("nahh")
+        }
+
+    }
 
     const handleAnswerClick = (weight) => {
         if (weight) {
@@ -115,6 +139,7 @@ export const QuizList = () => {
             setCurrentQuestion(nextQuestion);
         } else {
             setShowScore(true);
+            userSkinType();
         }
     };
 
