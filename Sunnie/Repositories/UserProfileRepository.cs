@@ -44,10 +44,10 @@ namespace Sunnie.Repositories
                             SkinTypeId = reader.GetInt32(reader.GetOrdinal("SkinTypeId")),
                             SkinType = new SkinType()
                             {
-                                Id = reader.GetInt32(reader.GetOrdinal("SkinTypeId")),
-                                TypeDescription = reader.GetString(reader.GetOrdinal("TypeDescription")),
-                                Minimum = reader.GetInt32(reader.GetOrdinal("Minimum")),
-                                Maximum = reader.GetInt32(reader.GetOrdinal("Maximum"))
+                                Id = reader.GetInt32(reader.GetOrdinal ("SkinTypeId")),
+                                TypeDescription = reader.GetString(reader.GetOrdinal ("TypeDescription")),
+                                Minimum = reader.GetInt32(reader.GetOrdinal ("Minimum")),
+                                Maximum = reader.GetInt32(reader.GetOrdinal ("Maximum"))
                             },
                         };
 
@@ -197,21 +197,17 @@ namespace Sunnie.Repositories
                 {
                     cmd.CommandText = @"
                         UPDATE UserProfile
-                           SET FirebaseId = @FirebaseId,
-                               FirstName = @FirstName,
+                           SET FirstName = @FirstName,
                                LastName = @LastName,
                                Age = @Age,
-                               CreateDateTime = @CreateDateTime,
                                Email = @Email,
                                ImageLocation = @ImageLocation,  
                                SkinTypeId = @SkinTypeId
                          WHERE Id = @Id";
 
-                    DbUtils.AddParameter(cmd, "@FirebaseId", userProfile.FirebaseId);
                     DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
                     DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
                     DbUtils.AddParameter(cmd, "@Age", userProfile.Age);
-                    DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);
                     DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
                     DbUtils.AddParameter(cmd, "ImageLocation", userProfile.ImageLocation);
                     DbUtils.AddParameter(cmd, "@Id", userProfile.Id);

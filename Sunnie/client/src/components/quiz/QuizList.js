@@ -98,12 +98,6 @@ export const QuizList = () => {
     // get the current user
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
-    // and let's get the user's profile by using the id
-    useEffect(() => {
-        getUserProfileById(currentUser.id)
-            .then((response) => setUserProfile(response))
-    });
-
     // We will need to update the user
     // We will need to get the skin type ranges from the server side 
     // Does this score match any of the skinType user ranges?
@@ -113,15 +107,26 @@ export const QuizList = () => {
         if (score >= 0 && score <= 6) {
             updateUserProfile(
                 {
-                    id: userProfile.id,
-                    skinTypeId: 1
+                    id: currentUser.id,
+                    skinTypeId: 1,
+                    firstName: currentUser.firstName,
+                    lastName: currentUser.lastName,
+                    age: currentUser.age,
+                    email: currentUser.email,
+                    imageLocation: currentUser.imageLocation
                 })
         }
         else if (score >= 7 && score <= 13) {
             updateUserProfile(
                 {
-                    id: userProfile.id,
-                    skinTypeId: 2
+                    id: currentUser.id,
+                    skinTypeId: 2,
+                    firstName: currentUser.firstName,
+                    lastName: currentUser.lastName,
+                    age: currentUser.age,
+                    email: currentUser.email,
+                    imageLocation: currentUser.imageLocation
+
                 })
         }
         else {

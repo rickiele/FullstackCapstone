@@ -7,6 +7,7 @@ import Hello from "./Hello";
 
 import { QuizList } from "./quiz/QuizList";
 import { SkinTypeProvider } from "../providers/SkinTypeProvider";
+import { CommunityList } from "./community/CommunityList";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
@@ -29,6 +30,12 @@ export default function ApplicationViews() {
                 <Route path="/quiz">
                     <SkinTypeProvider>
                         <QuizList />
+                    </SkinTypeProvider>
+                </Route>
+
+                <Route path="/community">
+                    <SkinTypeProvider>
+                        <CommunityList />
                     </SkinTypeProvider>
                 </Route>
             </Switch>
