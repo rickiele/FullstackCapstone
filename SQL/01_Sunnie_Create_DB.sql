@@ -129,7 +129,7 @@ CREATE TABLE [Product] (
   [Name] nvarchar(255) NOT NULL,
   [ImageLocation] nvarchar(255),
   [ProductTypeId] integer NOT NULL,
-  [Spf] nvarchar(5),
+  [Spf] integer,
   [Comment] nvarchar(555),
 
   CONSTRAINT [FK_Product_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id]),
