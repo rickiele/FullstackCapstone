@@ -94,14 +94,8 @@ export const QuizList = () => {
 
     const { userProfiles, getUserProfileById, updateUserProfile } = useContext(UserProfileContext);
     const [userProfile, setUserProfile] = useState([]);
-    // after the user takes the quiz
-    // get the current user
-    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
-    // We will need to update the user
-    // We will need to get the skin type ranges from the server side 
-    // Does this score match any of the skinType user ranges?
-    // Find the skintype where the score is between the minimum
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
     const userSkinType = () => {
         if (score >= 0 && score <= 6) {
