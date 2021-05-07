@@ -43,19 +43,19 @@ namespace Sunnie.Repositories
                             ImageLocation = DbUtils.GetNullableString(reader, "ProductImage"),
                             Spf = DbUtils.GetNullableInt(reader, "Spf"),
                             Comment = DbUtils.GetNullableString(reader, "Comment"),
-                            //UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-                            //UserProfile = new UserProfile()
-                            //{
-                            //    Id = DbUtils.GetInt(reader, "UserProfileId"),
-                            //    FirstName = DbUtils.GetString(reader, "FirstName"),
-                            //    LastName = DbUtils.GetString(reader, "LastName"),
-                            //},
-                            //ProductTypeId = DbUtils.GetInt(reader, "ProductTypeId"),
-                            //ProductType = new ProductType()
-                            //{
-                            //    Id = DbUtils.GetInt(reader, "ProductTypeId"),
-                            //    Type = DbUtils.GetString(reader, "Type")
-                            //}
+                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                            UserProfile = new UserProfile()
+                            {
+                                Id = DbUtils.GetInt(reader, "UserProfileId"),
+                                FirstName = DbUtils.GetString(reader, "FirstName"),
+                                LastName = DbUtils.GetString(reader, "LastName"),
+                            },
+                            ProductTypeId = DbUtils.GetInt(reader, "ProductTypeId"),
+                            ProductType = new ProductType()
+                            {
+                                Id = DbUtils.GetInt(reader, "ProductTypeId"),
+                                Type = DbUtils.GetString(reader, "Type")
+                            }
                         }); ;
                     }
 
