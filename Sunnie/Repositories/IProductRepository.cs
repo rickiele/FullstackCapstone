@@ -6,5 +6,6 @@ namespace Sunnie.Repositories
     public interface IProductRepository
     {
         List<Product> GetAllProducts();
+        List<Product> GetProductByUser(int userProfileId);
     }
 }

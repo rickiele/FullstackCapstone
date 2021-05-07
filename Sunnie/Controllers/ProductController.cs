@@ -6,7 +6,7 @@ using Sunnie.Repositories;
 
 namespace Sunnie.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
@@ -22,6 +22,17 @@ namespace Sunnie.Controllers
         public IActionResult Get()
         {
             return Ok(_productRepository.GetAllProducts());
+        }
+
+        [HttpGet("GetByUser")]
+        public IActionResult GetByUser(int userId)
+        {
+            var userProducts = _productRepository.GetProductByUser(userId);
+            if (userProducts == null)
+            {
+                return NotFound();
+            }
+            return Ok(userProducts);
         }
 
     }
