@@ -9,12 +9,9 @@ export const Home = () => {
     const { uvLevel, getTheCurrentUVLevel } = useContext(OpenUVContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
+    // Function which takes the current position of the user as a params
     const successCallback = (position) => {
-        // const currentDateTime = new Date(new Date().toString().split('GMT')[0] + ' UTC').toISOString();
-        // var now = new Date;
-        // var utc_timestamp = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),
-        //     now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
-
+        // In case you're not on a browser that supports date.toISOString
         if (!Date.prototype.toISOString) {
             (function () {
 
@@ -74,7 +71,7 @@ export const Home = () => {
                         <h1>Current UV Level: {uvLevel.result?.uv}</h1>
                     </Col>
                     <Col>
-                        <h1>Safe Exposure Time:{uvLevel.result?.safe_exposure_time['st' + userSkinType]} mins</h1>
+                        <h1>Safe Exposure Time: {uvLevel.result?.safe_exposure_time['st' + userSkinType]} mins</h1>
                     </Col>
                 </Row>
             </Card>
