@@ -5,14 +5,48 @@ import { Card, Row, Col } from "react-bootstrap";
 
 export const Home = () => {
 
-    const { userProfiles, getUserProfileById } = useContext(UserProfileContext);
+    const { getUserProfileById } = useContext(UserProfileContext);
     const { uvLevel, getTheCurrentUVLevel } = useContext(OpenUVContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
     const successCallback = (position) => {
-        const currentDateTime = new Date(new Date().toString().split('GMT')[0] + ' UTC').toISOString();
+        // const currentDateTime = new Date(new Date().toString().split('GMT')[0] + ' UTC').toISOString();
+        // var now = new Date;
+        // var utc_timestamp = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),
+        //     now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
+
+        if (!Date.prototype.toISOString) {
+            (function () {
+
+                function pad(number) {
+                    var r = String(number);
+                    if (r.length === 1) {
+                        r = '0' + r;
+                    }
+                    return r;
+                }
+
+                Date.prototype.toISOString = function () {
+                    return this.getUTCFullYear() +
+                        '-' + pad(this.getUTCMonth() + 1) +
+                        '-' + pad(this.getUTCDate()) +
+                        'T' + pad(this.getUTCHours()) +
+                        ':' + pad(this.getUTCMinutes()) +
+                        ':' + pad(this.getUTCSeconds()) +
+                        '.' + String((this.getUTCMilliseconds() / 1000).toFixed(3)).slice(2, 5) +
+                        'Z';
+                };
+
+            }());
+        }
+        const currentDateTime = new Date().toISOString();
+
         let lat = position.coords.latitude;
         let long = position.coords.longitude;
+
+        console.log(lat, "lat");
+        console.log(long, "long");
+        console.log(currentDateTime, "date time");
 
         getTheCurrentUVLevel(lat, long, currentDateTime);
     };
@@ -28,8 +62,8 @@ export const Home = () => {
 
 
     let userSkinType = currentUser.skinTypeId;
-    console.log(userSkinType, "userSkinType")
-    console.log(uvLevel.result, "result")
+
+    console.log(uvLevel, "result")
 
     return (
         <div className="userProfiles">

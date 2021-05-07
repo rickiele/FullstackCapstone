@@ -1,12 +1,19 @@
-import React, { useContext, useEffect, useState } from "react"
-import { useParams, useHistory } from "react-router-dom"
-import { UserProfileContext } from "../../providers/UserProfileProvider"
-import { Card, Modal, Row, Col } from "react-bootstrap"
+import React, { useContext, useEffect, useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
+import { UserProfileContext } from "../../providers/UserProfileProvider";
+import { Card, Modal, Row, Col } from "react-bootstrap";
+import { ProductList } from "../products/ProductList";
+import { ProductContext } from "../../providers/ProductProvider";
+
 
 export const UserProfileDetails = () => {
 
-    const { userProfiles, getUserProfileById } = useContext(UserProfileContext)
-    const [userProfile, setUserProfile] = useState({ userProfile: {} })
+    const { getUserProfileById } = useContext(UserProfileContext);
+    const { getProductsByUser } = useContext(ProductContext);
+
+    const [userProfile, setUserProfile] = useState({ userProfile: {} });
+    const [product, setProduct] = useState([]);
+
     const { userProfileId } = useParams()
 
     useEffect(() => {
@@ -14,12 +21,17 @@ export const UserProfileDetails = () => {
             .then((response) => {
                 setUserProfile(response)
             })
+        getProductsByUser(userProfileId)
+            .then((response) => {
+                setProduct(response)
+            })
     }, [])
 
 
 
 
-    console.log(userProfile)
+    console.log(product, "products array")
+
     return (
         <section>
             <Row>
@@ -31,23 +43,9 @@ export const UserProfileDetails = () => {
                         <h3>Skin Type {userProfile.skinTypeId}</h3>
                     </Card>
                 </Col>
-                <Col>
-                    <Row>
-                        <Card>
-                            <h3>Favorites</h3>
-                        </Card>
-                    </Row>
-                    <Row>
-                        <Card>
-                            <h3>Likes</h3>
-                            <p>populate top 3 liked here</p>
-                        </Card>
-                        <Card>
-                            <h3>Dislikes</h3>
-                            <p>populate  top 3 disliked here</p>
-                        </Card>
-                    </Row>
-                </Col>
+                <div>
+
+                </div>
             </Row>
         </section>
 
