@@ -9,10 +9,11 @@ export const UserCard = ({ userProfile }) => {
         <section className="userProfile">
             <h3 className="userProfileTitle">
                 <Card>
+                    <img className="userProfilePicture" src={userProfile.imageLocation} />
                     <Link to={`/userProfiles/detail/getById/${userProfile.id}`}>
-                        {userProfile.firstName}
+                        <h1>{userProfile.firstName} {userProfile.lastName}</h1>
                     </Link>
-                    {userProfile.skinType.typeDescription}
+                    <h3>{userProfile.skinType.typeDescription}</h3>
                 </Card>
             </h3>
         </section>

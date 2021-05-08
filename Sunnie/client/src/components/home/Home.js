@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { OpenUVContext } from "../../providers/OpenUVProvider";
-import { Card, Row, Col } from "react-bootstrap";
+import { Container, Card, Row, Col } from "react-bootstrap";
 
 export const Home = () => {
 
@@ -59,24 +59,23 @@ export const Home = () => {
 
 
     let userSkinType = currentUser.skinTypeId;
-
+    let roundedUVLevel = Math.round(uvLevel.result?.uv);
     console.log(uvLevel, "result")
 
     return (
-        <div className="userProfiles">
-            <Card>
-                <h1>Welcome back, {currentUser.firstName} {currentUser.lastName}.</h1>
-                <Row>
-                    <Col>
-                        <h1>Current UV Level: {uvLevel.result?.uv}</h1>
-                    </Col>
-                    <Col>
-                        <h1>Safe Exposure Time: {uvLevel.result?.safe_exposure_time['st' + userSkinType]} mins</h1>
-                    </Col>
-                </Row>
-            </Card>
-
-        </div>
+        <Container>
+            <h2>Welcome back, {currentUser.firstName}</h2>
+            <Row>
+                <Card>
+                    <h2>Current UV Level</h2>
+                    <h1>{roundedUVLevel}</h1>
+                </Card>
+                <Card>
+                    <h2>Safe Exposure Time</h2>
+                    <h1>{uvLevel.result?.safe_exposure_time['st' + userSkinType]} mins</h1>
+                </Card>
+            </Row>
+        </Container>
 
     );
 }

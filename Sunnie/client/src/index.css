@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400&family=Work+Sans:wght@400;600;700&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Work Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +10,83 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+header {
+  background-color: #F4C782;
+}
+
+h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  line-height: 1em;
+  text-transform: none;
+}
+
+h2 {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  color: #f75e38;
+}
+
+h3 {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  text-transform: uppercase;
+  color: #f75e38;
+}
+
+/* React Bootstrap Components */
+.container {
+  padding: 2em;
+}
+
+.card {
+  padding: 1em;
+  margin: .25em;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #f75e38;
+  border-color: #f75e38;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: yellow;
+  border-color: yellow;
+}
+
+.btn-primary:active {
+  color: #fff;
+  background-color: green;
+  border-color: green;
+}
+
+/* User Profile Details */
+.userProfilePicture {
+  background-color: #f75e38;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+}
+
+/* Quiz */
+
+.answer-section {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+
+.answer {
+  margin: .25em;
+}
+
+.question-count {
+  float: right;
 }

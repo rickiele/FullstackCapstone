@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
-import { Card, Button, Modal, Row, Col, Form } from "react-bootstrap";
+import { Container, Card, Button, Modal, Row, Col, Form } from "react-bootstrap";
 import { ProductList } from "../products/ProductList";
 import { ProductContext } from "../../providers/ProductProvider";
 
@@ -38,22 +38,25 @@ export const UserProfileDetails = () => {
 
     return (
         <>
-            <div>
-                <Card className="userDetails">
-                    <h3>Profile pic here</h3>
-                    <h3>{userProfile.firstName} {userProfile.lastName}</h3>
-                    <h3>Age: {userProfile.age}</h3>
-                    <h3>Skin Type {userProfile.skinTypeId}</h3>
+            <Container>
+                <Card className="card">
+                    <img className="userProfilePicture" src={userProfile.imageLocation} />
+                    <h1>{userProfile.firstName} {userProfile.lastName}</h1>
+                    <h2>Age: {userProfile.age}</h2>
+                    <h2>Skin Type {userProfile.skinTypeId}</h2>
+                    {currentUser.id === userId ?
+                        <><Button className="finish__btn" variant="primary" size="sm"
+                            onClick={handleShow}>Add Product</Button></>
+                        :
+                        <><Button className="finish__btn" variant="primary" size="sm"
+                            onClick={handleShow}>Oink</Button></>
+                    }
                 </Card>
-            </div>
+                <Card className="card">
+                    <h2>Sun Protection Favorites</h2>
+                </Card>
+            </Container>
 
-            {currentUser.id === userId ?
-                <><Button className="finish__btn" variant="primary" size="sm"
-                    onClick={handleShow}>Add Product</Button></>
-                :
-                <><Button className="finish__btn" variant="primary" size="sm"
-                    onClick={handleShow}>Oink</Button></>
-            }
             <Modal
                 show={show}
                 onHide={handleClose}
