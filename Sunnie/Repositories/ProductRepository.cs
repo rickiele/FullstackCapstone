@@ -63,6 +63,83 @@ namespace Sunnie.Repositories
             }
         }
 
+        // ADD, UPDATE, DELETE PRODUCT
+        // GET PRODUCTS BY LIKED
+        // GET PRODUCTS BY DISLIKED
+
+        public void Add(Product product)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO Product (UserProfileId, CreateDateTime, Name, ImageLocation, ProductType, Spf, Comment)
+                        OUTPUT INSERTED.ID
+                        VALUES (@UserProfileId, @CreateDateTime, @Name, @ImageLocation, @ProductType, @Spf, @Comment)";
+
+                    DbUtils.AddParameter(cmd, "@UserProfileId", product.UserProfileId);
+                    DbUtils.AddParameter(cmd, "@CreateDateTime", product.CreateDateTime);
+                    DbUtils.AddParameter(cmd, "@Name", product.Name);
+                    DbUtils.AddParameter(cmd, "@ImageLocation", product.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@ProductType", product.ProductType);
+                    DbUtils.AddParameter(cmd, "@Spf", product.Spf);
+                    DbUtils.AddParameter(cmd, "@Comment", product.Comment);
+
+                    product.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        public void Delete(int productId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM Product WHERE Id = @id;
+                                        ";
+
+                    DbUtils.AddParameter(cmd, "@id", productId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Update(Product product)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE  Product
+                           SET 
+                                UserProfileId = @UserProfileId,
+                                Name = @Name,
+                                ImageLocation = @ImageLocation,
+                                ProductTypeId = @ProductTypeId,  
+                                Spf = @Spf,
+                         WHERE  id = @id";
+
+                    DbUtils.AddParameter(cmd, "@UserProfileId", product.UserProfileId);
+                    DbUtils.AddParameter(cmd, "@Name", product.Name);
+                    DbUtils.AddParameter(cmd, "@ImageLocation", product.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@ProductTypeId", product.ProductTypeId);
+                    DbUtils.AddParameter(cmd, "@Spf", product.Spf);
+                    DbUtils.AddParameter(cmd, "@id", product.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
         private string ProductQuery
         {
             get

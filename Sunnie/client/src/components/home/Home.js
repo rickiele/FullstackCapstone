@@ -64,9 +64,9 @@ export const Home = () => {
 
     return (
         <Container>
-            <h2>Welcome back, {currentUser.firstName}</h2>
+            <h1>Welcome back, {currentUser.firstName}</h1>
             <Row>
-                <Card>
+                <Card className="UVLevel">
                     <h2>Current UV Level</h2>
                     <h1>{roundedUVLevel}</h1>
                 </Card>
@@ -74,8 +74,13 @@ export const Home = () => {
                     <h2>Safe Exposure Time</h2>
                     <h1>{uvLevel.result?.safe_exposure_time['st' + userSkinType]} mins</h1>
                 </Card>
+                <Card>
+                    <h2>Take Care</h2>
+                    <h1>Precaution One Liner.</h1>
+                    <p>Detailed information. Make sure to apply sunscreen today</p>
+                </Card>
             </Row>
-        </Container>
+        </Container >
 
     );
 }
