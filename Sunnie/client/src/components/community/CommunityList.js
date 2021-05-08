@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { UserCard } from "./UserCard";
+import { Container } from "react-bootstrap"
 
 export const CommunityList = () => {
 
@@ -10,15 +11,19 @@ export const CommunityList = () => {
         getAllUserProfiles();
     }, []);
 
+    //Need to add a filter by skin type
+    // Need to not show the current user in the array
+
     console.log(userProfiles, "hello??")
     return (
-        <div className="userProfiles">
-            <h3>User Profiles</h3>
+        <Container className="container">
+            <h1>Community</h1>
+            <p>Check out how other users protect themselves from the sun.</p>
             {
                 userProfiles.map(userProfile => {
                     return <UserCard key={userProfile.id} userProfile={userProfile} />
                 })
             }
-        </div>
+        </Container>
     );
 }

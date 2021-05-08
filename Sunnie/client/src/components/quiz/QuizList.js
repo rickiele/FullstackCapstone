@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
-import { Button } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 
 export const QuizList = () => {
 
     const questions = [
         {
+            categoryText: "Eye Color",
             questionText: "What is your natural eye color?",
             answerOptions: [
                 { answerText: "Light blue, light gray or light green", weight: 0 },
@@ -16,6 +17,7 @@ export const QuizList = () => {
             ]
         },
         {
+            categoryText: "Hair Color",
             questionText: "What is your natural hair color?",
             answerOptions: [
                 { answerText: "Red or light blonde", weight: 0 },
@@ -26,6 +28,7 @@ export const QuizList = () => {
             ]
         },
         {
+            categoryText: "Skin Color",
             questionText: "What is your natural skin color?",
             answerOptions: [
                 { answerText: "Ivory white", weight: 0 },
@@ -36,6 +39,7 @@ export const QuizList = () => {
             ]
         },
         {
+            categoryText: "Freckles",
             questionText: "How many freckles do you have on unexposed areas of your skin?",
             answerOptions: [
                 { answerText: "Many", weight: 0 },
@@ -46,6 +50,7 @@ export const QuizList = () => {
             ],
         },
         {
+            categoryText: "Skin Response",
             questionText: "How does your skin respond to the sun?",
             answerOptions: [
                 { answerText: "Always burns, blisters and peels", weight: 0 },
@@ -56,6 +61,7 @@ export const QuizList = () => {
             ]
         },
         {
+            categoryText: "Skin Response",
             questionText: "Does your skin tan?",
             answerOptions: [
                 { answerText: "Never, I always burn", weight: 0 },
@@ -66,6 +72,7 @@ export const QuizList = () => {
             ]
         },
         {
+            categoryText: "Tan",
             questionText: "How deeply do you tan?",
             answerOptions: [
                 { answerText: "Not at all, or very little", weight: 0 },
@@ -76,6 +83,7 @@ export const QuizList = () => {
             ]
         },
         {
+            categoryText: "Sun Sensitivity",
             questionText: "How sensitive is your face to the sun?",
             answerOptions: [
                 { answerText: "Very sensitive", weight: 0 },
@@ -87,21 +95,10 @@ export const QuizList = () => {
         }
     ]
 
-
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [showScore, setShowScore] = useState(false);
-    const [score, setScore] = useState(0);
-
     const { userProfiles, getUserProfileById, updateUserProfile } = useContext(UserProfileContext);
     const [userProfile, setUserProfile] = useState([]);
-    // after the user takes the quiz
-    // get the current user
-    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
-    // We will need to update the user
-    // We will need to get the skin type ranges from the server side 
-    // Does this score match any of the skinType user ranges?
-    // Find the skintype where the score is between the minimum
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
     const userSkinType = () => {
         if (score >= 0 && score <= 6) {
@@ -116,7 +113,7 @@ export const QuizList = () => {
                     imageLocation: currentUser.imageLocation
                 })
         }
-        else if (score >= 7 && score <= 13) {
+        else if (score >= 7 && score <= 12) {
             updateUserProfile(
                 {
                     id: currentUser.id,
@@ -126,22 +123,75 @@ export const QuizList = () => {
                     age: currentUser.age,
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
-
                 })
         }
-        else {
+        else if (score >= 13 && score <= 18) {
+            updateUserProfile(
+                {
+                    id: currentUser.id,
+                    skinTypeId: 3,
+                    firstName: currentUser.firstName,
+                    lastName: currentUser.lastName,
+                    age: currentUser.age,
+                    email: currentUser.email,
+                    imageLocation: currentUser.imageLocation
+                })
+        }
+        else if (score >= 19 && score <= 24) {
+            updateUserProfile(
+                {
+                    id: currentUser.id,
+                    skinTypeId: 4,
+                    firstName: currentUser.firstName,
+                    lastName: currentUser.lastName,
+                    age: currentUser.age,
+                    email: currentUser.email,
+                    imageLocation: currentUser.imageLocation
+                })
+        }
+        else if (score >= 25 && score <= 30) {
+            updateUserProfile(
+                {
+                    id: currentUser.id,
+                    skinTypeId: 5,
+                    firstName: currentUser.firstName,
+                    lastName: currentUser.lastName,
+                    age: currentUser.age,
+                    email: currentUser.email,
+                    imageLocation: currentUser.imageLocation
+                })
+        }
+        else if (score >= 31 && score <= 35) {
+            updateUserProfile(
+                {
+                    id: currentUser.id,
+                    skinTypeId: 6,
+                    firstName: currentUser.firstName,
+                    lastName: currentUser.lastName,
+                    age: currentUser.age,
+                    email: currentUser.email,
+                    imageLocation: currentUser.imageLocation
+                })
+        } else {
             console.log("nahh")
         }
-
     }
+
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [currentCategory, setCurrentCategory] = useState(0);
+    const [showScore, setShowScore] = useState(false);
+    const [score, setScore] = useState(0);
 
     const handleAnswerClick = (weight) => {
         if (weight) {
             setScore(score + weight)
         }
         const nextQuestion = currentQuestion + 1;
-        if (nextQuestion < questions.length) {
+        const nextCategory = currentCategory + 1;
+
+        if (nextQuestion < questions.length && nextCategory < questions.length) {
             setCurrentQuestion(nextQuestion);
+            setCurrentCategory(nextCategory);
         } else {
             setShowScore(true);
             userSkinType();
@@ -149,7 +199,7 @@ export const QuizList = () => {
     };
 
     return (
-        <div className='app'>
+        <Container className='container app'>
             {showScore ? (
                 <div className='score-section'>
                     You scored {score}.
@@ -157,19 +207,24 @@ export const QuizList = () => {
             ) : (
                 <>
                     <div className='question-section'>
-                        <div className='question-count'>
-                            <span>Question {currentQuestion + 1}</span>/{questions.length}
+                        <div>
+                            <h2>{questions[currentCategory].categoryText}</h2>
                         </div>
-                        <div className='question-text'>{questions[currentQuestion].questionText}</div>
+                        <div className='question-text'>
+                            <h1>{questions[currentQuestion].questionText}</h1>
+                        </div>
                     </div>
                     <div className='answer-section'>
                         {questions[currentQuestion].answerOptions.map((answerOption) => (
-                            <Button onClick={() => handleAnswerClick(answerOption.weight)}>{answerOption.answerText}</Button>
+                            <Button className="answer" onClick={() => handleAnswerClick(answerOption.weight)}>{answerOption.answerText}</Button>
                         ))}
+                    </div>
+                    <div className='question-count'>
+                        <h2>{currentQuestion + 1}/{questions.length}</h2>
                     </div>
                 </>
             )}
-        </div>
+        </Container>
 
     );
 };

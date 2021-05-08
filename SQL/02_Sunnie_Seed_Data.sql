@@ -99,7 +99,8 @@ insert into ProductType (Id, ProductType) values (10, 'Sunscreen Spray');
 insert into ProductType (Id, ProductType) values (11, 'Sunscreen Powder');
 set identity_insert [ProductType] off
 
-
+USE [Sunnie];
+GO
 -- Products
 set identity_insert [Product] on
 insert into Product (Id, UserProfileId, CreateDateTime, [Name], ImageLocation, ProductTypeId, Spf, Comment) 

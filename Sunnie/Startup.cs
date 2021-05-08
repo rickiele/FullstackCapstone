@@ -25,6 +25,7 @@ namespace Sunnie
             // Register the UserProfileRepository with ASP.NET
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<ISkinTypeRepository, SkinTypeRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
 
 
 
