@@ -71,15 +71,15 @@ namespace Sunnie.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Product (UserProfileId, CreateDateTime, Name, ImageLocation, ProductType, Spf, Comment)
+                        INSERT INTO Product (UserProfileId, CreateDateTime, Name, ImageLocation, ProductTypeId, Spf, Comment)
                         OUTPUT INSERTED.ID
-                        VALUES (@UserProfileId, @CreateDateTime, @Name, @ImageLocation, @ProductType, @Spf, @Comment)";
+                        VALUES (@UserProfileId, @CreateDateTime, @Name, @ImageLocation, @ProductTypeId, @Spf, @Comment)";
 
                     DbUtils.AddParameter(cmd, "@UserProfileId", product.UserProfileId);
                     DbUtils.AddParameter(cmd, "@CreateDateTime", product.CreateDateTime);
                     DbUtils.AddParameter(cmd, "@Name", product.Name);
                     DbUtils.AddParameter(cmd, "@ImageLocation", product.ImageLocation);
-                    DbUtils.AddParameter(cmd, "@ProductType", product.ProductType);
+                    DbUtils.AddParameter(cmd, "@ProductTypeId", product.ProductTypeId);
                     DbUtils.AddParameter(cmd, "@Spf", product.Spf);
                     DbUtils.AddParameter(cmd, "@Comment", product.Comment);
 

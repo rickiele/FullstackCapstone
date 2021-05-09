@@ -160,8 +160,9 @@ export const QuizList = () => {
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
                 })
+            console.log("5")
         }
-        else if (score >= 31 && score <= 35) {
+        else if (score >= 31 && score <= 32) {
             updateUserProfile(
                 {
                     id: currentUser.id,
@@ -172,6 +173,7 @@ export const QuizList = () => {
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
                 })
+            console.log("6")
         } else {
             console.log("nahh")
         }
@@ -181,6 +183,7 @@ export const QuizList = () => {
     const [currentCategory, setCurrentCategory] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
+    const [weight, setWeight] = useState(0);
 
     const handleAnswerClick = (weight) => {
         if (weight) {
@@ -193,13 +196,13 @@ export const QuizList = () => {
             setCurrentQuestion(nextQuestion);
             setCurrentCategory(nextCategory);
         } else {
+            console.log(score, "score")
+            console.log(weight, "weight")
+            console.log(score + weight, "total")
             setShowScore(true);
             updateUserSkinType();
         }
     };
-
-
-
 
     return (
         <Container className='container app'>

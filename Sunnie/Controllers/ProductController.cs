@@ -44,7 +44,7 @@ namespace Sunnie.Controllers
         {
             var user = GetCurrentUser();
             if (user == null) return NotFound();
-           
+
             _productRepository.Add(product);
             return NoContent();
         }
