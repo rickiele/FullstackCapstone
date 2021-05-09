@@ -20,22 +20,16 @@ export const ProductProvider = (props) => {
                 .then(setProducts));
     };
 
-    const addProduct = (product) => {
+    const addProduct = productObj => {
         return getToken().then((token) =>
-            fetch("/api/product/add", {
+            fetch(`/api/product/add`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 },
-                body: JSON.stringify(product),
-            }).then(resp => {
-                if (resp.ok) {
-                    return resp.json();
-                }
-                throw new Error("Unauthorized");
-            })
-        )
+                body: JSON.stringify(productObj)
+            }));
     };
 
 

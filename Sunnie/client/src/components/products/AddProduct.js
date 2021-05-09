@@ -40,7 +40,7 @@ export const AddProduct = () => {
             productTypeId: product.productTypeId,
             spf: product.spf,
             comment: product.comment
-        });
+        })
     };
 
     // Modal stuff
@@ -76,8 +76,8 @@ export const AddProduct = () => {
 
                     <fieldset>
                         <div className="form-group">
-                            <label htmlFor="productType">Type</label>
-                            <select name="productType" id="productTypeId" className="form-control" onChange={handleInput} >
+                            <label htmlFor="productTypeId">Type</label>
+                            <select name="productTypeId" id="productTypeId" className="form-control" onChange={handleInput} >
                                 <option value="0">What type of product is it?</option>
                                 <option value="1">Hat</option>
                                 <option value="2">Sunglasses</option>
