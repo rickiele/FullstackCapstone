@@ -19,9 +19,9 @@ export const ProductTypeProvider = (props) => {
                 .then(setproductType));
 
     return (
-        <CategoryContext.Provider value={{ categories, getAllCategories, addCategory, editCategory, getCategoryById, deleteCategory }}>
+        <ProductTypeContext.Provider value={{ productType, getAllProductTypes }}>
             {props.children}
-        </CategoryContext.Provider>
+        </ProductTypeContext.Provider>
     );
 };
 

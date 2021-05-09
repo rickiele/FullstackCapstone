@@ -3,6 +3,7 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { Container, Card, Button, Modal, Row, Col, Form } from "react-bootstrap";
 import { ProductList } from "../products/ProductList";
+import { AddProduct } from "../products/AddProduct";
 import { ProductContext } from "../../providers/ProductProvider";
 
 
@@ -29,11 +30,6 @@ export const UserProfileDetails = () => {
             })
     }, [])
 
-    // Modal stuff
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     console.log(products, "products")
 
     return (
@@ -44,13 +40,7 @@ export const UserProfileDetails = () => {
                     <h1>{userProfile.firstName} {userProfile.lastName}</h1>
                     <h2>Age: {userProfile.age}</h2>
                     <h2>Skin Type {userProfile.skinTypeId}</h2>
-                    {currentUser.id === userId ?
-                        <><Button className="finish__btn" variant="primary" size="sm"
-                            onClick={handleShow}>Add Product</Button></>
-                        :
-                        <><Button className="finish__btn" variant="primary" size="sm"
-                            onClick={handleShow}>Oink</Button></>
-                    }
+                    <AddProduct key={currentUser.id} userProfile={userProfile} />
                 </Card>
                 <Card className="card">
                     <h2>Sun Protection Favorites</h2>

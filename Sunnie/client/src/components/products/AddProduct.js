@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import { Container, Card, Button, Modal, Row, Col, Form } from "react-bootstrap";
 import { ProductContext } from "../../providers/ProductProvider";
-import { ProductTypeContext } from "../../providers/ProductTypeContext";
-
+import { ProductTypeContext } from "../../providers/ProductTypesProvider";
 
 export const AddProduct = () => {
     const { addProduct, getProductsByUser } = useContext(ProductContext);
-    const { productTypes, getAllProductTypes } = useContext(ProductTypeContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+    const { userProfileId } = useParams();
+    const userId = parseInt(userProfileId);
 
     const [product, setProduct] = useState({
         name: "",
@@ -21,7 +22,6 @@ export const AddProduct = () => {
 
     useEffect(() => {
         getProductsByUser()
-            .then(getAllProductTypes)
     }, []);
 
     const handleInput = (e) => {
@@ -41,10 +41,23 @@ export const AddProduct = () => {
             spf: product.spf,
             comment: product.comment
         });
-    }
+    };
+
+    // Modal stuff
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <>
+            {currentUser.id === userId ?
+                <><Button className="finish__btn" variant="primary" size="sm"
+                    onClick={handleShow}>Add Product</Button></>
+                :
+                <><Button style={{ display: 'none' }}
+                    onClick={handleShow}>Oink</Button></>
+            }
+
             <Modal
                 show={show}
                 onHide={handleClose}

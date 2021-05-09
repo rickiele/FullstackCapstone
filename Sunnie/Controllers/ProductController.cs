@@ -39,7 +39,7 @@ namespace Sunnie.Controllers
             return Ok(userProducts);
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public IActionResult Post(Product product)
         {
             var user = GetCurrentUser();
