@@ -100,7 +100,7 @@ export const QuizList = () => {
 
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
-    const userSkinType = () => {
+    const updateUserSkinType = () => {
         if (score >= 0 && score <= 6) {
             updateUserProfile(
                 {
@@ -194,15 +194,18 @@ export const QuizList = () => {
             setCurrentCategory(nextCategory);
         } else {
             setShowScore(true);
-            userSkinType();
+            updateUserSkinType();
         }
     };
+
+
+
 
     return (
         <Container className='container app'>
             {showScore ? (
                 <div className='score-section'>
-                    You scored {score}.
+                    <h1>You got a {score}.</h1>
                 </div>
             ) : (
                 <>

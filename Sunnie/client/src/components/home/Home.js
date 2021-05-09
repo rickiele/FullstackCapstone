@@ -60,6 +60,10 @@ export const Home = () => {
 
     let userSkinType = currentUser.skinTypeId;
     let roundedUVLevel = Math.round(uvLevel.result?.uv);
+
+    // Safe exposure time numbers
+    let minutes = uvLevel.result?.safe_exposure_time['st' + userSkinType];
+    let hours = minutes / 60;
     console.log(uvLevel, "result")
 
     return (

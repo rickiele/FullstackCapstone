@@ -10,15 +10,12 @@ namespace Sunnie.Controllers
     //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductController : BaseController
     {
-        private readonly IProductRepository _productRepository;
-        private readonly IUserProfileRepository _userProfileRepository;
-
         public ProductController(
             IProductRepository productRepository,
             IUserProfileRepository userProfileRepository
-            )
+        )
         {
             _productRepository = productRepository;
             _userProfileRepository = userProfileRepository;
@@ -42,27 +39,39 @@ namespace Sunnie.Controllers
             return Ok(userProducts);
         }
 
-        [HttpPost("add")]
+        [HttpPost]
         public IActionResult Post(Product product)
         {
-            var currentUserProfile = GetCurrentUserProfile();
-            product.UserProfileId = currentUserProfile.Id;
+            var user = GetCurrentUser();
+            if (user == null) return NotFound();
+           
             _productRepository.Add(product);
-            return CreatedAtAction("Get", new { id = product.Id }, product);
+            return NoContent();
         }
 
         [HttpDelete("delete/{productId}")]
         public IActionResult Delete(int productId)
         {
+
             _productRepository.Delete(productId);
             return NoContent();
         }
 
-        private UserProfile GetCurrentUserProfile()
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Product product)
         {
-            var firebaseId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            return _userProfileRepository.GetByFirebaseUserId(firebaseId);
+            if (id != product.Id)
+            {
+                return BadRequest();
+            }
+
+            _productRepository.Update(product);
+            return NoContent();
         }
+
+
+
 
     }
 }

@@ -63,10 +63,6 @@ namespace Sunnie.Repositories
             }
         }
 
-        // ADD, UPDATE, DELETE PRODUCT
-        // GET PRODUCTS BY LIKED
-        // GET PRODUCTS BY DISLIKED
-
         public void Add(Product product)
         {
             using (SqlConnection conn = Connection)
@@ -118,19 +114,18 @@ namespace Sunnie.Repositories
                 {
                     cmd.CommandText = @"
                         UPDATE  Product
-                           SET 
-                                UserProfileId = @UserProfileId,
-                                Name = @Name,
+                           SET  Name = @Name,
                                 ImageLocation = @ImageLocation,
                                 ProductTypeId = @ProductTypeId,  
                                 Spf = @Spf,
+                                Comment = @Comment
                          WHERE  id = @id";
 
-                    DbUtils.AddParameter(cmd, "@UserProfileId", product.UserProfileId);
                     DbUtils.AddParameter(cmd, "@Name", product.Name);
                     DbUtils.AddParameter(cmd, "@ImageLocation", product.ImageLocation);
                     DbUtils.AddParameter(cmd, "@ProductTypeId", product.ProductTypeId);
                     DbUtils.AddParameter(cmd, "@Spf", product.Spf);
+                    DbUtils.AddParameter(cmd, "@Comment", product.Comment);
                     DbUtils.AddParameter(cmd, "@id", product.Id);
 
                     cmd.ExecuteNonQuery();
