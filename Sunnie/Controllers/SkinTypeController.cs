@@ -9,14 +9,8 @@ namespace Sunnie.Controllers
     //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class SkinTypeController : ControllerBase
+    public class SkinTypeController : BaseController
     {
-        private readonly ISkinTypeRepository _skinTypeRepository;
-        public SkinTypeController(ISkinTypeRepository skinTypeRepository)
-        {
-            _skinTypeRepository = skinTypeRepository;
-        }
-
 
         [HttpGet]
         public IActionResult Get()

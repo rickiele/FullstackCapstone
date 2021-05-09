@@ -20,9 +20,21 @@ export const ProductProvider = (props) => {
                 .then(setProducts));
     };
 
+    const addProduct = productObj => {
+        return getToken().then((token) =>
+            fetch(`/api/product/add`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(productObj)
+            }));
+    };
+
 
     return (
-        <ProductContext.Provider value={{ products, getProductsByUser }}>
+        <ProductContext.Provider value={{ products, getProductsByUser, addProduct }}>
             {props.children}
         </ProductContext.Provider>
     );

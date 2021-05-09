@@ -63,6 +63,78 @@ namespace Sunnie.Repositories
             }
         }
 
+        public void Add(Product product)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO Product (UserProfileId, CreateDateTime, Name, ImageLocation, ProductTypeId, Spf, Comment)
+                        OUTPUT INSERTED.ID
+                        VALUES (@UserProfileId, @CreateDateTime, @Name, @ImageLocation, @ProductTypeId, @Spf, @Comment)";
+
+                    DbUtils.AddParameter(cmd, "@UserProfileId", product.UserProfileId);
+                    DbUtils.AddParameter(cmd, "@CreateDateTime", product.CreateDateTime);
+                    DbUtils.AddParameter(cmd, "@Name", product.Name);
+                    DbUtils.AddParameter(cmd, "@ImageLocation", product.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@ProductTypeId", product.ProductTypeId);
+                    DbUtils.AddParameter(cmd, "@Spf", product.Spf);
+                    DbUtils.AddParameter(cmd, "@Comment", product.Comment);
+
+                    product.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        public void Delete(int productId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM Product WHERE Id = @id;
+                                        ";
+
+                    DbUtils.AddParameter(cmd, "@id", productId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Update(Product product)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE  Product
+                           SET  Name = @Name,
+                                ImageLocation = @ImageLocation,
+                                ProductTypeId = @ProductTypeId,  
+                                Spf = @Spf,
+                                Comment = @Comment
+                         WHERE  id = @id";
+
+                    DbUtils.AddParameter(cmd, "@Name", product.Name);
+                    DbUtils.AddParameter(cmd, "@ImageLocation", product.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@ProductTypeId", product.ProductTypeId);
+                    DbUtils.AddParameter(cmd, "@Spf", product.Spf);
+                    DbUtils.AddParameter(cmd, "@Comment", product.Comment);
+                    DbUtils.AddParameter(cmd, "@id", product.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
         private string ProductQuery
         {
             get

@@ -19,5 +19,6 @@ namespace Sunnie.Repositories
                 return new SqlConnection(_connectionString);
             }
         }
+
     }
 }
