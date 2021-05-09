@@ -13,7 +13,7 @@ export const AddProduct = () => {
     const [product, setProduct] = useState({
         name: "",
         userProfileId: currentUser.id,
-        imageLocation: "",
+        // imageLocation: "",
         createDateTime: "",
         productTypeId: 0,
         spf: "",
@@ -35,9 +35,9 @@ export const AddProduct = () => {
         addProduct({
             name: product.name,
             userProfileId: currentUser.id,
-            imageLocation: product.imageLocation,
+            // imageLocation: product.imageLocation,
             createDateTime: new Date(),
-            productTypeId: 0,
+            productTypeId: product.productTypeId,
             spf: product.spf,
             comment: product.comment
         });
@@ -71,13 +71,13 @@ export const AddProduct = () => {
 
                     <Form.Group>
                         <label htmlFor="name">Name</label>
-                        <input type="text" id="finishDate" required className="form-control" />
+                        <input type="text" id="name" required className="form-control" onChange={handleInput} />
                     </Form.Group>
 
                     <fieldset>
                         <div className="form-group">
-                            <label htmlFor="rating">Type</label>
-                            <select name="rating" id="rating" className="form-control" >
+                            <label htmlFor="productType">Type</label>
+                            <select name="productType" id="productTypeId" className="form-control" onChange={handleInput} >
                                 <option value="0">What type of product is it?</option>
                                 <option value="1">Hat</option>
                                 <option value="2">Sunglasses</option>
@@ -98,22 +98,22 @@ export const AddProduct = () => {
 
                     <fieldset>
                         <div className="form-group">
-                            <label htmlFor="name">SPF</label>
-                            <input type="text" id="finishDate" required className="form-control" />
+                            <label htmlFor="spf">SPF</label>
+                            <input type="text" id="spf" required className="form-control" onChange={handleInput} />
                         </div>
                     </fieldset>
 
                     <fieldset>
                         <div className="form-group">
-                            <label htmlFor="name">Comments</label>
-                            <input as="textarea" id="finishDate" required className="form-control" />
+                            <label htmlFor="comment">Comments</label>
+                            <input as="textarea" id="comment" required className="form-control" onChange={handleInput} />
                         </div>
                     </fieldset>
 
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary">Add Changes</Button>
+                    <Button variant="primary" onClick={handleSave}>Add Changes</Button>
                 </Modal.Footer>
             </Modal>
         </>
