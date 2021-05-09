@@ -124,6 +124,8 @@ values (1, 2, 1, 0);
 set identity_insert [ProductUser] off
 
 -- UV Level
+USE [Sunnie];
+GO
 set identity_insert [UVLevel] on
 insert into UVLevel (Id, [Name], Color, UVLevel) values (1, 'Low', 'Green', 0);
 insert into UVLevel (Id, [Name], Color, UVLevel) values (2, 'Low', 'Green', 1);
@@ -141,11 +143,13 @@ insert into UVLevel (Id, [Name], Color, UVLevel) values (13, 'Extreme', 'Purple'
 set identity_insert [UVLevel] off
 
 -- Precautions
+USE [Sunnie];
+GO
 set identity_insert [Precaution] on
 insert into Precaution (Id, SkinTypeId, UVLevelId, Precaution)
 values
-(1, 1, 1, 'You are safe'),
-(2, 2, 13, 'You should be dead');
+(1, 1, 1, 'OINK'),
+(2, 1, 13, 'OSDNFISDF');
 set identity_insert [Precaution] off
 
 

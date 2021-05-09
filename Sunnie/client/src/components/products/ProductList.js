@@ -12,6 +12,8 @@ export const ProductList = () => {
         getProductsByUser();
     }, []);
 
+    // I think this is a dead file
+
     return (
         <div>
             {/* <h3>Products</h3>

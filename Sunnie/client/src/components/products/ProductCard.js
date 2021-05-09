@@ -18,11 +18,16 @@ export const ProductCard = ({ product }) => {
     const handleShow = () => setShow(true);
 
     // const productName = products.map(product => product.name);
-    console.log(products, "products")
+    console.log(userId, "user Id")
 
 
     // If the user matches the product's userId, then you will see the edit and delete buttons on the product card
     // Need to map over all of the products to show all the cards
+
+    // Only display the user's own products for each profile
+    // If the product's userProfileId matches the useParams of profile - show it
+
+
     return (
         <>
 
@@ -31,9 +36,19 @@ export const ProductCard = ({ product }) => {
                     <h3>{product.name}</h3>
                 </div>
             ))} */}
-            <div key={product.id} onClick={handleShow}>
-                <h3>{product.name}</h3>
-            </div>
+            {products.map((product) =>
+                product.userProfileId === userId ? (
+                    <>
+                        <div key={product.id} onClick={handleShow}>
+                            <h3>{product.name}</h3>
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div style={{ display: 'none' }}>OINK</div>
+                    </>
+                )
+            )}
 
             <Modal
                 show={show}
