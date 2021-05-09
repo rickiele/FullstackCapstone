@@ -5,16 +5,17 @@ import { Container, Card, Button, Modal, Row, Col, Form } from "react-bootstrap"
 import { ProductList } from "../products/ProductList";
 import { AddProduct } from "../products/AddProduct";
 import { ProductContext } from "../../providers/ProductProvider";
+import { ProductCard } from "../products/ProductCard";
 
 
 export const UserProfileDetails = () => {
     const { getUserProfileById } = useContext(UserProfileContext);
     const { products, getProductsByUser } = useContext(ProductContext);
-    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
     const [userProfile, setUserProfile] = useState({ userProfile: {} });
     const [product, setProduct] = useState([]);
 
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const { userProfileId } = useParams()
 
     const userId = parseInt(userProfileId)
@@ -44,19 +45,26 @@ export const UserProfileDetails = () => {
                 </Card>
                 <Card className="card">
                     <h2>Sun Protection Favorites</h2>
-                    {products.map((product) => (
-                        <div className="product-card" key={product.id}>
-                            {/* Link to show product card details */}
-                            <Link to={`/product/GetById/${product.id}`}>
-                                <img className="userProfilePicture" src={product.imageLocation} />
-                                <h3 className="posts-title">
-                                    {product.name}
-                                </h3>
-                            </Link>
-                        </div>
-                    ))}
+                    {
+                        products.map(product => {
+                            return <ProductCard key={product.id} product={product} />
+                        })
+                    }
                 </Card>
             </Container>
         </>
     )
-}
+};
+
+
+// {products.map((product) => (
+//     <div className="product-card" key={product.id}>
+//         {/* Link to show product card details */}
+//         <Link to={`/product/GetById/${product.id}`}>
+//             <img className="userProfilePicture" src={product.imageLocation} />
+//             <h3 className="posts-title">
+//                 {product.name}
+//             </h3>
+//         </Link>
+//     </div>
+// ))}

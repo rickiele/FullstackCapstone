@@ -32,9 +32,22 @@ export const ProductProvider = (props) => {
             }));
     };
 
+    const deleteProduct = (productId) => {
+        return getToken()
+            .then((token) =>
+                fetch(`/api/product/delete/${productId}`, {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                })
+                    .then(setProducts)
+            )
+    }
+
 
     return (
-        <ProductContext.Provider value={{ products, getProductsByUser, addProduct }}>
+        <ProductContext.Provider value={{ products, getProductsByUser, addProduct, deleteProduct }}>
             {props.children}
         </ProductContext.Provider>
     );
