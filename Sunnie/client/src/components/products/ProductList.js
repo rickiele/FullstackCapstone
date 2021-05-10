@@ -12,14 +12,16 @@ export const ProductList = () => {
         getProductsByUser();
     }, []);
 
+    // I think this is a dead file
+
     return (
         <div>
-            <h3>Products</h3>
+            {/* <h3>Products</h3>
             {
                 products.map(product => {
                     return <ProductCard key={product.id} product={product} />
                 })
-            }
+            } */}
         </div>
     );
 }

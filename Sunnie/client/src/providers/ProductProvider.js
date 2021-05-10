@@ -8,6 +8,19 @@ export const ProductProvider = (props) => {
     const { getToken } = useContext(UserProfileContext);
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
+
+    const getAllProducts = () => {
+        return getToken().then((token) =>
+            fetch(`/api/product`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then((res) => res.json())
+                .then(setProducts));
+    };
+
     const getProductsByUser = () => {
         return getToken().then((token) =>
             fetch(`/api/product/GetByUser?userId=${userProfile.id}`, {
@@ -32,9 +45,22 @@ export const ProductProvider = (props) => {
             }));
     };
 
+    const deleteProduct = (productId) => {
+        return getToken()
+            .then((token) =>
+                fetch(`/api/product/delete/${productId}`, {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                })
+                    .then(setProducts)
+            )
+    }
+
 
     return (
-        <ProductContext.Provider value={{ products, getProductsByUser, addProduct }}>
+        <ProductContext.Provider value={{ products, getAllProducts, getProductsByUser, addProduct, deleteProduct }}>
             {props.children}
         </ProductContext.Provider>
     );

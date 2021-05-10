@@ -40,7 +40,9 @@ export default function ApplicationViews() {
                 <Route exact path="/userProfiles/detail/getById/:userProfileId(\d+)">
                     <UserProfileDetails />
                 </Route>
+
+
             </Switch>
-        </main>
+        </main >
     );
 };

@@ -113,7 +113,7 @@ export const AddProduct = () => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleSave}>Add Changes</Button>
+                    <Button variant="primary" onClick={handleSave}>Add Product</Button>
                 </Modal.Footer>
             </Modal>
         </>
