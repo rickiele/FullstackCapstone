@@ -119,6 +119,7 @@ export const AddProduct = () => {
                     </fieldset>
 
 
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleSave}>Add Product</Button>
