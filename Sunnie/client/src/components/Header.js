@@ -11,6 +11,7 @@ export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+    const loggedInUserProfile = `/userProfiles/detail/getById/${currentUser.id}`
 
     return (
         <header>
@@ -23,7 +24,7 @@ export default function Header() {
                     {isLoggedIn &&
                         <Nav.Item className="nav-bar-link-container">
                             <NavLink className="nav-link" to="/">Home</NavLink>
-                            <NavLink className="nav-link" to="/userProfile">Profile</NavLink>
+                            <NavLink className="nav-link" to={loggedInUserProfile}>Profile</NavLink>
                             <NavLink className="nav-link" to="/quiz">Quiz</NavLink>
                             <NavLink className="nav-link" to="/community">Community</NavLink>
                         </Nav.Item>
