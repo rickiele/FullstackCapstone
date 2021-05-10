@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { UserCard } from "./UserCard";
-import { Container } from "react-bootstrap"
+import { Container, Button, Dropdown } from "react-bootstrap"
 
 export const CommunityList = () => {
 
@@ -13,22 +13,23 @@ export const CommunityList = () => {
         getAllUserProfiles();
     }, []);
 
-    // {
-    //     userProfiles.filter(userProfile => currentUser.id =)
-    //         return <ProductCard key={product.id} product={product} />
-    //     })
-    // }
-
-    const filterCommunity = userProfiles.filter(userProfile => userProfile.id != currentUser.id)
-
     //Need to add a filter by skin type
-    // Need to not show the current user in the array
 
-    console.log(filterCommunity, "oink??")
+
+
     return (
         <Container className="container">
             <h1>Community</h1>
             <p>Check out how other users protect themselves from the sun.</p>
+            <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    Filter by
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">Skin Type</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+
             {
                 userProfiles.filter(userProfile => userProfile.id != currentUser.id).map(userProfile => (
                     <UserCard key={userProfile.id} userProfile={userProfile} />
