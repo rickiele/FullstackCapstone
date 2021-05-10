@@ -4,7 +4,6 @@ import { UserCard } from "./UserCard";
 import { Container, Button, Dropdown } from "react-bootstrap"
 
 export const CommunityList = () => {
-
     const { userProfiles, getAllUserProfiles } = useContext(UserProfileContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 

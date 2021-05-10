@@ -5,7 +5,7 @@ import { Container, Card, Button, Tab, Tabs, Col, Row } from "react-bootstrap";
 import { AddProduct } from "../products/AddProduct";
 import { ProductContext } from "../../providers/ProductProvider";
 import { ProductCard } from "../products/ProductCard";
-
+import { UpdateUserProfile } from "./UpdateUserProfile";
 
 export const UserProfileDetails = () => {
     const { getUserProfileById } = useContext(UserProfileContext);
@@ -47,7 +47,7 @@ export const UserProfileDetails = () => {
                     <h2>Age: {userProfile.age}</h2>
                     <h2>Skin Type {userProfile.skinTypeId}</h2>
                     {currentUser.id === userId ?
-                        <><Button>Edit Profile</Button></>
+                        <><UpdateUserProfile key={userProfile.id} userProfile={userProfile} /></>
                         :
                         <></>
                     }
