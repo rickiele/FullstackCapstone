@@ -15,6 +15,10 @@ export const CommunityList = () => {
 
     //Need to add a filter by skin type
 
+    const filterBySkinType1 = userProfiles.filter(userProfile => userProfile.skinTypeId === 1)
+
+    console.log(filterBySkinType1, "skintype1")
+
 
 
     return (
@@ -26,7 +30,7 @@ export const CommunityList = () => {
                     Filter by
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Skin Type</Dropdown.Item>
+                    <Dropdown.Item onClick={filterBySkinType1}>Skin Type</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
 
