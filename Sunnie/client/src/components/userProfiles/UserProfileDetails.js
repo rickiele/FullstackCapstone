@@ -46,7 +46,7 @@ export const UserProfileDetails = () => {
                     <h1>{userProfile.firstName} {userProfile.lastName}</h1>
                     <h2>Age: {userProfile.age}</h2>
                     <h2>Skin Type {userProfile.skinTypeId}</h2>
-                    {product.userProfileId === userId ?
+                    {currentUser.id === userId ?
                         <><Button>Edit Profile</Button></>
                         :
                         <></>
@@ -56,16 +56,20 @@ export const UserProfileDetails = () => {
                     <h2>Sun Protection Favorites</h2>
                     <p>Pull from favorites table where it matches the userProfileId</p>
                 </Card>
-                <Card>
-
-                    <AddProduct key={currentUser.id} userProfile={userProfile} />
-                    <h2>Product Log</h2>
-                    <p>Get all products by userProfileId</p>
-
-                    {products.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
-                </Card>
+                {currentUser.id === userId ?
+                    <>
+                        <Card>
+                            <AddProduct key={currentUser.id} userProfile={userProfile} />
+                            <h2>Product Log</h2>
+                            <p>Get all products by userProfileId</p>
+                            {products.map((product) => (
+                                <ProductCard key={product.id} product={product} />
+                            ))}
+                        </Card>
+                    </>
+                    :
+                    <></>
+                }
             </Container>
         </>
     )
