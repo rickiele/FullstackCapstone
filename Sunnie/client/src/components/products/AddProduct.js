@@ -31,6 +31,10 @@ export const AddProduct = () => {
         setProduct(newProduct);
     };
 
+    const handleRefresh = () => {
+        window.location.reload()
+    }
+
     const handleSave = () => {
         addProduct({
             name: product.name,
@@ -41,6 +45,9 @@ export const AddProduct = () => {
             spf: product.spf,
             comment: product.comment
         })
+        // Add this in after you fix the window-reload property
+        // handleRefresh()
+        handleClose()
     };
 
     // Modal stuff
