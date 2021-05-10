@@ -1,70 +1,59 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { Container, Card, Button, Modal, Row, Col, Form } from "react-bootstrap";
+import { Modal, Button, Form } from "react-bootstrap";
 import { ProductContext } from "../../providers/ProductProvider";
-import { ProductTypeContext } from "../../providers/ProductTypesProvider";
 
-export const AddProduct = () => {
-    const { addProduct, getProductsByUser } = useContext(ProductContext);
+
+export const UpdateProduct = ({ product }) => {
+    const { updateProduct, getProductsByUser } = useContext(ProductContext);
+
+    // User ids
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const { userProfileId } = useParams();
     const userId = parseInt(userProfileId);
-
-    const [product, setProduct] = useState({
-        name: "",
-        userProfileId: currentUser.id,
-        // imageLocation: "",
-        createDateTime: "",
-        productTypeId: 0,
-        spf: "",
-        comment: ""
-    });
-
-    // useEffect(() => {
-    //     getProductsByUser()
-    // }, []);
-
-    const handleInput = (e) => {
-        const newProduct = { ...product };
-
-        newProduct[e.target.id] = e.target.value
-        setProduct(newProduct);
-    };
-
-    // Refreshes the window
-    const handleRefresh = () => {
-        window.location.reload()
-    }
-
-    const handleSave = () => {
-        addProduct({
-            name: product.name,
-            userProfileId: currentUser.id,
-            // imageLocation: product.imageLocation,
-            createDateTime: new Date(),
-            productTypeId: product.productTypeId,
-            spf: product.spf,
-            comment: product.comment
-        })
-        // Add this in after you fix the window-reload property
-        // handleRefresh()
-        handleClose()
-    };
 
     // Modal stuff
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const [aProduct, setProduct] = useState({
+        id: product.id,
+        name: product.name,
+        userProfileId: currentUser.id,
+        // imageLocation: product.imageLocation,
+        createDateTime: new Date(),
+        productTypeId: product.productTypeId,
+        spf: product.spf,
+        comment: product.comment
+    })
+
+    // Save the user input
+    const handleInput = (e) => {
+        const newProduct = { ...aProduct }
+
+        newProduct[e.target.id] = e.target.value
+        setProduct(newProduct);
+        console.log("handle input")
+    }
+
+    // Save the user's updated product
+    const handleYesUpdate = () => {
+        updateProduct(aProduct)
+        handleClose()
+        console.log(aProduct, "update")
+    };
+
+
+    // JSX for the product update form
     return (
         <>
-            {currentUser.id === userId ?
-                <><Button className="finish__btn" variant="primary" size="sm"
-                    onClick={handleShow}>Add Product</Button></>
-                :
-                <><Button style={{ display: 'none' }}
-                    onClick={handleShow}>Oink</Button></>
-            }
+
+            <>
+                <Button key={product.id} onClick={handleShow}>
+                    Update
+                </Button>
+            </>
 
             <Modal
                 show={show}
@@ -73,14 +62,19 @@ export const AddProduct = () => {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add a product</Modal.Title>
+                    <Modal.Title>
+                        <p>Update</p>
+                        <h1>{product.name}?</h1>
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
-                    <Form.Group>
-                        <label htmlFor="name">Name</label>
-                        <input type="text" id="name" required className="form-control" onChange={handleInput} />
-                    </Form.Group>
+                    <fieldset>
+                        <div className="form-group">
+                            <label htmlFor="name">Name</label>
+                            <input type="text" id="name" required className="form-control" defaultValue={product.name} onChange={handleInput} />
+                        </div>
+                    </fieldset>
 
                     <fieldset>
                         <div className="form-group">
@@ -107,30 +101,24 @@ export const AddProduct = () => {
                     <fieldset>
                         <div className="form-group">
                             <label htmlFor="spf">SPF</label>
-                            <input type="text" id="spf" required className="form-control" onChange={handleInput} />
+                            <input type="text" id="spf" required className="form-control" defaultValue={product.spf} onChange={handleInput} />
                         </div>
                     </fieldset>
 
                     <fieldset>
                         <div className="form-group">
                             <label htmlFor="comment">Comments</label>
-                            <input as="textarea" id="comment" required className="form-control" onChange={handleInput} />
+                            <input as="textarea" id="comment" required className="form-control" onChange={handleInput} defaultValue={product.comment} onChange={handleInput} />
                         </div>
                     </fieldset>
 
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleSave}>Add Product</Button>
+                    <Button onClick={handleClose}> Go Back </Button>
+                    <Button onClick={handleYesUpdate}> Save Changes </Button>
                 </Modal.Footer>
             </Modal>
         </>
-
     )
-
-
-
-
-
-
 }
