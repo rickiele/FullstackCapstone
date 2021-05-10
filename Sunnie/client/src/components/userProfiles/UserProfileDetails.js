@@ -10,7 +10,7 @@ import { ProductCard } from "../products/ProductCard";
 
 export const UserProfileDetails = () => {
     const { getUserProfileById } = useContext(UserProfileContext);
-    const { products, getProductsByUser } = useContext(ProductContext);
+    const { products, getAllProducts, getProductsByUser } = useContext(ProductContext);
 
     const [userProfile, setUserProfile] = useState({ userProfile: {} });
     const [product, setProduct] = useState([]);
@@ -21,16 +21,20 @@ export const UserProfileDetails = () => {
     const userId = parseInt(userProfileId)
 
     useEffect(() => {
-        getUserProfileById(userProfileId)
+        getUserProfileById(userId)
             .then((response) => {
                 setUserProfile(response)
             })
-        getProductsByUser(userProfileId)
-            .then((response) => {
-                setProduct(response)
-            })
+        getProductsByUser(userId)
     }, [])
 
+
+    //Only showing me the logged in user's products, despite the userId from useParams changing
+
+    // const filteredByUser = products.filter(product.userProfileId !== userId)
+    // console.log(filteredByUser, "userProfileDetails")
+
+    console.log(userId, "useParams")
     console.log(products, "products")
 
     return (
@@ -45,11 +49,9 @@ export const UserProfileDetails = () => {
                 </Card>
                 <Card className="card">
                     <h2>Sun Protection Favorites</h2>
-                    {
-                        products.map(product => {
-                            return <ProductCard key={product.id} product={product} />
-                        })
-                    }
+                    {products.map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
                 </Card>
             </Container>
         </>
@@ -68,3 +70,14 @@ export const UserProfileDetails = () => {
 //         </Link>
 //     </div>
 // ))}
+
+{/* {
+                        products.filter(product.UserProfileId === userId).map(filteredProducts => {
+                            return <ProductCard key={product.id} product={product} />
+                        })
+                    } */}
+
+
+                    // {products.filter(product.userProfileId === userId).map(filteredProducts => (
+                    //     <ProductCard key={product.id} product={product} />
+                    // ))}

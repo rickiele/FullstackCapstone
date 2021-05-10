@@ -1,14 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { Container, Card, Button, Modal, Row, Col, Form } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { ProductContext } from "../../providers/ProductProvider";
-import { ProductTypeContext } from "../../providers/ProductTypesProvider";
-
+import { DeleteProduct } from "../products/DeleteProduct";
 
 export const ProductCard = ({ product }) => {
-    const { products, addProduct, getProductsByUser } = useContext(ProductContext);
-    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const { userProfileId } = useParams();
     const userId = parseInt(userProfileId);
 
@@ -17,13 +13,10 @@ export const ProductCard = ({ product }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    // const productName = products.map(product => product.name);
-    console.log(userId, "user Id")
 
-
+    // LOGIC FOR SHOWING ONLY THE USER'S PRODUCTS
     // If the user matches the product's userId, then you will see the edit and delete buttons on the product card
     // Need to map over all of the products to show all the cards
-
     // Only display the user's own products for each profile
     // If the product's userProfileId matches the useParams of profile - show it
 
@@ -31,24 +24,11 @@ export const ProductCard = ({ product }) => {
     return (
         <>
 
-            {/* {products.map((product) => (
+            <>
                 <div key={product.id} onClick={handleShow}>
                     <h3>{product.name}</h3>
                 </div>
-            ))} */}
-            {products.map((product) =>
-                product.userProfileId === userId ? (
-                    <>
-                        <div key={product.id} onClick={handleShow}>
-                            <h3>{product.name}</h3>
-                        </div>
-                    </>
-                ) : (
-                    <>
-                        <div style={{ display: 'none' }}>OINK</div>
-                    </>
-                )
-            )}
+            </>
 
             <Modal
                 show={show}
@@ -69,8 +49,8 @@ export const ProductCard = ({ product }) => {
                     {product.userProfileId === userId ?
                         <>
                             {/* Make update and delete modals */}
+                            <DeleteProduct key={product.id} product={product} />
                             <Button variant="primary">Update</Button>
-                            <Button variant="primary">Delete</Button>
                         </>
                         :
                         <>
