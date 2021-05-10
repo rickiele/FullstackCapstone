@@ -14,15 +14,13 @@ export const DeleteProduct = ({ product }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [aProduct, setProduct] = useState({})
-
-    useEffect(() => {
-        getProductsByUser(product.id)
-    });
+    // useEffect(() => {
+    //     getProductsByUser(product.id)
+    // });
 
     const handleYesDelete = () => {
         deleteProduct(product.id)
-            .then(getProductsByUser)
+        // .then(getProductsByUser)
         handleClose()
     }
     // can delete but it returns a products.map is not a function

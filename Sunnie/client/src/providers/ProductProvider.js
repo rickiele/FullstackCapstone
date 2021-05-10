@@ -46,21 +46,32 @@ export const ProductProvider = (props) => {
     };
 
     const deleteProduct = (productId) => {
-        return getToken()
-            .then((token) =>
-                fetch(`/api/product/delete/${productId}`, {
-                    method: "DELETE",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    }
-                })
-                    .then(setProducts)
-            )
+        return getToken().then((token) =>
+            fetch(`/api/product/delete/${productId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            })
+                .then(setProducts)
+        )
     }
+
+    const updateProduct = (product) =>
+        getToken().then((token) =>
+            fetch(`/api/product/update/${product.id}`, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(product),
+            })
+        )
 
 
     return (
-        <ProductContext.Provider value={{ products, getAllProducts, getProductsByUser, addProduct, deleteProduct }}>
+        <ProductContext.Provider value={{ products, getAllProducts, getProductsByUser, addProduct, deleteProduct, updateProduct }}>
             {props.children}
         </ProductContext.Provider>
     );

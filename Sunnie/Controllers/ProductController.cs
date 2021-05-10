@@ -58,7 +58,7 @@ namespace Sunnie.Controllers
         }
 
 
-        [HttpPut("{id}")]
+        [HttpPut("update/{id}")]
         public IActionResult Put(int id, Product product)
         {
             if (id != product.Id)

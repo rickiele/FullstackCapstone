@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 import { ProductContext } from "../../providers/ProductProvider";
 import { DeleteProduct } from "../products/DeleteProduct";
+import { UpdateProduct } from "../products/UpdateProduct";
 
 export const ProductCard = ({ product }) => {
     const { userProfileId } = useParams();
@@ -20,6 +21,15 @@ export const ProductCard = ({ product }) => {
     // Only display the user's own products for each profile
     // If the product's userProfileId matches the useParams of profile - show it
 
+    const updateProduct = () => {
+        return (
+            <Button>
+                <Link to={`/product/update/${product.id}`}>
+                    Update
+                </Link>
+            </Button>
+        );
+    };
 
     return (
         <>
@@ -37,7 +47,7 @@ export const ProductCard = ({ product }) => {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title><h1>{product.name}</h1></Modal.Title>
+                    <Modal.Title><h1>{product.name} {product.id}</h1></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <img src={product.imageLocation} />
@@ -50,7 +60,8 @@ export const ProductCard = ({ product }) => {
                         <>
                             {/* Make update and delete modals */}
                             <DeleteProduct key={product.id} product={product} />
-                            <Button variant="primary">Update</Button>
+                            {/* <div>{updateProduct()}</div> */}
+                            <UpdateProduct key={product.id} product={product} />
                         </>
                         :
                         <>
