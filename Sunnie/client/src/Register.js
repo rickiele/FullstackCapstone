@@ -11,7 +11,6 @@ export default function Register() {
     const [lastName, setLastName] = useState();
     const [age, setAge] = useState();
     const [email, setEmail] = useState();
-    const [imageLocation, setImageLocation] = useState();
     const [bio, setBio] = useState();
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
@@ -48,7 +47,14 @@ export default function Register() {
         if (password && password !== confirmPassword) {
             alert("Passwords don't match. Do better.");
         } else {
-            const userProfile = { firstName, lastName, age, imageLocation, email, bio };
+            const userProfile = {
+                firstName,
+                lastName,
+                age,
+                imageLocation: image,
+                email,
+                bio
+            };
             register(userProfile, password)
                 .then(() => history.push("/quiz"));
         }
@@ -82,10 +88,10 @@ export default function Register() {
                         <img src={image} style={{ width: '300px' }} />
                     )}
                 </fieldset>
-                <fieldset>
+                {/* <fieldset>
                     <Form.Label for="bio">Bio</Form.Label>
                     <Form.Control id="bio" as="textarea" onChange={e => setBio(e.target.value)} />
-                </fieldset>
+                </fieldset> */}
                 <fieldset>
                     <Form.Label for="password">Password</Form.Label>
                     <Form.Control id="password" type="password" onChange={e => setPassword(e.target.value)} />
