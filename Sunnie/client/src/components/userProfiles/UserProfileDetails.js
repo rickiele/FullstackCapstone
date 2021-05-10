@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
-import { Container, Card, Button, Modal, Row, Col, Form } from "react-bootstrap";
-import { ProductList } from "../products/ProductList";
+import { Container, Card, Button, Tab, Tabs, Col, Row } from "react-bootstrap";
 import { AddProduct } from "../products/AddProduct";
 import { ProductContext } from "../../providers/ProductProvider";
 import { ProductCard } from "../products/ProductCard";
@@ -37,6 +36,8 @@ export const UserProfileDetails = () => {
     console.log(userId, "useParams")
     console.log(products, "products")
 
+    // Favorites to only have favorite button and unfavorite
+    // Products to only have edit and delete in modal
     return (
         <>
             <Container>
@@ -45,14 +46,30 @@ export const UserProfileDetails = () => {
                     <h1>{userProfile.firstName} {userProfile.lastName}</h1>
                     <h2>Age: {userProfile.age}</h2>
                     <h2>Skin Type {userProfile.skinTypeId}</h2>
-                    <AddProduct key={currentUser.id} userProfile={userProfile} />
+                    {currentUser.id === userId ?
+                        <><Button>Edit Profile</Button></>
+                        :
+                        <></>
+                    }
                 </Card>
                 <Card className="card">
                     <h2>Sun Protection Favorites</h2>
-                    {products.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
+                    <p>Pull from favorites table where it matches the userProfileId</p>
                 </Card>
+                {currentUser.id === userId ?
+                    <>
+                        <Card>
+                            <AddProduct key={currentUser.id} userProfile={userProfile} />
+                            <h2>Product Log</h2>
+                            <p>Get all products by userProfileId</p>
+                            {products.map((product) => (
+                                <ProductCard key={product.id} product={product} />
+                            ))}
+                        </Card>
+                    </>
+                    :
+                    <></>
+                }
             </Container>
         </>
     )
