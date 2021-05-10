@@ -17,11 +17,21 @@ export const UpdateProduct = ({ product }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [aProduct, setProduct] = useState();
+    const [aProduct, setProduct] = useState({
+        id: product.id,
+        name: product.name,
+        userProfileId: currentUser.id,
+        // imageLocation: product.imageLocation,
+        createDateTime: new Date(),
+        productTypeId: product.productTypeId,
+        spf: product.spf,
+        comment: product.comment
+    })
 
     // Save the user input
     const handleInput = (e) => {
         const newProduct = { ...aProduct }
+
         newProduct[e.target.id] = e.target.value
         setProduct(newProduct);
         console.log("handle input")
@@ -29,18 +39,9 @@ export const UpdateProduct = ({ product }) => {
 
     // Save the user's updated product
     const handleYesUpdate = () => {
-        updateProduct({
-            id: product.id,
-            name: product.name,
-            userProfileId: currentUser.id,
-            // imageLocation: product.imageLocation,
-            createDateTime: new Date(),
-            productTypeId: product.productTypeId,
-            spf: product.spf,
-            comment: product.comment
-        })
+        updateProduct(aProduct)
         handleClose()
-        console.log("update")
+        console.log(aProduct, "update")
     };
 
 
