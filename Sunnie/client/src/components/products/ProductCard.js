@@ -21,8 +21,6 @@ export const ProductCard = ({ product }) => {
     // Only display the user's own products for each profile
     // If the product's userProfileId matches the useParams of profile - show it
 
-
-
     return (
         <>
 
@@ -57,11 +55,11 @@ export const ProductCard = ({ product }) => {
                 <Modal.Body>
                     {/* Click and done - do not ask for confirmation */}
                     {product.userProfileId === userId ?
-                        <><Button>Favorite</Button></>
+                        <><Button className="favorite-btn">Favorite</Button></>
                         :
                         <></>
                     }
-                    <img src={product.imageLocation} />
+                    <img src={product.imageLocation} className="product-img" />
                     <h2>SPF: {product.spf}</h2>
                     <h2>Type: {product.productType.type}</h2>
                     <p>{product.comment}</p>

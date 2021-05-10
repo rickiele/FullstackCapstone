@@ -20,10 +20,6 @@ export const AddProduct = () => {
         comment: ""
     });
 
-    // useEffect(() => {
-    //     getProductsByUser()
-    // }, []);
-
     const handleInput = (e) => {
         const newProduct = { ...product };
 
@@ -36,11 +32,39 @@ export const AddProduct = () => {
         window.location.reload()
     }
 
+    // Cloudinary use states
+    const [image, setImage] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    // Cloudinary upload
+    const uploadImage = async e => {
+        const files = e.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'sunnie');
+        setLoading(true);
+
+        // Fetch the upload
+        const res = await fetch(
+            'https://api.cloudinary.com/v1_1/sunnie-image/image/upload',
+            {
+                method: 'POST',
+                body: data
+            }
+        )
+        const file = await res.json();
+
+        // Set the upload to false once the response comes back
+        setImage(file.secure_url)
+        setLoading(false);
+    }
+
+
     const handleSave = () => {
         addProduct({
             name: product.name,
             userProfileId: currentUser.id,
-            // imageLocation: product.imageLocation,
+            imageLocation: image,
             createDateTime: new Date(),
             productTypeId: product.productTypeId,
             spf: product.spf,
@@ -81,6 +105,16 @@ export const AddProduct = () => {
                         <label htmlFor="name">Name</label>
                         <input type="text" id="name" required className="form-control" onChange={handleInput} />
                     </Form.Group>
+
+                    <fieldset>
+                        <Form.Label htmlFor="imageLocation">Upload a profile image</Form.Label>
+                        <Form.Control type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
+                        {loading ? (
+                            <h3>Loading...</h3>
+                        ) : (
+                            <img src={image} style={{ width: '300px' }} />
+                        )}
+                    </fieldset>
 
                     <fieldset>
                         <div className="form-group">
