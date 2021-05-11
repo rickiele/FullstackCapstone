@@ -18,17 +18,18 @@ namespace Sunnie.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    SELECT  f.Id, f.ProductId, f.UserProfileId,
-                            p.Id, p.CreateDateTime, p.Name AS ProductName, p.ImageLocation AS ProductImage, 
+                    SELECT  f.Id AS FavoriteId, f.ProductId, f.UserProfileId,
+                            p.Id, p.Name AS ProductName, p.ImageLocation AS ProductImage, 
                             p.Spf, p.Comment, p.UserProfileId, p.ProductTypeId,
-                            u.Id, u.FirstName, u.LastName, u.Age, u.Email, u.CreateDateTime,
-                            u.ImageLocation, u.SkinTypeId
+                            up.Id,
+                            pt.Id, pt.Type
 
                       FROM  Favorite f
 
-                 LEFT JOIN  Product p ON p.Id = f.ProductId
-                 LEFT JOIN  UserProfile up ON up.Id = f.UserProfileId
-                     WHERE  f.ProductId = @UserProfileId";
+                 LEFT JOIN  Product p       ON p.Id = f.ProductId
+                 LEFT JOIN  UserProfile up  ON up.Id = f.UserProfileId
+                 LEFT JOIN  ProductType pt  ON pt.Id = p.ProductTypeId
+                     WHERE  f.UserProfileId = @UserProfileId";
 
                     DbUtils.AddParameter(cmd, "@UserProfileId", id);
 
@@ -39,7 +40,7 @@ namespace Sunnie.Repositories
                     {
                         favorites.Add(new Favorite()
                         {
-                            Id = DbUtils.GetInt(reader, "PostTagId"),
+                            Id = DbUtils.GetInt(reader, "FavoriteId"),
                             UserProfileId = id,
                             UserProfile = new UserProfile()
                             {
@@ -54,6 +55,12 @@ namespace Sunnie.Repositories
                                 Spf = DbUtils.GetNullableInt(reader, "Spf"),
                                 Comment = DbUtils.GetNullableString(reader, "Comment"),
                                 UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                                ProductTypeId = DbUtils.GetInt(reader, "ProductTypeId"),
+                                ProductType = new ProductType()
+                                {
+                                    Id = DbUtils.GetInt(reader, "ProductTypeId"),
+                                    Type = DbUtils.GetString(reader, "Type")
+                                }
                             },
                         });
                     }
