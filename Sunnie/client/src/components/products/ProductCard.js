@@ -14,6 +14,7 @@ export const ProductCard = ({ product }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    // Favorite product
 
     // LOGIC FOR SHOWING ONLY THE USER'S PRODUCTS
     // If the user matches the product's userId, then you will see the edit and delete buttons on the product card
