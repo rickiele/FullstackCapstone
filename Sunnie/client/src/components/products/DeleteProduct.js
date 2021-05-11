@@ -20,7 +20,7 @@ export const DeleteProduct = ({ product }) => {
 
     const handleYesDelete = () => {
         deleteProduct(product.id)
-        // .then(getProductsByUser)
+            .then(getProductsByUser)
         handleClose()
     }
     // can delete but it returns a products.map is not a function

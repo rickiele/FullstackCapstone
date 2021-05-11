@@ -98,14 +98,15 @@ export function UserProfileProvider(props) {
 
     const updateUserProfile = (userProfile) =>
         getToken().then((token) =>
-            fetch(`${apiUrl}/${userProfile.id}`, {
+            fetch(`/api/userProfile/update/${userProfile.id}`, {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(userProfile),
-            }));
+            })
+        )
     // .then(getUserProfileById(userProfile.id)));
 
     return (

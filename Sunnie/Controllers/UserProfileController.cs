@@ -55,7 +55,7 @@ namespace Sunnie.Controllers
             return Ok(up);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("update/{id}")]
         public IActionResult Put(int id, UserProfile userProfile)
         {
             if (id != userProfile.Id)

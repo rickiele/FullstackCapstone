@@ -7,7 +7,10 @@ import { UserProfileContext } from "../../providers/UserProfileProvider";
 
 export const UpdateUserProfile = ({ userProfile }) => {
     const { updateUserProfile, getUserProfileById } = useContext(UserProfileContext);
-    const userProfileId = useParams();
+
+    // Get user ID from URL
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+    const { userProfileId } = useParams();
 
     // Cloudinary use states
     const [image, setImage] = useState("");
@@ -35,22 +38,22 @@ export const UpdateUserProfile = ({ userProfile }) => {
         setLoading(false);
     }
 
-    // Set user profile state
-    const [aUserProfile, setUserProfile] = useState(
-        {
-            id: userProfileId,
-            firstName: userProfile.firstName,
-            lastName: userProfile.lastName,
-            createDateTime: Date.now(),
-            age: userProfile.age,
-            imageLocation: userProfile.imageLocation
-        }
-    )
-
     // Modal stuff
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    // Set user profile state
+    const [aUserProfile, setUserProfile] = useState({
+        id: userProfile.id,
+        firstName: userProfile.firstName,
+        lastName: userProfile.lastName,
+        createDateTime: userProfile.createDateTime,
+        age: userProfile.age,
+        imageLocation: image,
+        skinTypeId: userProfile.skinTypeId,
+        email: userProfile.email
+    })
 
     // Save the user input
     const handleInput = (e) => {
@@ -65,7 +68,7 @@ export const UpdateUserProfile = ({ userProfile }) => {
     const handleYesUpdate = () => {
         updateUserProfile(aUserProfile)
         handleClose()
-        console.log(aUserProfile, "save user profile")
+        console.log(aUserProfile, image, "save user profile")
     };
 
 
@@ -74,7 +77,7 @@ export const UpdateUserProfile = ({ userProfile }) => {
         <>
 
             <>
-                <Button onClick={handleShow}>
+                <Button key={userProfile.id} onClick={handleShow}>
                     Update
                 </Button>
             </>
@@ -91,43 +94,38 @@ export const UpdateUserProfile = ({ userProfile }) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
-                        <fieldset>
-                            <Form.Label htmlFor="imageLocation"><h3>Current Profile Picture</h3></Form.Label>
-                            <img src={userProfile.imageLocation} style={{ width: '300px' }} />
-                            {loading ? (
-                                <h3>Loading...</h3>
-                            ) : (
-                                <>
-                                    <h3>New Profile Picture</h3>
-                                    <img src={image} style={{ width: '300px' }} />
-                                </>
-                            )}
-                            <Form.Control type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
-                        </fieldset>
-                        <fieldset>
-                            <Form.Label htmlFor="firstName">First Name</Form.Label>
-                            <Form.Control id="firstName" type="text" defaultValue={userProfile.firstName} />
-                        </fieldset>
-                        <fieldset>
-                            <Form.Label htmlFor="lastName">Last Name</Form.Label>
-                            <Form.Control id="lastName" type="text" defaultValue={userProfile.lastName} />
-                        </fieldset>
-                        <fieldset>
-                            <Form.Label htmlFor="age">Age</Form.Label>
-                            <Form.Control id="age" type="text" defaultValue={userProfile.age} />
-                        </fieldset>
-                        <fieldset>
-                            <Form.Label for="email">Email</Form.Label>
-                            <Form.Control id="email" type="text" defaultValue={userProfile.email} />
-                        </fieldset>
+                    <Form.Label htmlFor="imageLocation"><h3>Current Profile Picture</h3></Form.Label>
+                    <img src={userProfile.imageLocation} style={{ width: '300px' }} />
+                    {loading ? (
+                        <h3>Loading...</h3>
+                    ) : (
+                        <>
+                            <h3>New Profile Picture</h3>
+                            <img src={image} style={{ width: '300px' }} />
+                        </>
+                    )}
+                    <Form.Control type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
 
-                    </Form>
-
+                    <fieldset>
+                        <Form.Label htmlFor="firstName">First Name</Form.Label>
+                        <Form.Control id="firstName" type="text" defaultValue={userProfile.firstName} onChange={handleInput} />
+                    </fieldset>
+                    <fieldset>
+                        <Form.Label htmlFor="lastName">Last Name</Form.Label>
+                        <Form.Control id="lastName" type="text" defaultValue={userProfile.lastName} onChange={handleInput} />
+                    </fieldset>
+                    <fieldset>
+                        <Form.Label htmlFor="age">Age</Form.Label>
+                        <Form.Control id="age" type="text" defaultValue={userProfile.age} onChange={handleInput} />
+                    </fieldset>
+                    <fieldset>
+                        <Form.Label for="email">Email</Form.Label>
+                        <Form.Control id="email" type="text" defaultValue={userProfile.email} onChange={handleInput} />
+                    </fieldset>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onChange={handleClose}> Go Back </Button>
-                    <Button onChange={handleYesUpdate}> Save Changes </Button>
+                    <Button onClick={handleClose}> Go Back </Button>
+                    <Button onClick={handleYesUpdate}> Save Changes </Button>
                 </Modal.Footer>
             </Modal>
         </>

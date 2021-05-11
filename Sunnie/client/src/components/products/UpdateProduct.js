@@ -12,6 +12,32 @@ export const UpdateProduct = ({ product }) => {
     const { userProfileId } = useParams();
     const userId = parseInt(userProfileId);
 
+    // Cloudinary use states
+    const [image, setImage] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const uploadImage = async e => {
+        const files = e.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'sunnie');
+        setLoading(true);
+
+        // Fetch the upload
+        const res = await fetch(
+            'https://api.cloudinary.com/v1_1/sunnie-image/image/upload',
+            {
+                method: 'POST',
+                body: data
+            }
+        )
+        const file = await res.json();
+
+        // Set the upload to false once the response comes back
+        setImage(file.secure_url)
+        setLoading(false);
+    }
+
     // Modal stuff
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -21,7 +47,7 @@ export const UpdateProduct = ({ product }) => {
         id: product.id,
         name: product.name,
         userProfileId: currentUser.id,
-        // imageLocation: product.imageLocation,
+        imageLocation: image,
         createDateTime: new Date(),
         productTypeId: product.productTypeId,
         spf: product.spf,
@@ -40,6 +66,7 @@ export const UpdateProduct = ({ product }) => {
     // Save the user's updated product
     const handleYesUpdate = () => {
         updateProduct(aProduct)
+            .then(getProductsByUser)
         handleClose()
         console.log(aProduct, "update")
     };
@@ -76,6 +103,19 @@ export const UpdateProduct = ({ product }) => {
                         </div>
                     </fieldset>
 
+                    <Form.Label htmlFor="imageLocation"><h3>Current Image</h3></Form.Label>
+                    <img src={product.imageLocation} style={{ width: '300px' }} />
+                    {loading ? (
+                        <h3>Loading...</h3>
+                    ) : (
+                        <>
+                            <h3>New Product Image</h3>
+                            <img src={image} style={{ width: '300px' }} />
+                        </>
+                    )}
+                    <Form.Control type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
+
+
                     <fieldset>
                         <div className="form-group">
                             <label htmlFor="productTypeId">Type</label>
@@ -101,14 +141,14 @@ export const UpdateProduct = ({ product }) => {
                     <fieldset>
                         <div className="form-group">
                             <label htmlFor="spf">SPF</label>
-                            <input type="text" id="spf" required className="form-control" defaultValue={product.spf} onChange={handleInput} />
+                            <input type="text" id="spf" className="form-control" defaultValue={product.spf} onChange={handleInput} />
                         </div>
                     </fieldset>
 
                     <fieldset>
                         <div className="form-group">
                             <label htmlFor="comment">Comments</label>
-                            <input as="textarea" id="comment" required className="form-control" onChange={handleInput} defaultValue={product.comment} onChange={handleInput} />
+                            <input as="textarea" id="comment" className="form-control" onChange={handleInput} defaultValue={product.comment} onChange={handleInput} />
                         </div>
                     </fieldset>
 

@@ -27,17 +27,6 @@ export const UserProfileDetails = () => {
         getProductsByUser(userId)
     }, [])
 
-
-    //Only showing me the logged in user's products, despite the userId from useParams changing
-
-    // const filteredByUser = products.filter(product.userProfileId !== userId)
-    // console.log(filteredByUser, "userProfileDetails")
-
-    console.log(userId, "useParams")
-    console.log(products, "products")
-
-    // Favorites to only have favorite button and unfavorite
-    // Products to only have edit and delete in modal
     return (
         <>
             <Container>
