@@ -70,5 +70,75 @@ namespace Sunnie.Repositories
             }
         }
 
+        public Favorite GetFavoriteById(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            SELECT Id
+                            FROM Favorite
+                            WHERE Id = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        Favorite favorite = new Favorite()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id"))
+                        };
+                        reader.Close();
+                        return favorite;
+                    }
+                    reader.Close();
+                    return null;
+                }
+            }
+        }
+
+        public void Add(Favorite favorite)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO Favorite(ProductId, UserProfileId)
+                        OUTPUT INSERTED.ID
+                        VALUES (@productId, @userProfileId)";
+
+                    cmd.Parameters.AddWithValue("@productId", favorite.ProductId);
+                    cmd.Parameters.AddWithValue("@userProfileId", favorite.UserProfileId);
+
+                    int id = (int)cmd.ExecuteScalar();
+
+                    favorite.Id = id;
+                }
+            }
+        }
+
+        public void Delete(int favoriteId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        DELETE FROM Favorite
+                        WHERE Id = @favoriteId";
+
+                    cmd.Parameters.AddWithValue("@favoriteId", favoriteId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
     }
 }

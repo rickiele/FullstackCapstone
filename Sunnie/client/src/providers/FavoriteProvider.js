@@ -4,7 +4,7 @@ import { UserProfileContext } from "./UserProfileProvider";
 export const FavoriteContext = React.createContext();
 
 export const FavoriteProvider = (props) => {
-    const [favorites, setFavorite] = useState([]);
+    const [favorites, setFavorites] = useState([]);
     const { getToken } = useContext(UserProfileContext);
 
     const getFavoritesByUserProfileId = (userProfileId) => {
@@ -16,6 +16,7 @@ export const FavoriteProvider = (props) => {
                 }
             })
                 .then(res => res.json()))
+            .then(setFavorites)
     }
 
     return (

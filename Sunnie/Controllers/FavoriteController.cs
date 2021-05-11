@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sunnie.Models;
 using Sunnie.Repositories;
 
 namespace Sunnie.Controllers
@@ -26,6 +27,31 @@ namespace Sunnie.Controllers
                 return NotFound();
             }
             return Ok(f);
+        }
+
+        [HttpPost("Add")]
+        public IActionResult Post(Favorite favorite)
+        {
+            _favoriteRepository.Add(favorite);
+            return CreatedAtAction("Details", new { id = favorite.Id }, favorite);
+        }
+
+        [HttpDelete("Delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            _favoriteRepository.Delete(id);
+            return NoContent();
+        }
+
+        [HttpGet("getFavoriteById/{favoriteId}")]
+        public IActionResult GetById(int favoriteId)
+        {
+            var favorite = _favoriteRepository.GetFavoriteById(favoriteId);
+            if (favorite == null)
+            {
+                return NotFound();
+            }
+            return Ok(favorite);
         }
     }
 }

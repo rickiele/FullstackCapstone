@@ -18,16 +18,17 @@ export const UserProfileDetails = () => {
 
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const { userProfileId } = useParams()
-
     const userId = parseInt(userProfileId)
 
     useEffect(() => {
-        getUserProfileById(userId)
+        getUserProfileById(userProfileId)
             .then((response) => {
                 setUserProfile(response)
             })
-        getProductsByUser(userId)
-    }, [])
+        getProductsByUser(userProfileId)
+    }, []);
+
+    console.log(userProfileId, "userProfileId", userId, "userId")
 
     return (
         <>

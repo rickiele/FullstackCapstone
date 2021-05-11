@@ -17,7 +17,6 @@ export default function ApplicationViews() {
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const loggedInUserProfile = `/userProfiles/detail/getById/${currentUser.id}`
 
-
     return (
         <main>
             <Switch>
