@@ -6,6 +6,8 @@ import { AddProduct } from "../products/AddProduct";
 import { ProductContext } from "../../providers/ProductProvider";
 import { ProductCard } from "../products/ProductCard";
 import { UpdateUserProfile } from "./UpdateUserProfile";
+import { FavoriteList } from "../favorites/FavoriteList";
+
 
 export const UserProfileDetails = () => {
     const { getUserProfileById } = useContext(UserProfileContext);
@@ -43,7 +45,7 @@ export const UserProfileDetails = () => {
                 </Card>
                 <Card className="card">
                     <h2>Sun Protection Favorites</h2>
-                    <p>Pull from favorites table where it matches the userProfileId</p>
+                    <FavoriteList />
                 </Card>
                 {currentUser.id === userId ?
                     <>
@@ -63,27 +65,3 @@ export const UserProfileDetails = () => {
         </>
     )
 };
-
-
-// {products.map((product) => (
-//     <div className="product-card" key={product.id}>
-//         {/* Link to show product card details */}
-//         <Link to={`/product/GetById/${product.id}`}>
-//             <img className="userProfilePicture" src={product.imageLocation} />
-//             <h3 className="posts-title">
-//                 {product.name}
-//             </h3>
-//         </Link>
-//     </div>
-// ))}
-
-{/* {
-                        products.filter(product.UserProfileId === userId).map(filteredProducts => {
-                            return <ProductCard key={product.id} product={product} />
-                        })
-                    } */}
-
-
-                    // {products.filter(product.userProfileId === userId).map(filteredProducts => (
-                    //     <ProductCard key={product.id} product={product} />
-                    // ))}

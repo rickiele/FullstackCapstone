@@ -4,11 +4,11 @@ import { UserProfileContext } from "./UserProfileProvider";
 export const FavoriteContext = React.createContext();
 
 export const FavoriteProvider = (props) => {
-    const [favorite, setFavorite] = useState([]);
+    const [favorites, setFavorite] = useState([]);
     const { getToken } = useContext(UserProfileContext);
 
 
-    const GetFavoritesByUserProfileId = (userProfileId) => {
+    const getFavoritesByUserProfileId = (userProfileId) => {
         return getToken().then((token) =>
             fetch(`/api/favorite/getById/${userProfileId}`, {
                 method: "GET",
@@ -20,7 +20,7 @@ export const FavoriteProvider = (props) => {
     }
 
     return (
-        < FavoriteContext.Provider value={{ favorite, GetFavoritesByUserProfileId }}>
+        < FavoriteContext.Provider value={{ favorites, getFavoritesByUserProfileId }}>
             {props.children}
         </FavoriteContext.Provider >
     );

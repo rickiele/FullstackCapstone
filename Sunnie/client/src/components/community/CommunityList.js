@@ -4,6 +4,7 @@ import { UserCard } from "./UserCard";
 import { Container, Button, Dropdown } from "react-bootstrap"
 
 export const CommunityList = () => {
+
     const { userProfiles, getAllUserProfiles } = useContext(UserProfileContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
@@ -32,7 +33,6 @@ export const CommunityList = () => {
                     <Dropdown.Item onClick={filterBySkinType1}>Skin Type</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-
             {
                 userProfiles.filter(userProfile => userProfile.id != currentUser.id).map(userProfile => (
                     <UserCard key={userProfile.id} userProfile={userProfile} />

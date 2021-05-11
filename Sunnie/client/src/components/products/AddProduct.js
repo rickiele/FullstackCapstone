@@ -59,7 +59,6 @@ export const AddProduct = () => {
         setLoading(false);
     }
 
-
     const handleSave = () => {
         addProduct({
             name: product.name,
