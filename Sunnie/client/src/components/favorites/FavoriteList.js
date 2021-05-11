@@ -31,26 +31,3 @@ export const FavoriteList = () => {
         </>
     );
 };
-
-// {products.map((product) => (
-//     <div className="product-card" key={product.id}>
-//         {/* Link to show product card details */}
-//         <Link to={`/product/GetById/${product.id}`}>
-//             <img className="userProfilePicture" src={product.imageLocation} />
-//             <h3 className="posts-title">
-//                 {product.name}
-//             </h3>
-//         </Link>
-//     </div>
-// ))}
-
-{/* {
-                        products.filter(product.UserProfileId === userId).map(filteredProducts => {
-                            return <ProductCard key={product.id} product={product} />
-                        })
-                    } */}
-
-
-                    // {products.filter(product.userProfileId === userId).map(filteredProducts => (
-                    //     <ProductCard key={product.id} product={product} />
-                    // ))}
