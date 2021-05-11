@@ -5,8 +5,10 @@ import { ProductContext } from "../../providers/ProductProvider";
 import { DeleteProduct } from "../products/DeleteProduct";
 import { UpdateProduct } from "../products/UpdateProduct";
 import { AddFavorite } from "../favorites/AddFavorite";
+import { FavoriteContext } from "../../providers/FavoriteProvider";
 
 export const ProductCard = ({ product }) => {
+    const { addFavorite, getFavoritesByUserProfileId } = useContext(FavoriteContext);
     const { userProfileId } = useParams();
     const userId = parseInt(userProfileId);
 
@@ -14,6 +16,17 @@ export const ProductCard = ({ product }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleAddFavorite = () => {
+        const favoriteObj = {
+            userProfileId: userId,
+            productId: product.id
+        }
+        addFavorite(favoriteObj)
+            .then(getFavoritesByUserProfileId(userId))
+            .then(handleClose())
+        console.log("add favorite")
+    }
 
     return (
         <>
@@ -28,6 +41,9 @@ export const ProductCard = ({ product }) => {
                                 </Col>
                                 <Col>
                                     <Button onClick={handleShow}>Edit</Button>
+                                </Col>
+                                <Col>
+                                    <DeleteProduct key={product.id} product={product} />
                                 </Col>
                             </Row>
                         </Card>
@@ -49,7 +65,8 @@ export const ProductCard = ({ product }) => {
                 <Modal.Body>
                     {/* Click and done - do not ask for confirmation */}
                     {product.userProfileId === userId ?
-                        <><AddFavorite key={product.id} product={product} /></>
+                        // <><AddFavorite key={product.id} product={product} /></>
+                        <><Button className="favorite-btn" onClick={handleAddFavorite}>Add Favorite</Button></>
                         :
                         <></>
                     }
@@ -62,7 +79,7 @@ export const ProductCard = ({ product }) => {
                     {product.userProfileId === userId ?
                         <>
                             {/* Make update and delete modals */}
-                            <DeleteProduct key={product.id} product={product} />
+                            {/* <DeleteProduct key={product.id} product={product} /> */}
                             {/* <div>{updateProduct()}</div> */}
                             <UpdateProduct key={product.id} product={product} />
                         </>

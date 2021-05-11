@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { Container, Button } from "react-bootstrap";
 
 export const QuizList = () => {
-
     const questions = [
         {
             categoryText: "Eye Color",
@@ -97,8 +97,14 @@ export const QuizList = () => {
 
     const { userProfiles, getUserProfileById, updateUserProfile } = useContext(UserProfileContext);
     const [userProfile, setUserProfile] = useState([]);
-
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+
+    useEffect(() => {
+        getUserProfileById(currentUser.id)
+            .then((response) => {
+                setUserProfile(response)
+            })
+    }, []);
 
     const updateUserSkinType = () => {
         if (score >= 0 && score <= 6) {
@@ -204,11 +210,17 @@ export const QuizList = () => {
         }
     };
 
+    const history = useHistory();
+    const toHome = () => {
+        history.push("/")
+    }
+
     return (
         <Container className='container app'>
             {showScore ? (
                 <div className='score-section'>
-                    <h1>You got a {score}.</h1>
+                    <h1>You are {userProfile.skinType.typeDescription}.</h1>
+                    <Button onClick={toHome}>Get started!</Button>
                 </div>
             ) : (
                 <>

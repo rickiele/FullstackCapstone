@@ -8,6 +8,8 @@ export const Home = () => {
     const { getUserProfileById } = useContext(UserProfileContext);
     const { uvLevel, getTheCurrentUVLevel } = useContext(OpenUVContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+    const [userProfile, setUserProfile] = useState([]);
+
 
     // Function which takes the current position of the user as a params
     const successCallback = (position) => {
@@ -53,12 +55,15 @@ export const Home = () => {
     }
 
     useEffect(() => {
-        getUserProfileById(currentUser.id);
+        getUserProfileById(currentUser.id)
+            .then((response) => {
+                setUserProfile(response)
+            })
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     }, []);
 
 
-    let userSkinType = currentUser.skinTypeId;
+    let userSkinType = userProfile.skinTypeId;
     let roundedUVLevel = Math.round(uvLevel.result?.uv);
 
     // Safe exposure time numbers
@@ -68,7 +73,7 @@ export const Home = () => {
 
     return (
         <Container>
-            <h1>Welcome back, {currentUser.firstName}</h1>
+            <h1>Hi, {currentUser.firstName}</h1>
             <Row>
                 <Card className="UVLevel">
                     <h2>Current UV Level</h2>

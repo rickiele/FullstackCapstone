@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { FavoriteContext } from "../../providers/FavoriteProvider";
@@ -9,6 +9,12 @@ export const AddFavorite = ({ product }) => {
     const userId = parseInt(userProfileId);
     const history = useHistory();
 
+    // Modal stuff
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
     const handleAddFavorite = () => {
         const favoriteObj = {
             userProfileId: userId,
@@ -16,6 +22,7 @@ export const AddFavorite = ({ product }) => {
         }
         addFavorite(favoriteObj)
             .then(getFavoritesByUserProfileId(userId))
+            .then(handleClose())
         console.log("add favorite")
     }
 
