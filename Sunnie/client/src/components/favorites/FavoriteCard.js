@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
-import { Button, Modal, Card, Row, Col } from "react-bootstrap";
+import { Button, Modal, Card, Row, Col, Container } from "react-bootstrap";
 import { ProductContext } from "../../providers/ProductProvider";
 import { FavoriteContext } from "../../providers/FavoriteProvider";
+import { DeleteFavorite } from "../favorites/DeleteFavorite";
 
 export const FavoriteCard = ({ favorite }) => {
     const { products, getAllProducts, getProductsByUser } = useContext(ProductContext);
-    const { favorites, getFavoritesByUserProfileId } = useContext(FavoriteContext);
+    const { deleteFavorite, favorites, getFavoritesByUserProfileId } = useContext(FavoriteContext);
     const { userProfileId } = useParams();
     const userId = parseInt(userProfileId);
 
@@ -19,19 +20,25 @@ export const FavoriteCard = ({ favorite }) => {
         getFavoritesByUserProfileId(userId);
     }, []);
 
-    console.log(favorites, "productCard")
-
     // Modal stuff
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const handleDeleteFavorite = () => {
+        deleteFavorite(favorite.id)
+        handleClose();
+    };
+
+
+    console.log(favorite, "favoriteCard")
     return (
         <>
-
-            <Card onClick={handleShow}>
-                <h3>{favorite.product.name}</h3>
-            </Card>
+            <Container>
+                <Card onClick={handleShow}>
+                    <h3>{favorite.product.name}</h3>
+                </Card>
+            </Container>
 
 
             <Modal
@@ -50,6 +57,7 @@ export const FavoriteCard = ({ favorite }) => {
                     <p></p>
                 </Modal.Body>
                 <Modal.Footer>
+                    <Button onClick={handleDeleteFavorite}>Delete F</Button>
                 </Modal.Footer>
             </Modal>
         </>

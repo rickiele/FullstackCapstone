@@ -21,16 +21,14 @@ export const FavoriteList = () => {
             })
     }, []);
 
-    console.log(favorites, "favorites");
-
     return (
-        <Container className="container">
+        <>
             {
                 favorites.map((favorite) => (
                     <FavoriteCard key={favorite.id} favorite={favorite} />
                 ))
             }
-        </Container>
+        </>
     );
 };
 

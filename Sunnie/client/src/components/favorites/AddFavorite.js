@@ -1,30 +1,26 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Button, Card, CardBody } from "reactstrap";
-import { PostTagContext } from "../../providers/PostTagProvider.js";
+import { Button } from "react-bootstrap";
+import { FavoriteContext } from "../../providers/FavoriteProvider";
 
-const AddFavorite = ({ tag }) => {
-    const { addPostTag } = useContext(PostTagContext);
-    const { postId } = useParams();
-    const history = useHistory();
+export const AddFavorite = ({ product }) => {
+    const { addFavorite } = useContext(FavoriteContext);
+    const { userProfileId } = useParams();
+    const userId = parseInt(userProfileId);
 
-    const handleAddPostTag = () => {
-        const postTagObj = {
-            postId,
-            tagId: tag.id
+
+    const handleAddFavorite = () => {
+        const favoriteObj = {
+            userProfileId: userId,
+            productId: product.id
         }
-        addPostTag(postTagObj)
-        history.push(`/post/GetById/${postId}`)
-    };
+        addFavorite(favoriteObj)
+        console.log("add favorite")
+    }
 
     return (
-        <Card className="m-4">
-            <CardBody>
-                <p>
-                    <strong>{tag.name}</strong>
-                </p>
-                <Button onClick={handleAddPostTag}>Add</Button>
-            </CardBody>
-        </Card >
-    );
+        <>
+            <Button onClick={handleAddFavorite} className="favorite-btn">Add Favorite</Button>
+        </>
+    )
 };
