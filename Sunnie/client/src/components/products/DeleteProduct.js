@@ -14,18 +14,11 @@ export const DeleteProduct = ({ product }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    // useEffect(() => {
-    //     getProductsByUser(product.id)
-    // });
-
-    // if statement 
-
     const handleYesDelete = () => {
         deleteProduct(product.id)
             .then(getProductsByUser(userId))
         handleClose()
     }
-    // can delete but it returns a products.map is not a function
 
     return (
         <>

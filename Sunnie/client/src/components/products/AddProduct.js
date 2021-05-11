@@ -3,9 +3,11 @@ import { useParams, useHistory } from "react-router-dom";
 import { Container, Card, Button, Modal, Row, Col, Form } from "react-bootstrap";
 import { ProductContext } from "../../providers/ProductProvider";
 import { ProductTypeContext } from "../../providers/ProductTypesProvider";
+import { UserProfileContext } from "../../providers/UserProfileProvider";
 
 export const AddProduct = () => {
     const { addProduct, getProductsByUser } = useContext(ProductContext);
+    const { getUserProfileById } = useContext(UserProfileContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const { userProfileId } = useParams();
     const userId = parseInt(userProfileId);
@@ -71,13 +73,18 @@ export const AddProduct = () => {
             spf: product.spf,
             comment: product.comment
         })
-            .then(() => {
-                history.go(0);
-            });
-        // Add this in after you fix the window-reload property
-        // handleRefresh()
+            .then(() => getProductsByUser(userId))
         handleClose()
     };
+
+    const [userProfile, setUserProfile] = useState({ userProfile: {} });
+
+    useEffect(() => {
+        getUserProfileById(userId)
+            .then((response) => {
+                setUserProfile(response)
+            }).then(() => getProductsByUser(userId))
+    }, []);
 
     // Modal stuff
     const [show, setShow] = useState(false);

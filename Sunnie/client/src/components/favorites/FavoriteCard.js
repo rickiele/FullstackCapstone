@@ -29,9 +29,9 @@ export const FavoriteCard = ({ favorite }) => {
 
     const handleDeleteFavorite = () => {
         deleteFavorite(favorite.id)
+            .then(getFavoritesByUserProfileId(userId))
         handleClose();
     };
-
 
     console.log(favorite, "favoriteCard")
     return (

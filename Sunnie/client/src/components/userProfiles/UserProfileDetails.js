@@ -27,8 +27,6 @@ export const UserProfileDetails = () => {
             }).then(() => getProductsByUser(userId))
     }, []);
 
-    console.log(userProfileId, "userProfileId", userId, "userId")
-
     return userProfile ? (
         <>
             <Container>
