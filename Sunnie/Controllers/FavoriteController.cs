@@ -18,7 +18,7 @@ namespace Sunnie.Controllers
         }
 
 
-        [HttpGet("getById/{id}")]
+        [HttpGet("getbyUserId/{id}")]
         public IActionResult Get(int id)
         {
             var f = _favoriteRepository.GetAllFavoritesForUser(id);

@@ -9,7 +9,7 @@ export const FavoriteProvider = (props) => {
 
     const getFavoritesByUserProfileId = (userProfileId) => {
         return getToken().then((token) =>
-            fetch(`/api/favorite/getById/${userProfileId}`, {
+            fetch(`/api/Favorite/getbyUserId/${userProfileId}`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -19,8 +19,44 @@ export const FavoriteProvider = (props) => {
             .then(setFavorites)
     }
 
+    const getFavoriteById = (favoriteId) => {
+        return getToken().then((token) =>
+            fetch(`/api​/Favorite​/getFavoriteById​/${favoriteId}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then((res) => res.json()))
+
+    };
+
+    const addFavorite = (favorite) => {
+        return getToken().then((token) =>
+            fetch("/api/Favorite/Add", {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(favorite)
+            })
+        )
+    };
+
+    const deleteFavorite = (favoriteId) => {
+        return getToken().then((token) =>
+            fetch(`/api/Favorite/Delete/${favoriteId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            }))
+    };
+
+
     return (
-        < FavoriteContext.Provider value={{ favorites, getFavoritesByUserProfileId }}>
+        <FavoriteContext.Provider value={{ favorites, getFavoritesByUserProfileId, getFavoriteById, addFavorite, deleteFavorite }}>
             {props.children}
         </FavoriteContext.Provider >
     );

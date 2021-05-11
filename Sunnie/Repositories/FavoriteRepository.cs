@@ -78,7 +78,7 @@ namespace Sunnie.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                            SELECT Id
+                            SELECT Id, ProductId, UserProfileId
                             FROM Favorite
                             WHERE Id = @id";
                     cmd.Parameters.AddWithValue("@id", id);
@@ -87,7 +87,9 @@ namespace Sunnie.Repositories
                     {
                         Favorite favorite = new Favorite()
                         {
-                            Id = reader.GetInt32(reader.GetOrdinal("Id"))
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            ProductId = reader.GetInt32(reader.GetOrdinal("ProductId")),
+                            UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId"))
                         };
                         reader.Close();
                         return favorite;
