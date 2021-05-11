@@ -14,9 +14,6 @@ import { Home } from "./home/Home";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
-    // const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
-    // const loggedInUserProfile = `/userProfiles/detail/getById/${currentUser.id}`
-
     return (
         <main>
             <Switch>
@@ -47,10 +44,6 @@ export default function ApplicationViews() {
                 <Route exact path="/product/update/:id(\d+)">
                     {isLoggedIn ? <UpdateProduct /> : <Redirect to="/login" />}
                 </Route>
-
-                {/* <Route exact path={loggedInUserProfile}>
-                    <UserProfileDetails />
-                </Route> */}
 
 
             </Switch>
