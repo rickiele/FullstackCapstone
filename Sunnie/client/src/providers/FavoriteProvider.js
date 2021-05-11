@@ -7,7 +7,6 @@ export const FavoriteProvider = (props) => {
     const [favorites, setFavorite] = useState([]);
     const { getToken } = useContext(UserProfileContext);
 
-
     const getFavoritesByUserProfileId = (userProfileId) => {
         return getToken().then((token) =>
             fetch(`/api/favorite/getById/${userProfileId}`, {

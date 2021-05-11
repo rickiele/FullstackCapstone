@@ -7,7 +7,7 @@ import { FavoriteContext } from "../../providers/FavoriteProvider";
 
 export const FavoriteList = () => {
     const { favorites, getFavoritesByUserProfileId } = useContext(FavoriteContext);
-    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+
     const { userProfileId } = useParams();
     const userId = parseInt(userProfileId);
 
@@ -15,17 +15,15 @@ export const FavoriteList = () => {
         getFavoritesByUserProfileId(userId);
     }, []);
 
-    const favoritesArray = getFavoritesByUserProfileId(userId);
-    console.log(favorites, userId, "favoritesList");
+    console.log(favorites, "favoritesList");
 
     return (
         <Container className="container">
-            {/* {
+            {
                 favorites.map((favorite) => (
                     <FavoriteCard key={favorite.id} favorite={favorite} />
                 ))
-            } */}
-
+            }
         </Container>
     );
 };
