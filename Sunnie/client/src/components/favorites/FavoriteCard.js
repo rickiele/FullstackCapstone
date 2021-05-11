@@ -34,12 +34,10 @@ export const FavoriteCard = ({ favorite }) => {
     console.log(favorite, "favoriteCard")
     return (
         <>
-            <Container>
-                <Card onClick={handleShow}>
-                    <h3>{favorite.product.name}</h3>
-                </Card>
-            </Container>
-
+            <Card onClick={handleShow}>
+                <img className="favoriteProductImage" src={favorite.product.imageLocation} />
+                <h3>{favorite.product.name}</h3>
+            </Card>
 
             <Modal
                 show={show}
@@ -51,9 +49,9 @@ export const FavoriteCard = ({ favorite }) => {
                     <Modal.Title><h1>{favorite.product.name}</h1></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <img className="product-img" />
-                    <h2>SPF:{favorite.product.spf}</h2>
-                    <h2>Type:</h2>
+                    <img className="favoriteProductImage" src={favorite.product.imageLocation} />
+                    <h2>SPF: {favorite.product.spf}</h2>
+                    <h2>Type: {favorite.product.productType.type}</h2>
                     <p></p>
                 </Modal.Body>
                 <Modal.Footer>
