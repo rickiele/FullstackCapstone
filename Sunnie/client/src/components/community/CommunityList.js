@@ -8,7 +8,6 @@ export const CommunityList = () => {
     const { userProfiles, getAllUserProfiles } = useContext(UserProfileContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
-
     useEffect(() => {
         getAllUserProfiles();
     }, []);

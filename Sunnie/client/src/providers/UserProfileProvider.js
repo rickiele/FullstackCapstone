@@ -13,6 +13,7 @@ export function UserProfileProvider(props) {
     const [userProfiles, setUserProfiles] = useState([])
 
     const [isFirebaseReady, setIsFirebaseReady] = useState(false);
+
     useEffect(() => {
         firebase.auth().onAuthStateChanged((u) => {
             setIsFirebaseReady(true);
@@ -111,7 +112,11 @@ export function UserProfileProvider(props) {
 
     return (
         <UserProfileContext.Provider value={{ userProfiles, isLoggedIn, login, logout, register, getToken, getUserProfile, getAllUserProfiles, getUserProfileById, updateUserProfile }}>
-            {props.children}
+            {isFirebaseReady ? (
+                props.children
+            ) : (
+                <></>
+            )}
         </UserProfileContext.Provider>
     );
 }
