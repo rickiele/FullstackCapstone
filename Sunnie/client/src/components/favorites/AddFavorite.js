@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { FavoriteContext } from "../../providers/FavoriteProvider";
 
 export const AddFavorite = ({ product }) => {
-    const { addFavorite } = useContext(FavoriteContext);
+    const { addFavorite, getFavoritesByUserProfileId } = useContext(FavoriteContext);
     const { userProfileId } = useParams();
     const userId = parseInt(userProfileId);
     const history = useHistory();
@@ -15,6 +15,7 @@ export const AddFavorite = ({ product }) => {
             productId: product.id
         }
         addFavorite(favoriteObj)
+            .then(getFavoritesByUserProfileId(userId))
         console.log("add favorite")
     }
 

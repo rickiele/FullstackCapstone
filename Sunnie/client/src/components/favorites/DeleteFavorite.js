@@ -4,11 +4,14 @@ import { Button, Card, CardBody } from "react-bootstrap";
 import { FavoriteContext } from "../../providers/FavoriteProvider";
 
 export const DeleteFavorite = ({ favorite }) => {
-    const { deleteFavorite } = useContext(FavoriteContext);
+    const { deleteFavorite, getFavoritesByUserProfileId } = useContext(FavoriteContext);
+    const { userProfileId } = useParams();
+    const userId = parseInt(userProfileId);
 
     // do you need to get all the favorites to rerender?
     const handleDeleteFavorite = () => {
         deleteFavorite(favorite.id)
+            .then(getFavoritesByUserProfileId(userId))
     };
 
     return (
