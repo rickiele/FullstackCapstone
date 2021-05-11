@@ -7,7 +7,7 @@ using Sunnie.Repositories;
 
 namespace Sunnie.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : BaseController

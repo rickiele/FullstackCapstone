@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Button, Form, FormGroup } from 'react-bootstrap';
+import { Button, Form, FormGroup, Container } from 'react-bootstrap';
 import { useHistory, Link } from "react-router-dom";
 import { UserProfileContext } from "./providers/UserProfileProvider";
 
@@ -18,7 +18,7 @@ export default function Login() {
     };
 
     return (
-        <Form>
+        <Container className="container">
             <fieldset>
                 <FormGroup>
                     <Form.Label for="email">Email</Form.Label>
@@ -35,6 +35,6 @@ export default function Login() {
                     Not registered? <Link to="register">Register</Link>
                 </em>
             </fieldset>
-        </Form>
+        </Container>
     );
 }

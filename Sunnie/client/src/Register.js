@@ -52,8 +52,7 @@ export default function Register() {
                 lastName,
                 age,
                 imageLocation: image,
-                email,
-                bio
+                email
             };
             register(userProfile, password)
                 .then(() => history.push("/quiz"));

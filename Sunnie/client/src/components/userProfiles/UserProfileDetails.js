@@ -5,6 +5,8 @@ import { Container, Card, Button, Tab, Tabs, Col, Row } from "react-bootstrap";
 import { AddProduct } from "../products/AddProduct";
 import { ProductContext } from "../../providers/ProductProvider";
 import { ProductCard } from "../products/ProductCard";
+import { UpdateUserProfile } from "./UpdateUserProfile";
+import { FavoriteList } from "../favorites/FavoriteList";
 
 
 export const UserProfileDetails = () => {
@@ -16,29 +18,18 @@ export const UserProfileDetails = () => {
 
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const { userProfileId } = useParams()
-
     const userId = parseInt(userProfileId)
 
     useEffect(() => {
         getUserProfileById(userId)
             .then((response) => {
                 setUserProfile(response)
-            })
-        getProductsByUser(userId)
-    }, [])
+            }).then(() => getProductsByUser(userId))
+    }, []);
 
+    console.log(userProfileId, "userProfileId", userId, "userId")
 
-    //Only showing me the logged in user's products, despite the userId from useParams changing
-
-    // const filteredByUser = products.filter(product.userProfileId !== userId)
-    // console.log(filteredByUser, "userProfileDetails")
-
-    console.log(userId, "useParams")
-    console.log(products, "products")
-
-    // Favorites to only have favorite button and unfavorite
-    // Products to only have edit and delete in modal
-    return (
+    return userProfile ? (
         <>
             <Container>
                 <Card className="card">
@@ -47,14 +38,14 @@ export const UserProfileDetails = () => {
                     <h2>Age: {userProfile.age}</h2>
                     <h2>Skin Type {userProfile.skinTypeId}</h2>
                     {currentUser.id === userId ?
-                        <><Button>Edit Profile</Button></>
+                        <><UpdateUserProfile key={userProfile.id} userProfile={userProfile} /></>
                         :
                         <></>
                     }
                 </Card>
                 <Card className="card">
                     <h2>Sun Protection Favorites</h2>
-                    <p>Pull from favorites table where it matches the userProfileId</p>
+                    <FavoriteList />
                 </Card>
                 {currentUser.id === userId ?
                     <>
@@ -72,29 +63,5 @@ export const UserProfileDetails = () => {
                 }
             </Container>
         </>
-    )
+    ) : null;
 };
-
-
-// {products.map((product) => (
-//     <div className="product-card" key={product.id}>
-//         {/* Link to show product card details */}
-//         <Link to={`/product/GetById/${product.id}`}>
-//             <img className="userProfilePicture" src={product.imageLocation} />
-//             <h3 className="posts-title">
-//                 {product.name}
-//             </h3>
-//         </Link>
-//     </div>
-// ))}
-
-{/* {
-                        products.filter(product.UserProfileId === userId).map(filteredProducts => {
-                            return <ProductCard key={product.id} product={product} />
-                        })
-                    } */}
-
-
-                    // {products.filter(product.userProfileId === userId).map(filteredProducts => (
-                    //     <ProductCard key={product.id} product={product} />
-                    // ))}

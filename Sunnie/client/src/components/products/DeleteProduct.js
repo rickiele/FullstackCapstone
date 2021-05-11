@@ -18,9 +18,11 @@ export const DeleteProduct = ({ product }) => {
     //     getProductsByUser(product.id)
     // });
 
+    // if statement 
+
     const handleYesDelete = () => {
         deleteProduct(product.id)
-        // .then(getProductsByUser)
+            .then(getProductsByUser(userId))
         handleClose()
     }
     // can delete but it returns a products.map is not a function

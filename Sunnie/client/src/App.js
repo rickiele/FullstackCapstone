@@ -6,21 +6,25 @@ import { UserProfileProvider } from "./providers/UserProfileProvider";
 import { SkinTypeProvider } from './providers/SkinTypeProvider';
 import { OpenUVProvider } from './providers/OpenUVProvider';
 import { ProductProvider } from './providers/ProductProvider';
+import { FavoriteProvider } from './providers/FavoriteProvider';
+
 
 function App() {
   return (
     <Router>
       <UserProfileProvider>
         <ProductProvider>
-          <SkinTypeProvider>
-            <OpenUVProvider>
-              <Header />
-              <ApplicationViews />
-            </OpenUVProvider>
-          </SkinTypeProvider>
+          <FavoriteProvider>
+            <SkinTypeProvider>
+              <OpenUVProvider>
+                <Header />
+                <ApplicationViews />
+              </OpenUVProvider>
+            </SkinTypeProvider>
+          </FavoriteProvider>
         </ProductProvider>
       </UserProfileProvider>
-    </Router>
+    </Router >
   );
 }
 

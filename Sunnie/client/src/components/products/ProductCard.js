@@ -4,6 +4,7 @@ import { Button, Modal, Card, Row, Col } from "react-bootstrap";
 import { ProductContext } from "../../providers/ProductProvider";
 import { DeleteProduct } from "../products/DeleteProduct";
 import { UpdateProduct } from "../products/UpdateProduct";
+import { AddFavorite } from "../favorites/AddFavorite";
 
 export const ProductCard = ({ product }) => {
     const { userProfileId } = useParams();
@@ -13,13 +14,6 @@ export const ProductCard = ({ product }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-
-    // LOGIC FOR SHOWING ONLY THE USER'S PRODUCTS
-    // If the user matches the product's userId, then you will see the edit and delete buttons on the product card
-    // Need to map over all of the products to show all the cards
-    // Only display the user's own products for each profile
-    // If the product's userProfileId matches the useParams of profile - show it
 
     return (
         <>
@@ -55,7 +49,7 @@ export const ProductCard = ({ product }) => {
                 <Modal.Body>
                     {/* Click and done - do not ask for confirmation */}
                     {product.userProfileId === userId ?
-                        <><Button className="favorite-btn">Favorite</Button></>
+                        <><AddFavorite key={product.id} product={product} /></>
                         :
                         <></>
                     }

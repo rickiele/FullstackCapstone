@@ -33,7 +33,6 @@ export const CommunityList = () => {
                     <Dropdown.Item onClick={filterBySkinType1}>Skin Type</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-
             {
                 userProfiles.filter(userProfile => userProfile.id != currentUser.id).map(userProfile => (
                     <UserCard key={userProfile.id} userProfile={userProfile} />

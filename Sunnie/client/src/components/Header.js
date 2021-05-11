@@ -11,7 +11,15 @@ export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
-    const loggedInUserProfile = `/userProfiles/detail/getById/${currentUser.id}`
+
+    const loggedInUserProfile = () => {
+        if (currentUser) {
+            return `/userProfiles/detail/getById/${currentUser.id}`
+        }
+        else {
+            return null
+        }
+    }
 
     return (
         <header>

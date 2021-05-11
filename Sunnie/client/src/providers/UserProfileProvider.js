@@ -60,17 +60,6 @@ export function UserProfileProvider(props) {
             }));
     };
 
-    const getUserProfileById = (userProfileId) => {
-        return getToken().then((token) =>
-            fetch(`${apiUrl}/getById/${userProfileId}`, {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-                .then(res => res.json()))
-    }
-
     const saveUser = (userProfile) => {
         return getToken().then((token) =>
             fetch(apiUrl, {
@@ -96,16 +85,28 @@ export function UserProfileProvider(props) {
                 .then(setUserProfiles))
     };
 
+    const getUserProfileById = (userProfileId) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/getById/${userProfileId}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then(res => res.json()))
+    };
+
     const updateUserProfile = (userProfile) =>
         getToken().then((token) =>
-            fetch(`${apiUrl}/${userProfile.id}`, {
+            fetch(`/api/userProfile/update/${userProfile.id}`, {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(userProfile),
-            }));
+            })
+        )
     // .then(getUserProfileById(userProfile.id)));
 
     return (

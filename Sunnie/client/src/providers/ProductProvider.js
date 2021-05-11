@@ -53,7 +53,6 @@ export const ProductProvider = (props) => {
                     Authorization: `Bearer ${token}`,
                 }
             })
-                .then(setProducts)
         )
     }
 

@@ -26,7 +26,7 @@ namespace Sunnie
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<ISkinTypeRepository, SkinTypeRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
-
+            services.AddTransient<IFavoriteRepository, FavoriteRepository>();
 
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
