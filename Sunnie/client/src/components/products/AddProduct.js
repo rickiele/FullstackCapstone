@@ -32,6 +32,8 @@ export const AddProduct = () => {
         window.location.reload()
     }
 
+    const history = useHistory();
+
     // Cloudinary use states
     const [image, setImage] = useState("");
     const [loading, setLoading] = useState(false);
@@ -69,6 +71,9 @@ export const AddProduct = () => {
             spf: product.spf,
             comment: product.comment
         })
+            .then(() => {
+                history.go(0);
+            });
         // Add this in after you fix the window-reload property
         // handleRefresh()
         handleClose()

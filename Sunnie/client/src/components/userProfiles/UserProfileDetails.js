@@ -18,20 +18,18 @@ export const UserProfileDetails = () => {
 
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const { userProfileId } = useParams()
-
     const userId = parseInt(userProfileId)
 
     useEffect(() => {
-        getUserProfileById(userProfileId)
+        getUserProfileById(userId)
             .then((response) => {
                 setUserProfile(response)
-            })
-        getProductsByUser(userProfileId)
+            }).then(() => getProductsByUser(userId))
     }, []);
 
     console.log(userProfileId, "userProfileId", userId, "userId")
 
-    return (
+    return userProfile ? (
         <>
             <Container>
                 <Card className="card">
@@ -65,5 +63,5 @@ export const UserProfileDetails = () => {
                 }
             </Container>
         </>
-    )
+    ) : null;
 };

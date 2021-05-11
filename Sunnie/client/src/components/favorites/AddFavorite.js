@@ -7,7 +7,7 @@ export const AddFavorite = ({ product }) => {
     const { addFavorite } = useContext(FavoriteContext);
     const { userProfileId } = useParams();
     const userId = parseInt(userProfileId);
-
+    const history = useHistory();
 
     const handleAddFavorite = () => {
         const favoriteObj = {
