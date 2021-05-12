@@ -64,14 +64,16 @@ export const UpdateProduct = ({ product }) => {
     }
 
     // Save the user's updated product
+    // One line return statement - Anonymous function
+    // No curly brackets - If curly brackets - you can do more than one thing
     const handleYesUpdate = () => {
         updateProduct(aProduct)
-            .then(getProductsByUser)
+            .then(() => getProductsByUser(userId))
         handleClose()
         console.log(aProduct, "update")
     };
 
-    console.log(image,)
+    console.log(image)
 
 
     // JSX for the product update form

@@ -209,7 +209,7 @@ namespace Sunnie.Repositories
                     DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
                     DbUtils.AddParameter(cmd, "@Age", userProfile.Age);
                     DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
-                    DbUtils.AddParameter(cmd, "ImageLocation", userProfile.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@ImageLocation", userProfile.ImageLocation);
                     DbUtils.AddParameter(cmd, "@Id", userProfile.Id);
                     DbUtils.AddParameter(cmd, "@SkinTypeId", userProfile.SkinTypeId);
 

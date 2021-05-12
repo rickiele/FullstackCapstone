@@ -16,7 +16,6 @@ export const UserProfileDetails = () => {
 
     // Use States
     const [userProfile, setUserProfile] = useState({ userProfile: {} });
-    const [product, setProduct] = useState([]);
 
     // Get the userProfileId
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
@@ -24,6 +23,8 @@ export const UserProfileDetails = () => {
     const userId = parseInt(userProfileId)
 
     // Show the user Profile
+    // If the state of user profile changed - we need to grab the updated state
+    // On the initial render
     useEffect(() => {
         getUserProfileById(userId)
             .then((response) => {
@@ -31,6 +32,20 @@ export const UserProfileDetails = () => {
             }).then(() => getProductsByUser(userId))
     }, []);
 
+    // After there has been a change to the userProfile state
+    // Second argument to the useEffect, when you want this useEffect to 
+    // run when the userProfile state changes / An array
+    useEffect(() => {
+        getUserProfileById(currentUser.id)
+            .then((response) => {
+                setUserProfile(response)
+            }).then(() => getProductsByUser(userId))
+    }, [userProfile]);
+
+    // Dictates when the useEffect function should execute 
+    // When user profile changes, will run the useEffect again
+
+    //Parent component doesn't keep track of child's states
     // JSX for the 'User Profile' details
     return (
         <>

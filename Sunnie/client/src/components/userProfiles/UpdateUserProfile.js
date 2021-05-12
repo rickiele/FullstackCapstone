@@ -15,6 +15,7 @@ export const UpdateUserProfile = ({ userProfile }) => {
     const [image, setImage] = useState("");
     const [loading, setLoading] = useState(false);
 
+    let newImage = "";
     const uploadImage = async e => {
         const files = e.target.files;
         const data = new FormData();
@@ -34,7 +35,10 @@ export const UpdateUserProfile = ({ userProfile }) => {
 
         // Set the upload to false once the response comes back
         setImage(file.secure_url)
+
+        newImage = file.secure_url;
         setLoading(false);
+        console.log(file.secure_url, "file")
     }
 
     // Modal stuff
@@ -70,12 +74,22 @@ export const UpdateUserProfile = ({ userProfile }) => {
             })
     }, []);
 
-    // // Save the user's updated product
+    // Save the user's updated product - GetUserProfileById is a promise
     const handleYesUpdate = () => {
-        updateUserProfile(aUserProfile)
-            .then(() => getUserProfileById(currentUser.id))
+        // Create replica and updates the property you want
+        const newUserProfile = { ...aUserProfile }
+        newUserProfile.imageLocation = image;
+
+        updateUserProfile(newUserProfile)
+            .then(() => {
+                getUserProfileById(currentUser.id)
+                    .then((response) => {
+                        setUserProfile(response)
+                    })
+            })
         handleClose()
-        console.log(aUserProfile, image, "save user profile")
+        console.log(aUserProfile, "save user profile")
+        console.log(image, "save user profile")
     };
 
 
