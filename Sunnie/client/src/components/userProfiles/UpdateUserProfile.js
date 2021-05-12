@@ -64,9 +64,17 @@ export const UpdateUserProfile = ({ userProfile }) => {
         console.log("handle userProfile input")
     }
 
+    useEffect(() => {
+        getUserProfileById(currentUser.id)
+            .then((response) => {
+                setUserProfile(response)
+            })
+    }, []);
+
     // // Save the user's updated product
     const handleYesUpdate = () => {
         updateUserProfile(aUserProfile)
+            .then(() => getUserProfileById(currentUser.id))
         handleClose()
         console.log(aUserProfile, image, "save user profile")
     };

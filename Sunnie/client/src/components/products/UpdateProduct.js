@@ -71,6 +71,8 @@ export const UpdateProduct = ({ product }) => {
         console.log(aProduct, "update")
     };
 
+    console.log(image,)
+
 
     // JSX for the product update form
     return (
