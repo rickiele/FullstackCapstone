@@ -29,7 +29,7 @@ export default function Header() {
     // JSX to return the header
     return (
         <header>
-            <Navbar bg="light" expand="lg">
+            <Navbar expand="sm" className="nav-bar-link-container">
                 <Navbar.Brand href="#">Sunnie</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
@@ -43,18 +43,15 @@ export default function Header() {
                         {isLoggedIn &&
                             <>
                                 <Nav.Item className="nav-bar-link-container">
-                                    <Row>
-                                        <Col>
-                                            <NavLink className="nav-link" to="/">Home</NavLink>
-                                            <NavLink className="nav-link" to={loggedInUserProfile}>Profile</NavLink>
-                                            <NavLink className="nav-link" to="/quiz">Quiz</NavLink>
-                                            <NavLink className="nav-link" to="/community">Community</NavLink>
-                                        </Col>
-                                    </Row>
+                                    <NavLink className="nav-link" to="/">Home</NavLink>
+                                    <NavLink className="nav-link" to={loggedInUserProfile}>Profile</NavLink>
+                                    <NavLink className="nav-link" to="/quiz">Quiz</NavLink>
+                                    <NavLink className="nav-link" to="/community">Community</NavLink>
                                 </Nav.Item>
                             </>
                         }
-
+                    </Nav>
+                    <Nav>
                         {isLoggedIn &&
                             <>
                                 <Nav.Item>

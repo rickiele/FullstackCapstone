@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Sunnie.Models;
 using Sunnie.Repositories;
 
+// Responsible for handling HTTP requests from clients
+// Gets data and saves data
 namespace Sunnie.Controllers
 {
     [Authorize]
