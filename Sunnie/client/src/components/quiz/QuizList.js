@@ -208,8 +208,9 @@ export const QuizList = () => {
             console.log(score, "score")
             console.log(weight, "weight")
             console.log(score + weight, "total")
-            setShowScore(true);
+            // setShowScore(true);
             updateUserSkinType();
+            history.push("/")
 
         }
     };

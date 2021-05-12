@@ -74,7 +74,9 @@ h3 {
 .nav-link {
   display: flex;
   flex-direction: row;
+  margin: .25em;
 } 
+
 
 /* Home */
 .UVLevel {
