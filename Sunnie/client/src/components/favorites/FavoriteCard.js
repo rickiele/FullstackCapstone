@@ -3,6 +3,7 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import { Button, Modal, Card, Row, Col, Container } from "react-bootstrap";
 import { ProductContext } from "../../providers/ProductProvider";
 import { FavoriteContext } from "../../providers/FavoriteProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export const FavoriteCard = ({ favorite }) => {
     // UseContext
@@ -37,12 +38,14 @@ export const FavoriteCard = ({ favorite }) => {
         handleClose();
     };
 
+    // UseEffect for the favorites 
+
     // JSX for the 'Favorite Card'
     return (
         <>
             <Card onClick={handleShow}>
                 <img src={favorite.product.imageLocation} />
-                <h3>{favorite.product.name}</h3>
+                <h3>{favorite.product.name} <FontAwesomeIcon icon="heart" /></h3>
             </Card>
 
             <Modal
@@ -62,7 +65,7 @@ export const FavoriteCard = ({ favorite }) => {
                 </Modal.Body>
                 <Modal.Footer>
                     {currentUser.id === userId ?
-                        <><Button onClick={handleDeleteFavorite}>Delete F</Button></> :
+                        <><Button onClick={handleDeleteFavorite}>Delete Favorite</Button></> :
                         <> </>
                     }
                 </Modal.Footer>

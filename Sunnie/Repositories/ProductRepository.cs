@@ -93,8 +93,8 @@ namespace Sunnie.Repositories
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"DELETE FROM Product WHERE Id = @id;
-                                        DELETE FROM Favorite WHERE ProductId = @id;
+                    cmd.CommandText = @"DELETE FROM Favorite WHERE ProductId = @id;
+                                        DELETE FROM Product WHERE Id = @id;                            
                                         ";
 
                     DbUtils.AddParameter(cmd, "@id", productId);

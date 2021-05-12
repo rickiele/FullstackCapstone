@@ -36,7 +36,6 @@ export default function Header() {
                     <Nav
                         className="mr-auto my-2 my-lg-0"
                         style={{ maxHeight: '100px' }}
-                        navbarScroll
                     >
 
                         { /* When isLoggedIn === true, we will render the Home link */}

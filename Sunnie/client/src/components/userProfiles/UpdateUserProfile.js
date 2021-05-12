@@ -15,6 +15,7 @@ export const UpdateUserProfile = ({ userProfile }) => {
     const [image, setImage] = useState("");
     const [loading, setLoading] = useState(false);
 
+    let newImage = "";
     const uploadImage = async e => {
         const files = e.target.files;
         const data = new FormData();
@@ -34,6 +35,7 @@ export const UpdateUserProfile = ({ userProfile }) => {
 
         // Set the upload to false once the response comes back
         setImage(file.secure_url)
+        newImage = file.secure_url;
         setLoading(false);
     }
 
@@ -70,12 +72,20 @@ export const UpdateUserProfile = ({ userProfile }) => {
             })
     }, []);
 
-    // // Save the user's updated product
+    // Save the user's updated product - GetUserProfileById is a promise
     const handleYesUpdate = () => {
-        updateUserProfile(aUserProfile)
-            .then(() => getUserProfileById(currentUser.id))
+        // Create replica of aUserProfile and updates the property you want
+        const newUserProfile = { ...aUserProfile }
+        newUserProfile.imageLocation = image;
+
+        updateUserProfile(newUserProfile)
+            .then(() => {
+                getUserProfileById(currentUser.id)
+                    .then((response) => {
+                        setUserProfile(response)
+                    })
+            })
         handleClose()
-        console.log(aUserProfile, image, "save user profile")
     };
 
 
@@ -102,14 +112,15 @@ export const UpdateUserProfile = ({ userProfile }) => {
                 </Modal.Header>
                 <Modal.Body>
                     <Form.Label htmlFor="imageLocation"><h3>Current Profile Picture</h3></Form.Label>
-                    <img src={userProfile.imageLocation} style={{ width: '300px' }} />
+
                     {loading ? (
                         <h3>Loading...</h3>
                     ) : (
-                        <>
-                            <h3>New Profile Picture</h3>
+                        image ?
                             <img src={image} style={{ width: '300px' }} />
-                        </>
+                            :
+                            <img src={userProfile.imageLocation} style={{ width: '300px' }} />
+
                     )}
                     <Form.Control type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
 
