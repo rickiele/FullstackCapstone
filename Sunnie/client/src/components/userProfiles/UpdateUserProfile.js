@@ -76,7 +76,7 @@ export const UpdateUserProfile = ({ userProfile }) => {
 
     // Save the user's updated product - GetUserProfileById is a promise
     const handleYesUpdate = () => {
-        // Create replica and updates the property you want
+        // Create replica of aUserProfile and updates the property you want
         const newUserProfile = { ...aUserProfile }
         newUserProfile.imageLocation = image;
 
@@ -116,14 +116,15 @@ export const UpdateUserProfile = ({ userProfile }) => {
                 </Modal.Header>
                 <Modal.Body>
                     <Form.Label htmlFor="imageLocation"><h3>Current Profile Picture</h3></Form.Label>
-                    <img src={userProfile.imageLocation} style={{ width: '300px' }} />
+
                     {loading ? (
                         <h3>Loading...</h3>
                     ) : (
-                        <>
-                            <h3>New Profile Picture</h3>
+                        image ?
                             <img src={image} style={{ width: '300px' }} />
-                        </>
+                            :
+                            <img src={userProfile.imageLocation} style={{ width: '300px' }} />
+
                     )}
                     <Form.Control type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
 
