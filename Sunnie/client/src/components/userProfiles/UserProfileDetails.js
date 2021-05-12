@@ -1,25 +1,29 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
-import { Container, Card, Button, Tab, Tabs, Col, Row } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 import { AddProduct } from "../products/AddProduct";
 import { ProductContext } from "../../providers/ProductProvider";
 import { ProductCard } from "../products/ProductCard";
 import { UpdateUserProfile } from "./UpdateUserProfile";
 import { FavoriteList } from "../favorites/FavoriteList";
 
-
 export const UserProfileDetails = () => {
-    const { getUserProfileById } = useContext(UserProfileContext);
-    const { products, getAllProducts, getProductsByUser } = useContext(ProductContext);
 
+    // UseContext
+    const { getUserProfileById } = useContext(UserProfileContext);
+    const { products, getProductsByUser } = useContext(ProductContext);
+
+    // Use States
     const [userProfile, setUserProfile] = useState({ userProfile: {} });
     const [product, setProduct] = useState([]);
 
+    // Get the userProfileId
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const { userProfileId } = useParams()
     const userId = parseInt(userProfileId)
 
+    // Show the user Profile
     useEffect(() => {
         getUserProfileById(userId)
             .then((response) => {
@@ -27,7 +31,8 @@ export const UserProfileDetails = () => {
             }).then(() => getProductsByUser(userId))
     }, []);
 
-    return userProfile ? (
+    // JSX for the 'User Profile' details
+    return (
         <>
             <Container>
                 <Card className="card">
@@ -61,5 +66,5 @@ export const UserProfileDetails = () => {
                 }
             </Container>
         </>
-    ) : null;
+    )
 };

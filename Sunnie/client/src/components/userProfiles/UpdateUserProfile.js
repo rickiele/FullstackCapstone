@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Modal, Button, Form } from "react-bootstrap";
-import { ProductContext } from "../../providers/ProductProvider";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 
 
@@ -64,9 +63,17 @@ export const UpdateUserProfile = ({ userProfile }) => {
         console.log("handle userProfile input")
     }
 
+    useEffect(() => {
+        getUserProfileById(currentUser.id)
+            .then((response) => {
+                setUserProfile(response)
+            })
+    }, []);
+
     // // Save the user's updated product
     const handleYesUpdate = () => {
         updateUserProfile(aUserProfile)
+            .then(() => getUserProfileById(currentUser.id))
         handleClose()
         console.log(aUserProfile, image, "save user profile")
     };

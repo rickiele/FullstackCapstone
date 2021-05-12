@@ -1,9 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom"
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { Container, Button } from "react-bootstrap";
 
 export const QuizList = () => {
+    const { userProfiles, getUserProfileById, updateUserProfile } = useContext(UserProfileContext);
+    const [userProfile, setUserProfile] = useState([]);
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+
+    // Quiz array
     const questions = [
         {
             categoryText: "Eye Color",
@@ -95,17 +100,7 @@ export const QuizList = () => {
         }
     ]
 
-    const { userProfiles, getUserProfileById, updateUserProfile } = useContext(UserProfileContext);
-    const [userProfile, setUserProfile] = useState([]);
-    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
-
-    useEffect(() => {
-        getUserProfileById(currentUser.id)
-            .then((response) => {
-                setUserProfile(response)
-            })
-    }, []);
-
+    // Update skin type based on the user's score
     const updateUserSkinType = () => {
         if (score >= 0 && score <= 6) {
             updateUserProfile(
@@ -185,12 +180,20 @@ export const QuizList = () => {
         }
     }
 
+    // Get the user's profile
+    // useEffect(() => {
+    //     getUserProfileById(currentUser.id)
+    // }, []);
+
+
+    // Quiz states
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [currentCategory, setCurrentCategory] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
     const [weight, setWeight] = useState(0);
 
+    // Answer clicks
     const handleAnswerClick = (weight) => {
         if (weight) {
             setScore(score + weight)
@@ -205,22 +208,34 @@ export const QuizList = () => {
             console.log(score, "score")
             console.log(weight, "weight")
             console.log(score + weight, "total")
-            setShowScore(true);
+            // setShowScore(true);
             updateUserSkinType();
+            history.push("/")
+
         }
     };
 
+    // End of quiz button
     const history = useHistory();
     const toHome = () => {
         history.push("/")
     }
+    // console.log(currentUser, "currentUser")
 
+    // JSX to show the Quiz
     return (
         <Container className='container app'>
             {showScore ? (
                 <div className='score-section'>
-                    <h1>You are {userProfile.skinType.typeDescription}.</h1>
+                    {/* {currentUser.skinType.typeDescription ?
+                        <>
+                            <h1>You are {currentUser.skinType.typeDescription}.</h1>
+                            <Button onClick={toHome}>Get started!</Button>
+                        </> :
+                        null
+                    } */}
                     <Button onClick={toHome}>Get started!</Button>
+
                 </div>
             ) : (
                 <>

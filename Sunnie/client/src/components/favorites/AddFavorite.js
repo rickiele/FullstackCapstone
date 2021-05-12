@@ -9,12 +9,12 @@ export const AddFavorite = ({ product }) => {
     const userId = parseInt(userProfileId);
     const history = useHistory();
 
-    // Modal stuff
+    // Modal - setting states
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
+    // Function for the 'Add Favorite' button
     const handleAddFavorite = () => {
         const favoriteObj = {
             userProfileId: userId,
@@ -26,6 +26,7 @@ export const AddFavorite = ({ product }) => {
         console.log("add favorite")
     }
 
+    // JSX for the 'Add Favorite' button
     return (
         <>
             <Button onClick={handleAddFavorite} className="favorite-btn">Add Favorite</Button>

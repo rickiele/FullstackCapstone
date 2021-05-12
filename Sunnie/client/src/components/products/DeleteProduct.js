@@ -1,28 +1,31 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import { ProductContext } from "../../providers/ProductProvider";
 
 
 export const DeleteProduct = ({ product }) => {
     const { deleteProduct, getProductsByUser } = useContext(ProductContext);
+
+    // Get the userProfileId from the URL
     const { userProfileId } = useParams();
     const userId = parseInt(userProfileId);
 
-    // Modal stuff
+    // Modal - Setting states
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    // Function to delete the product
     const handleYesDelete = () => {
         deleteProduct(product.id)
             .then(getProductsByUser(userId))
         handleClose()
     }
 
+    // JSX for the 'Delete Product' modal
     return (
         <>
-
             <>
                 <Button key={product.id} onClick={handleShow}>
                     Delete

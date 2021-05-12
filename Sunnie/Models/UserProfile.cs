@@ -31,8 +31,7 @@ namespace Sunnie.Models
         [MaxLength(255)]
         public string ImageLocation { get; set; }
 
-        [Required]
-        public int SkinTypeId {get; set;}
+        public int? SkinTypeId {get; set;}
         public SkinType SkinType { get; set; }
     }
 }

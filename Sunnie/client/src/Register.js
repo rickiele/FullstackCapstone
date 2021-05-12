@@ -4,21 +4,24 @@ import { useHistory } from "react-router-dom";
 import { UserProfileContext } from "./providers/UserProfileProvider";
 
 export default function Register() {
-    const history = useHistory();
     const { register } = useContext(UserProfileContext);
+    const history = useHistory();
 
+    // Register use states
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
     const [age, setAge] = useState();
     const [email, setEmail] = useState();
     const [bio, setBio] = useState();
     const [password, setPassword] = useState();
+    const [skinTypeId, setSkinTypeId] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
 
     // Cloudinary use states
     const [image, setImage] = useState("");
     const [loading, setLoading] = useState(false);
 
+    // Function to upload an image to cloudinary
     const uploadImage = async e => {
         const files = e.target.files;
         const data = new FormData();
@@ -26,7 +29,7 @@ export default function Register() {
         data.append('upload_preset', 'sunnie');
         setLoading(true);
 
-        // Fetch the upload
+        // Fetch for the  upload
         const res = await fetch(
             'https://api.cloudinary.com/v1_1/sunnie-image/image/upload',
             {
@@ -34,31 +37,42 @@ export default function Register() {
                 body: data
             }
         )
+        // Variable which holds the image
         const file = await res.json();
 
-        // Set the upload to false once the response comes back
+        /*  Set the upload to false once the responses comes back from cloudinary
+            Set the state to have the image URL  */
         setImage(file.secure_url)
         setLoading(false);
     }
 
-
+    // Register button to save the userProfile object, and takes you
     const registerClick = (e) => {
         e.preventDefault();
         if (password && password !== confirmPassword) {
             alert("Passwords don't match. Do better.");
         } else {
+            const skinTypeObject = {
+                Id: 1,
+                TypeDescription: "Skin Type 1",
+                Minimum: 0,
+                Maximum: 6
+            }
             const userProfile = {
                 firstName,
                 lastName,
                 age,
                 imageLocation: image,
-                email
-            };
+                email,
+                skinTypeId: 1,
+                skinType: skinTypeObject
+            }
             register(userProfile, password)
                 .then(() => history.push("/quiz"));
         }
     };
 
+    // JSX for the register
     return (
         <Container className="container">
             <Form>
@@ -87,10 +101,6 @@ export default function Register() {
                         <img src={image} style={{ width: '300px' }} />
                     )}
                 </fieldset>
-                {/* <fieldset>
-                    <Form.Label for="bio">Bio</Form.Label>
-                    <Form.Control id="bio" as="textarea" onChange={e => setBio(e.target.value)} />
-                </fieldset> */}
                 <fieldset>
                     <Form.Label for="password">Password</Form.Label>
                     <Form.Control id="password" type="password" onChange={e => setPassword(e.target.value)} />

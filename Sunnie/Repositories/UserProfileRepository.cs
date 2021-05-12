@@ -146,7 +146,7 @@ namespace Sunnie.Repositories
                             Age = reader.GetInt32(reader.GetOrdinal("Age")),
                             Email = reader.GetString(reader.GetOrdinal("Email")),
                             ImageLocation = DbUtils.GetNullableString(reader, "ImageLocation"),
-                            SkinTypeId = reader.GetInt32(reader.GetOrdinal("SkinTypeId")),
+                            SkinTypeId = DbUtils.GetNullableInt(reader, "SkinTypeId"),
                             SkinType = new SkinType()
                             {
                                 Id = reader.GetInt32(reader.GetOrdinal("SkinTypeId")),

@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { OpenUVContext } from "../../providers/OpenUVProvider";
-import { Container, Card, Row, Col } from "react-bootstrap";
+import { Container, Card, Row } from "react-bootstrap";
 
 export const Home = () => {
 
+    // Use contexts
     const { getUserProfileById } = useContext(UserProfileContext);
     const { uvLevel, getTheCurrentUVLevel } = useContext(OpenUVContext);
+
+    // Get the current logged in user
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const [userProfile, setUserProfile] = useState([]);
 
@@ -54,6 +57,8 @@ export const Home = () => {
         console.error(error);
     }
 
+    // Get the current logged in user 
+    // And get the latitude and longitude of where they are at
     useEffect(() => {
         getUserProfileById(currentUser.id)
             .then((response) => {
@@ -62,18 +67,24 @@ export const Home = () => {
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     }, []);
 
-
+    // Get the user's skin type
     let userSkinType = userProfile.skinTypeId;
+
+    // Round the UV level to the nearest whole number
     let roundedUVLevel = Math.round(uvLevel.result?.uv);
 
-    // Safe exposure time numbers
+    // Safe exposure time numbers - In case you want to break them down by hour and minutes
     let minutes = uvLevel.result?.safe_exposure_time['st' + userSkinType];
     let hours = minutes / 60;
     console.log(uvLevel, "result")
 
+    console.log(currentUser, "current user")
+
+    // JSX for the Home page view
     return (
         <Container>
             <h1>Hi, {currentUser.firstName}</h1>
+            <h2>Skin Type {userProfile.skinTypeId}</h2>
             <Row>
                 <Card className="UVLevel">
                     <h2>Current UV Level</h2>
@@ -83,11 +94,11 @@ export const Home = () => {
                     <h2>Safe Exposure Time</h2>
                     <h1>{uvLevel.result?.safe_exposure_time['st' + userSkinType]} mins</h1>
                 </Card>
-                <Card>
+                {/* <Card>
                     <h2>Take Care</h2>
                     <h1>Precaution One Liner.</h1>
                     <p>Detailed information. Make sure to apply sunscreen today</p>
-                </Card>
+                </Card> */}
             </Row>
         </Container >
 

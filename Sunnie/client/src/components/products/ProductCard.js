@@ -17,6 +17,7 @@ export const ProductCard = ({ product }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    // Add favorite function for the button's onClick
     const handleAddFavorite = () => {
         const favoriteObj = {
             userProfileId: userId,
@@ -28,10 +29,14 @@ export const ProductCard = ({ product }) => {
         console.log("add favorite")
     }
 
+    // JSX for the 'Product Card'
     return (
         <>
 
             <>
+                {/*IF the Product's userProfileId matches the logged in userProfile's Id,
+                   show the Product Card with the Edit and Delete button
+                   IF NOT - show just the card*/}
                 {product.userProfileId === userId ?
                     <>
                         <Card key={product.id}>
@@ -53,6 +58,7 @@ export const ProductCard = ({ product }) => {
                 }
             </>
 
+            {/* Modal for Product Card */}
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -63,9 +69,9 @@ export const ProductCard = ({ product }) => {
                     <Modal.Title><h1>{product.name}</h1></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {/* Click and done - do not ask for confirmation */}
+                    {/*If the Product's userProfileId matches the logged in userProfile's Id,
+                        show the favorite button*/}
                     {product.userProfileId === userId ?
-                        // <><AddFavorite key={product.id} product={product} /></>
                         <><Button className="favorite-btn" onClick={handleAddFavorite}>Add Favorite</Button></>
                         :
                         <></>
@@ -78,15 +84,12 @@ export const ProductCard = ({ product }) => {
                 <Modal.Footer>
                     {product.userProfileId === userId ?
                         <>
-                            {/* Make update and delete modals */}
-                            {/* <DeleteProduct key={product.id} product={product} /> */}
-                            {/* <div>{updateProduct()}</div> */}
+                            {/* If the Product's userProfileId matches the logged in userProfile's Id
+                                Show the UpdateProduct button */}
                             <UpdateProduct key={product.id} product={product} />
                         </>
                         :
-                        <>
-
-                        </>
+                        <></>
                     }
                 </Modal.Footer>
             </Modal>

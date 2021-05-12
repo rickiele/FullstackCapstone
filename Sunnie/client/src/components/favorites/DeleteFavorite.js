@@ -4,6 +4,7 @@ import { Button, Card, CardBody } from "react-bootstrap";
 import { FavoriteContext } from "../../providers/FavoriteProvider";
 import { ProductContext } from "../../providers/ProductProvider";
 
+// I think this is a dead file
 export const DeleteFavorite = ({ favorite }) => {
     const { deleteFavorite, getFavoritesByUserProfileId } = useContext(FavoriteContext);
     const { getProductsByUser } = useContext(ProductContext);
@@ -17,6 +18,7 @@ export const DeleteFavorite = ({ favorite }) => {
             .then(() => getFavoritesByUserProfileId(userId))
     };
 
+    // JSX for the 'Delete Favorite' Button
     return (
         <Button onClick={handleDeleteFavorite}>Delete Favorite</Button>
 
