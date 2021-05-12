@@ -67,6 +67,10 @@ export const Home = () => {
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     }, []);
 
+
+
+
+
     // Get the user's skin type
     let userSkinType = userProfile.skinTypeId;
 
@@ -83,7 +87,7 @@ export const Home = () => {
     // JSX for the Home page view
     return (
         <Container>
-            <h1>Hi, {currentUser.firstName}</h1>
+            <h1>Hi, {userProfile.firstName}</h1>
             <h2>Skin Type {userProfile.skinTypeId}</h2>
             <Row>
                 <Card className="UVLevel">
