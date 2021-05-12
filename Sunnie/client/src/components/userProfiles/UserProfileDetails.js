@@ -36,7 +36,7 @@ export const UserProfileDetails = () => {
     // Second argument to the useEffect, when you want this useEffect to 
     // run when the userProfile state changes / An array
     useEffect(() => {
-        getUserProfileById(currentUser.id)
+        getUserProfileById(userId)
             .then((response) => {
                 setUserProfile(response)
             }).then(() => getProductsByUser(userId))
