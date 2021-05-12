@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { OpenUVContext } from "../../providers/OpenUVProvider";
-import { Container, Card, Row } from "react-bootstrap";
+import { Container, Card, Row, Toast } from "react-bootstrap";
 
 export const Home = () => {
 
@@ -96,8 +96,12 @@ export const Home = () => {
                 </Card>
                 {/* <Card>
                     <h2>Take Care</h2>
-                    <h1>Precaution One Liner.</h1>
-                    <p>Detailed information. Make sure to apply sunscreen today</p>
+                    <h1>Wear sunglasses on bright days</h1>
+                    <ul>
+                        <li>Wear sunglasses on bright days.</li>
+                        <li>If you burn easily, cover up and use broad spectrum SPF 30+ sunscreen.</li>
+                        <li>Watch out for bright surfaces, like sand, water and snow, which reflect UV and increase exposure.</li>
+                    </ul>
                 </Card> */}
             </Row>
         </Container >
