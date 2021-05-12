@@ -106,7 +106,7 @@ export const QuizList = () => {
         }
     ]
 
-    // Update skin type
+    // Update skin type based on the user's score
     const updateUserSkinType = () => {
         if (score >= 0 && score <= 6) {
             updateUserProfile(
@@ -221,6 +221,7 @@ export const QuizList = () => {
     console.log(userProfile, "userProfile")
     console.log(currentUser, "currentUser")
 
+    // JSX to show the Quiz
     return (
         <Container className='container app'>
             {showScore ? (

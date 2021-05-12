@@ -66,6 +66,13 @@ h3 {
   background-color: green;
   border-color: green;
 }
+/* .nav-bar-link-container {
+  display: flex;
+}
+.nav-link {
+  display: flex;
+  flex-direction: row;
+} */
 
 /* Home */
 .UVLevel {

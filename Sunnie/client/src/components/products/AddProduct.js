@@ -1,40 +1,38 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { Container, Card, Button, Modal, Row, Col, Form } from "react-bootstrap";
+import { Button, Modal, Form } from "react-bootstrap";
 import { ProductContext } from "../../providers/ProductProvider";
-import { ProductTypeContext } from "../../providers/ProductTypesProvider";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 
 export const AddProduct = () => {
     const { addProduct, getProductsByUser } = useContext(ProductContext);
     const { getUserProfileById } = useContext(UserProfileContext);
+
+    // Gets a userProfile object of the current user
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+
+    // Gets the userProfileId from the URL
     const { userProfileId } = useParams();
     const userId = parseInt(userProfileId);
 
+    // Set the product's state
     const [product, setProduct] = useState({
         name: "",
         userProfileId: currentUser.id,
-        // imageLocation: "",
+        imageLocation: "",
         createDateTime: "",
         productTypeId: 0,
         spf: "",
         comment: ""
     });
 
+    // Handle the product form input
     const handleInput = (e) => {
         const newProduct = { ...product };
 
         newProduct[e.target.id] = e.target.value
         setProduct(newProduct);
     };
-
-    // Refreshes the window
-    const handleRefresh = () => {
-        window.location.reload()
-    }
-
-    const history = useHistory();
 
     // Cloudinary use states
     const [image, setImage] = useState("");
@@ -63,6 +61,7 @@ export const AddProduct = () => {
         setLoading(false);
     }
 
+    // Function to save the product
     const handleSave = () => {
         addProduct({
             name: product.name,
@@ -77,8 +76,11 @@ export const AddProduct = () => {
         handleClose()
     };
 
+    // UseState for the userProfile
     const [userProfile, setUserProfile] = useState({ userProfile: {} });
 
+    // Get the userProfile by the Id
+    // Then gets the products by the user
     useEffect(() => {
         getUserProfileById(userId)
             .then((response) => {
@@ -86,11 +88,12 @@ export const AddProduct = () => {
             }).then(() => getProductsByUser(userId))
     }, []);
 
-    // Modal stuff
+    // Modal - setting states
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    // JSX for Add Product modal
     return (
         <>
             {currentUser.id === userId ?
@@ -143,7 +146,6 @@ export const AddProduct = () => {
                                 <option value="9">Sunscreen Oil</option>
                                 <option value="10">Sunscreen Spray</option>
                                 <option value="11">Sunscreen Powder</option>
-                                <option value="12">Other</option>
                             </select>
                         </div>
                     </fieldset>
@@ -162,8 +164,6 @@ export const AddProduct = () => {
                             <input as="textarea" id="comment" required className="form-control" onChange={handleInput} />
                         </div>
                     </fieldset>
-
-
 
                 </Modal.Body>
                 <Modal.Footer>

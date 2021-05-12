@@ -7,7 +7,7 @@ import { ProductContext } from "../../providers/ProductProvider";
 export const UpdateProduct = ({ product }) => {
     const { updateProduct, getProductsByUser } = useContext(ProductContext);
 
-    // User ids
+    // User Ids
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const { userProfileId } = useParams();
     const userId = parseInt(userProfileId);
@@ -38,7 +38,7 @@ export const UpdateProduct = ({ product }) => {
         setLoading(false);
     }
 
-    // Modal stuff
+    // Modal States
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);

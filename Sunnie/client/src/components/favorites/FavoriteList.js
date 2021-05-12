@@ -1,19 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FavoriteCard } from "./FavoriteCard";
-import { Container, Button, Dropdown, Card } from "react-bootstrap"
 import { FavoriteContext } from "../../providers/FavoriteProvider";
-import { ProductContext } from "../../providers/ProductProvider";
 
 
 export const FavoriteList = () => {
-    const { products, getProductsByUser, getAllProducts } = useContext(ProductContext);
     const { favorites, getFavoritesByUserProfileId } = useContext(FavoriteContext);
+
+    // Gets the userProfileId from the URL
     const { userProfileId } = useParams();
     const userId = parseInt(userProfileId);
 
+    // Use state for the favorites
     const [favorite, setFavorite] = useState({});
 
+    // Get all of the 'Favorites' by the userProfileId
     useEffect(() => {
         getFavoritesByUserProfileId(userId)
             .then((res) => {
@@ -21,6 +22,7 @@ export const FavoriteList = () => {
             })
     }, []);
 
+    // JSX for the 'Favorite' list
     return (
         <>
             {

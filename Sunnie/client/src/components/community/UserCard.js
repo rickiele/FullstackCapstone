@@ -5,6 +5,7 @@ import { Card } from "react-bootstrap";
 
 export const UserCard = ({ userProfile }) => {
 
+    // JSX for the UserCard
     return (
         <section className="userProfile">
             <h3 className="userProfileTitle">

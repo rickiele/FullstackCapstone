@@ -3,13 +3,16 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import { Button, Modal, Card, Row, Col, Container } from "react-bootstrap";
 import { ProductContext } from "../../providers/ProductProvider";
 import { FavoriteContext } from "../../providers/FavoriteProvider";
-import { DeleteFavorite } from "../favorites/DeleteFavorite";
 
 export const FavoriteCard = ({ favorite }) => {
+    // UseContext
     const { products, getAllProducts, getProductsByUser } = useContext(ProductContext);
     const { deleteFavorite, favorites, getFavoritesByUserProfileId } = useContext(FavoriteContext);
+
+    // Get the current logged in user
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
+    // Get the userProfileId from the URL
     const { userProfileId } = useParams();
     const userId = parseInt(userProfileId);
 
@@ -22,18 +25,19 @@ export const FavoriteCard = ({ favorite }) => {
         getFavoritesByUserProfileId(userId);
     }, []);
 
-    // Modal stuff
+    // Modal - Setting states
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    // Function for the 'Delete Favorite' button
     const handleDeleteFavorite = () => {
         deleteFavorite(favorite.id)
             .then(getFavoritesByUserProfileId(userId))
         handleClose();
     };
 
-    console.log(favorite, "favoriteCard")
+    // JSX for the 'Favorite Card'
     return (
         <>
             <Card onClick={handleShow}>

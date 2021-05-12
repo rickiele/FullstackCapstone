@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Modal, Button, Form } from "react-bootstrap";
-import { ProductContext } from "../../providers/ProductProvider";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 
 
