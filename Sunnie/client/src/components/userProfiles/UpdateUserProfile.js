@@ -35,10 +35,8 @@ export const UpdateUserProfile = ({ userProfile }) => {
 
         // Set the upload to false once the response comes back
         setImage(file.secure_url)
-
         newImage = file.secure_url;
         setLoading(false);
-        console.log(file.secure_url, "file")
     }
 
     // Modal stuff
@@ -88,8 +86,6 @@ export const UpdateUserProfile = ({ userProfile }) => {
                     })
             })
         handleClose()
-        console.log(aUserProfile, "save user profile")
-        console.log(image, "save user profile")
     };
 
 

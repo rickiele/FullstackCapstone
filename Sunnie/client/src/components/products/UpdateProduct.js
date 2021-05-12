@@ -16,6 +16,7 @@ export const UpdateProduct = ({ product }) => {
     const [image, setImage] = useState("");
     const [loading, setLoading] = useState(false);
 
+    let newImage = "";
     const uploadImage = async e => {
         const files = e.target.files;
         const data = new FormData();
@@ -35,6 +36,7 @@ export const UpdateProduct = ({ product }) => {
 
         // Set the upload to false once the response comes back
         setImage(file.secure_url)
+        newImage = file.secure_url;
         setLoading(false);
     }
 
@@ -63,17 +65,26 @@ export const UpdateProduct = ({ product }) => {
         console.log("handle input")
     }
 
+    // useEffect(() => {
+    //     getProductsByUser(userId)
+    //         .then((response) => {
+    //             setProduct(response)
+    //         })
+    // }, []);
+
     // Save the user's updated product
     // One line return statement - Anonymous function
     // No curly brackets - If curly brackets - you can do more than one thing
     const handleYesUpdate = () => {
-        updateProduct(aProduct)
+
+        const newProduct = { ...aProduct }
+        newProduct.imageLocation = image;
+
+        updateProduct(newProduct)
             .then(() => getProductsByUser(userId))
         handleClose()
-        console.log(aProduct, "update")
+        console.log(newProduct.imageLocation, "product image")
     };
-
-    console.log(image)
 
 
     // JSX for the product update form
@@ -107,18 +118,17 @@ export const UpdateProduct = ({ product }) => {
                         </div>
                     </fieldset>
 
-                    <Form.Label htmlFor="imageLocation"><h3>Current Image</h3></Form.Label>
-                    <img src={product.imageLocation} style={{ width: '300px' }} />
+                    <Form.Label htmlFor="imageLocation"><h3>Current Profile Picture</h3></Form.Label>
                     {loading ? (
                         <h3>Loading...</h3>
                     ) : (
-                        <>
-                            <h3>New Product Image</h3>
+                        image ?
                             <img src={image} style={{ width: '300px' }} />
-                        </>
+                            :
+                            <img src={product.imageLocation} style={{ width: '300px' }} />
+
                     )}
                     <Form.Control type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
-
 
                     <fieldset>
                         <div className="form-group">
