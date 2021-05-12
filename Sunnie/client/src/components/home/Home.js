@@ -78,11 +78,13 @@ export const Home = () => {
     let hours = minutes / 60;
     console.log(uvLevel, "result")
 
+    console.log(currentUser, "current user")
+
     // JSX for the Home page view
     return (
         <Container>
             <h1>Hi, {currentUser.firstName}</h1>
-            <h2>{currentUser.skinType.typeDescription}</h2>
+            <h2>Skin Type {userProfile.skinTypeId}</h2>
             <Row>
                 <Card className="UVLevel">
                     <h2>Current UV Level</h2>
