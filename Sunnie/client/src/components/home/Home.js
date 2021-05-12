@@ -67,6 +67,13 @@ export const Home = () => {
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     }, []);
 
+    useEffect(() => {
+        getUserProfileById(currentUser.id)
+            .then((response) => {
+                setUserProfile(response)
+            })
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    }, [userProfile]);
 
 
 
