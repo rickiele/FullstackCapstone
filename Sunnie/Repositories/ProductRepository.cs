@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Sunnie.Models;
 using Sunnie.Utils;
 
+// Contains certain methods
 namespace Sunnie.Repositories
 {
     public class ProductRepository : BaseRepository, IProductRepository

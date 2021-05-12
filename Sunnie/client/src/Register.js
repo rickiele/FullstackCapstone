@@ -14,6 +14,7 @@ export default function Register() {
     const [email, setEmail] = useState();
     const [bio, setBio] = useState();
     const [password, setPassword] = useState();
+    const [skinTypeId, setSkinTypeId] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
 
     // Cloudinary use states
@@ -51,13 +52,21 @@ export default function Register() {
         if (password && password !== confirmPassword) {
             alert("Passwords don't match. Do better.");
         } else {
+            const skinTypeObject = {
+                Id: 1,
+                TypeDescription: "Skin Type 1",
+                Minimum: 0,
+                Maximum: 6
+            }
             const userProfile = {
                 firstName,
                 lastName,
                 age,
                 imageLocation: image,
-                email
-            };
+                email,
+                skinTypeId: 1,
+                skinType: skinTypeObject
+            }
             register(userProfile, password)
                 .then(() => history.push("/quiz"));
         }

@@ -8,12 +8,6 @@ export const QuizList = () => {
     const [userProfile, setUserProfile] = useState([]);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
 
-
-    // Get the user's profile
-    useEffect(() => {
-        getUserProfileById(currentUser.id)
-    }, []);
-
     // Quiz array
     const questions = [
         {
@@ -186,6 +180,12 @@ export const QuizList = () => {
         }
     }
 
+    // Get the user's profile
+    // useEffect(() => {
+    //     getUserProfileById(currentUser.id)
+    // }, []);
+
+
     // Quiz states
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [currentCategory, setCurrentCategory] = useState(0);
@@ -210,6 +210,7 @@ export const QuizList = () => {
             console.log(score + weight, "total")
             setShowScore(true);
             updateUserSkinType();
+
         }
     };
 
@@ -218,16 +219,22 @@ export const QuizList = () => {
     const toHome = () => {
         history.push("/")
     }
-    console.log(userProfile, "userProfile")
-    console.log(currentUser, "currentUser")
+    // console.log(currentUser, "currentUser")
 
     // JSX to show the Quiz
     return (
         <Container className='container app'>
             {showScore ? (
                 <div className='score-section'>
-                    <h1>You are {currentUser.skinType.typeDescription}.</h1>
+                    {/* {currentUser.skinType.typeDescription ?
+                        <>
+                            <h1>You are {currentUser.skinType.typeDescription}.</h1>
+                            <Button onClick={toHome}>Get started!</Button>
+                        </> :
+                        null
+                    } */}
                     <Button onClick={toHome}>Get started!</Button>
+
                 </div>
             ) : (
                 <>
