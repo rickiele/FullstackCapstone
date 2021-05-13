@@ -6,7 +6,7 @@ using Sunnie.Utils;
 
 namespace Sunnie.Repositories
 {
-    public class PrecautionRepository : IPrecautionRepository, BaseRepository
+    public class PrecautionRepository : BaseRepository, IPrecautionRepository
     {
         public PrecautionRepository(IConfiguration configuration) : base(configuration) { }
 

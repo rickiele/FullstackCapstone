@@ -10,9 +10,8 @@ namespace Sunnie.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-    public class FavoriteController : Controller
+    public class FavoriteController : BaseController
     {
-        private readonly IFavoriteRepository _favoriteRepository;
 
         public FavoriteController(IFavoriteRepository favoriteRepository)
         {

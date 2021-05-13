@@ -12,6 +12,7 @@ import { SkinTypeProvider } from './providers/SkinTypeProvider';
 import { OpenUVProvider } from './providers/OpenUVProvider';
 import { ProductProvider } from './providers/ProductProvider';
 import { FavoriteProvider } from './providers/FavoriteProvider';
+import { PrecautionProvider } from './providers/PrecautionProvider';
 
 function App() {
 
@@ -23,10 +24,12 @@ function App() {
         <ProductProvider>
           <FavoriteProvider>
             <SkinTypeProvider>
-              <OpenUVProvider>
-                <Header />
-                <ApplicationViews />
-              </OpenUVProvider>
+              <PrecautionProvider>
+                <OpenUVProvider>
+                  <Header />
+                  <ApplicationViews />
+                </OpenUVProvider>
+              </PrecautionProvider>
             </SkinTypeProvider>
           </FavoriteProvider>
         </ProductProvider>

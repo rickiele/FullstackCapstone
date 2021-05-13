@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { OpenUVContext } from "../../providers/OpenUVProvider";
 import { Container, Card, Row, Col } from "react-bootstrap";
+import { PrecautionContext } from "../../providers/PrecautionProvider";
 
 export const Home = () => {
 
     // Use contexts
     const { getUserProfileById } = useContext(UserProfileContext);
+    const { precautions, getAllPrecautions } = useContext(PrecautionContext);
     const { uvLevel, getTheCurrentUVLevel } = useContext(OpenUVContext);
 
     // Get the current logged in user
@@ -63,7 +65,8 @@ export const Home = () => {
             .then((response) => {
                 setUserProfile(response)
             })
-        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
+        getAllPrecautions()
     }, []);
 
     // If I watch the userProfile again - I may get a infinite loop
@@ -88,7 +91,7 @@ export const Home = () => {
     let hours = minutes / 60;
     console.log(uvLevel, "result")
 
-    console.log(currentUser, "current user")
+    console.log(precautions, "precaution")
 
     // JSX for the Home page view
     return (
@@ -100,13 +103,26 @@ export const Home = () => {
                 </Col>
                 <Col xs={4}>
                     <Card className="homepage-card">
-                        <h1 className="homepage-h1">11{roundedUVLevel}</h1>
-                        <h2>Current UV Level For Your Location</h2>
+                        {roundedUVLevel === 0 ?
+                            <>
+                                <h1 className="homepage-h1">0</h1>
+                                <h2>Current UV Level For Your Location</h2>
+                            </>
+                            :
+                            <>
+                                <h1 className="homepage-h1">{roundedUVLevel}</h1>
+                                <h2>Current UV Level For Your Location</h2></>
+                        }
                     </Card>
                 </Col>
                 <Col xs={4}>
                     <Card className="homepage-card">
-                        <h1 className="homepage-h1">200{uvLevel.result?.safe_exposure_time['st' + userSkinType]}</h1>
+                        {minutes === null ?
+                            <><h1 className="homepage-h1">0</h1></>
+                            :
+                            <><h1 className="homepage-h1">{minutes}</h1></>
+                        }
+                        {/* <h1 className="homepage-h1">{uvLevel.result?.safe_exposure_time['st' + userSkinType]}</h1> */}
                         <h2>Safe Exposure Time In Minutes</h2>
                     </Card>
                 </Col>
