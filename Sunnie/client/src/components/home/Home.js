@@ -138,11 +138,11 @@ export const Home = () => {
                     <Card className="homepage-card">
                         <h2>Take Care</h2>
                         <h1>Precautions</h1>
-                        {precautions.uvLevelId === roundedUVLevel ?
+                        {/* {precautions.uvLevelId === roundedUVLevel ?
                             <p>{precautions.precautions}</p>
                             :
                             <p>OINK</p>
-                        }
+                        } */}
                     </Card>
                 </Col>
             </Row>

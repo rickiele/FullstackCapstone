@@ -65,11 +65,13 @@ export const UserProfileDetails = () => {
                         </Card>
                     </Col>
                     <Col>
-                        <Card className="card">
-                            <h2>Sun Protection Favorites</h2>
-                            <FavoriteList />
-                        </Card>
-                        {currentUser.id === userId ?
+                        <Row>
+                            <Card className="card">
+                                <h2>Sun Protection Favorites</h2>
+                                <FavoriteList />
+                            </Card>
+                        </Row>
+                        <Row>   {currentUser.id === userId ?
                             <>
                                 <Card>
                                     <AddProduct key={currentUser.id} userProfile={userProfile} />
@@ -83,6 +85,7 @@ export const UserProfileDetails = () => {
                             :
                             <></>
                         }
+                        </Row>
                     </Col>
                 </Row>
             </Container>
