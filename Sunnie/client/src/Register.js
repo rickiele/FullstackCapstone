@@ -62,6 +62,7 @@ export default function Register() {
                 firstName,
                 lastName,
                 age,
+                createDateTime: new Date(),
                 imageLocation: image,
                 email,
                 skinTypeId: 1,

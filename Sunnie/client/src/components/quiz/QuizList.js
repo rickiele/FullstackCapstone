@@ -109,7 +109,7 @@ export const QuizList = () => {
                     skinTypeId: 1,
                     firstName: currentUser.firstName,
                     lastName: currentUser.lastName,
-                    createDateTime: currentUser.createDateTime,
+                    createDateTime: new Date(),
                     age: currentUser.age,
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
@@ -122,7 +122,7 @@ export const QuizList = () => {
                     skinTypeId: 2,
                     firstName: currentUser.firstName,
                     lastName: currentUser.lastName,
-                    createDateTime: currentUser.createDateTime,
+                    createDateTime: new Date(),
                     age: currentUser.age,
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
@@ -135,7 +135,7 @@ export const QuizList = () => {
                     skinTypeId: 3,
                     firstName: currentUser.firstName,
                     lastName: currentUser.lastName,
-                    createDateTime: currentUser.createDateTime,
+                    createDateTime: new Date(),
                     age: currentUser.age,
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
@@ -148,7 +148,7 @@ export const QuizList = () => {
                     skinTypeId: 4,
                     firstName: currentUser.firstName,
                     lastName: currentUser.lastName,
-                    createDateTime: currentUser.createDateTime,
+                    createDateTime: new Date(),
                     age: currentUser.age,
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
@@ -161,7 +161,7 @@ export const QuizList = () => {
                     skinTypeId: 5,
                     firstName: currentUser.firstName,
                     lastName: currentUser.lastName,
-                    createDateTime: currentUser.createDateTime,
+                    createDateTime: new Date(),
                     age: currentUser.age,
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
@@ -175,7 +175,7 @@ export const QuizList = () => {
                     skinTypeId: 6,
                     firstName: currentUser.firstName,
                     lastName: currentUser.lastName,
-                    createDateTime: currentUser.createDateTime,
+                    createDateTime: new Date(),
                     age: currentUser.age,
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
