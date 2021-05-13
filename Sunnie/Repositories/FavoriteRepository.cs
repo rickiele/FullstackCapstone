@@ -100,7 +100,7 @@ namespace Sunnie.Repositories
             }
         }
 
-        public void Add(Favorite favorite)
+        public Favorite Add(Favorite favorite)
         {
             using (SqlConnection conn = Connection)
             {
@@ -118,6 +118,7 @@ namespace Sunnie.Repositories
                     int id = (int)cmd.ExecuteScalar();
 
                     favorite.Id = id;
+                    return favorite;
                 }
             }
         }

@@ -18,13 +18,6 @@ export const FavoriteCard = ({ favorite }) => {
     const userId = parseInt(userProfileId);
 
     const [product, setProduct] = useState({});
-    // useEffect(() => {
-    //     getProductsByUser(userId)
-    //         .then((res) => {
-    //             setProduct(res)
-    //         })
-    //     getFavoritesByUserProfileId(userId);
-    // }, []);
 
     // Modal - Setting states
     const [show, setShow] = useState(false);
@@ -38,7 +31,6 @@ export const FavoriteCard = ({ favorite }) => {
         handleClose();
     };
 
-    // UseEffect for the favorites 
 
     // JSX for the 'Favorite Card'
     return (

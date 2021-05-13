@@ -21,8 +21,8 @@ export const AddFavorite = ({ product }) => {
             productId: product.id
         }
         addFavorite(favoriteObj)
-            .then(getFavoritesByUserProfileId(userId))
-            .then(handleClose())
+            .then(() => getFavoritesByUserProfileId(userId))
+            .then(() => handleClose())
         console.log("add favorite")
     }
 

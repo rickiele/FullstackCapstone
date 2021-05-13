@@ -53,7 +53,7 @@ export default function Header() {
                                 <Nav.Item className="nav-bar-link-container">
                                     <NavLink className="nav-link" to="/">Home</NavLink>
                                     <NavLink className="nav-link" to={loggedInUserProfile}>Profile</NavLink>
-                                    <NavLink className="nav-link" to="/quiz">Quiz</NavLink>
+                                    {/* <NavLink className="nav-link" to="/quiz">Quiz</NavLink> */}
                                     <NavLink className="nav-link" to="/community">Community</NavLink>
                                 </Nav.Item>
                             </>

@@ -58,20 +58,18 @@ export const UserProfileDetails = () => {
                             <h2>Age: {userProfile.age}</h2>
                             <h2>Skin Type {userProfile.skinTypeId}</h2>
                             {currentUser.id === userId ?
-                                <><UpdateUserProfile key={userProfile.id} userProfile={userProfile} /></>
+                                <><UpdateUserProfile key={userProfile.id} userProfile={userProfile} setUserProfile={setUserProfile} /></>
                                 :
                                 <></>
                             }
                         </Card>
                     </Col>
                     <Col>
-                        <Row>
-                            <Card className="card">
-                                <h2>Sun Protection Favorites</h2>
-                                <FavoriteList />
-                            </Card>
-                        </Row>
-                        <Row>   {currentUser.id === userId ?
+                        <Card className="card">
+                            <h2>Sun Protection Favorites</h2>
+                            <FavoriteList />
+                        </Card>
+                        {currentUser.id === userId ?
                             <>
                                 <Card>
                                     <AddProduct key={currentUser.id} userProfile={userProfile} />
@@ -85,7 +83,6 @@ export const UserProfileDetails = () => {
                             :
                             <></>
                         }
-                        </Row>
                     </Col>
                 </Row>
             </Container>

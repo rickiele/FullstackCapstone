@@ -135,15 +135,15 @@ export const Home = () => {
                 <Col xs={3}>
                 </Col>
                 <Col xs={8}>
-                    <Card className="homepage-card">
+                    {/* <Card className="homepage-card">
                         <h2>Take Care</h2>
                         <h1>Precautions</h1>
-                        {/* {precautions.uvLevelId === roundedUVLevel ?
+                        {precautions.uvLevelId === roundedUVLevel ?
                             <p>{precautions.precautions}</p>
                             :
                             <p>OINK</p>
-                        } */}
-                    </Card>
+                        }
+                    </Card> */}
                 </Col>
             </Row>
         </Container >

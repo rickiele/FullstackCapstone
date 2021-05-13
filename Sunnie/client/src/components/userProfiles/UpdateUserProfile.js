@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Modal, Button, Form } from "react-bootstrap";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 
 
-export const UpdateUserProfile = ({ userProfile }) => {
+export const UpdateUserProfile = ({ userProfile, setUserProfile }) => {
     const { updateUserProfile, getUserProfileById } = useContext(UserProfileContext);
 
     // Get user ID from URL
@@ -45,7 +45,7 @@ export const UpdateUserProfile = ({ userProfile }) => {
     const handleShow = () => setShow(true);
 
     // Set user profile state
-    const [aUserProfile, setUserProfile] = useState({
+    const [aUserProfile, setAUserProfile] = useState({
         id: userProfile.id,
         firstName: userProfile.firstName,
         lastName: userProfile.lastName,
@@ -57,20 +57,14 @@ export const UpdateUserProfile = ({ userProfile }) => {
     })
 
     // Save the user input
+
     const handleInput = (e) => {
         const newUserProfile = { ...aUserProfile }
 
         newUserProfile[e.target.id] = e.target.value
-        setUserProfile(newUserProfile);
+        setAUserProfile(newUserProfile);
         console.log("handle userProfile input")
     }
-
-    // useEffect(() => {
-    //     getUserProfileById(currentUser.id)
-    //         .then((response) => {
-    //             setUserProfile(response)
-    //         })
-    // }, []);
 
     // Save the user's updated product - GetUserProfileById is a promise
     const handleYesUpdate = () => {
@@ -78,6 +72,7 @@ export const UpdateUserProfile = ({ userProfile }) => {
         const newUserProfile = { ...aUserProfile }
         newUserProfile.imageLocation = image;
 
+        // Set the state of the parent component to cause rerender
         updateUserProfile(newUserProfile)
             .then(() => {
                 getUserProfileById(currentUser.id)

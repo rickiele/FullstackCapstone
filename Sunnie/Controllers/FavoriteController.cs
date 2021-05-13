@@ -33,8 +33,8 @@ namespace Sunnie.Controllers
         [HttpPost("Add")]
         public IActionResult Post(Favorite favorite)
         {
-            _favoriteRepository.Add(favorite);
-            return CreatedAtAction("Details", new { id = favorite.Id }, favorite);
+            var f = _favoriteRepository.Add(favorite);
+            return Ok(f);
         }
 
         [HttpDelete("Delete/{id}")]
