@@ -39,15 +39,15 @@ export const ProductCard = ({ product }) => {
                    IF NOT - show just the card*/}
                 {product.userProfileId === userId ?
                     <>
-                        <Card key={product.id}>
+                        <Card className="white-card" key={product.id}>
                             <Row>
-                                <Col>
+                                <Col xs={6}>
                                     <h3>{product.name}</h3>
                                 </Col>
-                                <Col>
-                                    <Button onClick={handleShow}>Edit</Button>
+                                <Col xs={3}>
+                                    <Button id="button" onClick={handleShow}>Details</Button>
                                 </Col>
-                                <Col>
+                                <Col xs={3}>
                                     <DeleteProduct key={product.id} product={product} />
                                 </Col>
                             </Row>
@@ -72,7 +72,7 @@ export const ProductCard = ({ product }) => {
                     {/*If the Product's userProfileId matches the logged in userProfile's Id,
                         show the favorite button*/}
                     {product.userProfileId === userId ?
-                        <><Button className="favorite-btn" onClick={handleAddFavorite}>Add Favorite</Button></>
+                        <><Button id="button" className="favorite-btn" onClick={handleAddFavorite}>Add Favorite</Button></>
                         :
                         <></>
                     }

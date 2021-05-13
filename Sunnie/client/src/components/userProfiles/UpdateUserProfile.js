@@ -89,7 +89,7 @@ export const UpdateUserProfile = ({ userProfile, setUserProfile }) => {
         <>
 
             <>
-                <Button key={userProfile.id} onClick={handleShow}>
+                <Button id="button" key={userProfile.id} onClick={handleShow}>
                     Update
                 </Button>
             </>
@@ -102,7 +102,7 @@ export const UpdateUserProfile = ({ userProfile, setUserProfile }) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        <p>Update User Profile</p>
+                        <h1>Update User Profile</h1>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -137,8 +137,8 @@ export const UpdateUserProfile = ({ userProfile, setUserProfile }) => {
                     </fieldset>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={handleClose}> Go Back </Button>
-                    <Button onClick={handleYesUpdate}> Save Changes </Button>
+                    <Button id="button" onClick={handleClose}> Go Back </Button>
+                    <Button id="button" onClick={handleYesUpdate}> Save Changes </Button>
                 </Modal.Footer>
             </Modal>
         </>

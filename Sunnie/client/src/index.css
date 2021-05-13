@@ -155,6 +155,12 @@ a:hover {
   background-color: #c43d1c;
 }
 
+.add-product-btn {
+  font-size: 1em;
+  font-weight: 600;
+  float: right;
+  width: 3em;
+}
 
 /* .btn-primary {
   background-color: #E67C3B;
@@ -197,3 +203,13 @@ svg.svg-inline--fa.fa-heart.fa-w-16 {
   color: red;
 }
 
+.card {
+  background-color: #FDE5BE;
+  border: 0px;
+  padding: 1em;
+  margin: 1em;
+}
+
+.white-card {
+  background-color: #FFFBF3;
+}

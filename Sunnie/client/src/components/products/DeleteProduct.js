@@ -27,7 +27,7 @@ export const DeleteProduct = ({ product }) => {
     return (
         <>
             <>
-                <Button key={product.id} onClick={handleShow}>
+                <Button id="button" key={product.id} onClick={handleShow}>
                     Delete
                 </Button>
             </>

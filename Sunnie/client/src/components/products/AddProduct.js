@@ -79,15 +79,6 @@ export const AddProduct = () => {
     // UseState for the userProfile
     const [userProfile, setUserProfile] = useState({ userProfile: {} });
 
-    // Get the userProfile by the Id
-    // Then gets the products by the user
-    // useEffect(() => {
-    //     getUserProfileById(userId)
-    //         .then((response) => {
-    //             setUserProfile(response)
-    //         }).then(() => getProductsByUser(userId))
-    // }, []);
-
     // Modal - setting states
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -97,11 +88,12 @@ export const AddProduct = () => {
     return (
         <>
             {currentUser.id === userId ?
-                <><Button className="finish__btn" variant="primary" size="sm"
-                    onClick={handleShow}>Add Product</Button></>
+                <><div>
+                    <Button id="button" className="add-product-btn"
+                        onClick={handleShow}>+</Button>
+                </div></>
                 :
-                <><Button style={{ display: 'none' }}
-                    onClick={handleShow}>Oink</Button></>
+                <></>
             }
 
             <Modal
@@ -111,7 +103,7 @@ export const AddProduct = () => {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add a product</Modal.Title>
+                    <Modal.Title><h2>Add a product</h2></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
@@ -167,7 +159,7 @@ export const AddProduct = () => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleSave}>Add Product</Button>
+                    <Button id="button" onClick={handleSave}>Add Product</Button>
                 </Modal.Footer>
             </Modal>
         </>

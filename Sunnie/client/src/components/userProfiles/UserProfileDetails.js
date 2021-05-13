@@ -66,15 +66,15 @@ export const UserProfileDetails = () => {
                     </Col>
                     <Col>
                         <Card className="card">
-                            <h2>Sun Protection Favorites</h2>
+                            <h1>Sun Protection Favorites</h1>
                             <FavoriteList />
                         </Card>
                         {currentUser.id === userId ?
                             <>
                                 <Card>
                                     <AddProduct key={currentUser.id} userProfile={userProfile} />
-                                    <h2>Product Log</h2>
-                                    <p>Get all products by userProfileId</p>
+                                    <h1>Product Log</h1>
+                                    <p>All of your products</p>
                                     {products.map((product) => (
                                         <ProductCard key={product.id} product={product} />
                                     ))}
