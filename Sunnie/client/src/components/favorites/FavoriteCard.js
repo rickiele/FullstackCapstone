@@ -35,9 +35,9 @@ export const FavoriteCard = ({ favorite }) => {
     // JSX for the 'Favorite Card'
     return (
         <>
-            <Card className="white-card" style={{ width: '16rem' }} onClick={handleShow}>
+            <Card className="white-card favorite-card" style={{ width: '14rem' }} onClick={handleShow}>
                 <img src={favorite.product.imageLocation} />
-                <h3>{favorite.product.name} <FontAwesomeIcon icon="heart" /></h3>
+                <h3 className="card-title">{favorite.product.name} <FontAwesomeIcon icon="heart" /></h3>
             </Card>
 
             <Modal

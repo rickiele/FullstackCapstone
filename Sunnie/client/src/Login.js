@@ -20,6 +20,7 @@ export default function Login() {
     return (
         <Container className="container">
             <fieldset>
+                <h2>Login</h2>
                 <FormGroup>
                     <Form.Label for="email">Email</Form.Label>
                     <Form.Control id="email" type="text" onChange={e => setEmail(e.target.value)} />
@@ -29,10 +30,10 @@ export default function Login() {
                     <Form.Control id="password" type="password" onChange={e => setPassword(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <Button onClick={loginSubmit}>Login</Button>
+                    <Button id="button" onClick={loginSubmit}>Login</Button>
                 </FormGroup>
                 <em>
-                    Not registered? <Link to="register">Register</Link>
+                    Not registered? <Link style={{ color: 'red' }} to="register">Register</Link>
                 </em>
             </fieldset>
         </Container>
