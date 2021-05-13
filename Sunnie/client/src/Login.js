@@ -19,23 +19,25 @@ export default function Login() {
 
     return (
         <Container className="container">
-            <fieldset>
-                <h2>Login</h2>
-                <FormGroup>
+            <Form className="form">
+                <h1>Login</h1>
+                <div className="fieldset">
                     <Form.Label for="email">Email</Form.Label>
                     <Form.Control id="email" type="text" onChange={e => setEmail(e.target.value)} />
-                </FormGroup>
-                <FormGroup>
+                </div>
+                <div className="fieldset">
                     <Form.Label for="password">Password</Form.Label>
                     <Form.Control id="password" type="password" onChange={e => setPassword(e.target.value)} />
-                </FormGroup>
-                <FormGroup>
+                </div>
+                <div className="fieldset">
                     <Button id="button" onClick={loginSubmit}>Login</Button>
-                </FormGroup>
-                <em>
-                    Not registered? <Link style={{ color: 'red' }} to="register">Register</Link>
-                </em>
-            </fieldset>
+                </div>
+                <div className="fieldset">
+                    <em>
+                        Not registered? <Link style={{ color: 'red' }} to="register">Register</Link>
+                    </em>
+                </div>
+            </Form>
         </Container>
     );
 }

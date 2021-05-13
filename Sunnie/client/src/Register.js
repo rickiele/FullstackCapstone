@@ -77,7 +77,7 @@ export default function Register() {
     // JSX for the register
     return (
         <Container className="container">
-            <Form className="register-form">
+            <Form className="form">
                 <h1>Register for Sunnie</h1>
                 <div className="fieldset">
                     <Form.Label htmlFor="firstName">First Name</Form.Label>
