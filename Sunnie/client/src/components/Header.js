@@ -5,7 +5,8 @@ import {
     Nav,
     NavDropdown,
     Col,
-    Row
+    Row,
+    Button
 } from 'react-bootstrap';
 import { UserProfileContext } from "../providers/UserProfileProvider";
 
@@ -30,7 +31,15 @@ export default function Header() {
     return (
         <header>
             <Navbar expand="sm" className="nav-bar-link-container">
-                <Navbar.Brand href="#">Sunnie</Navbar.Brand>
+                <Navbar.Brand href="/">
+                    <img
+                        alt=""
+                        src="/sunnie-logo.svg"
+                        width="80"
+                        height="80"
+                        className="sunnie-logo d-inline-block align-top"
+                    />{' '}
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -54,8 +63,9 @@ export default function Header() {
                         {isLoggedIn &&
                             <>
                                 <Nav.Item>
-                                    <a aria-current="page" className="nav-link"
-                                        style={{ cursor: "pointer" }} onClick={logout}>Logout</a>
+                                    <Button className="logout-btn" style={{ cursor: "pointer" }} onClick={logout}>
+                                        Logout
+                                    </Button>
                                 </Nav.Item>
                             </>
                         }

@@ -11,3 +11,8 @@ VALUES
 (6, 16, 2),
 (7, 18, 16);
 set identity_insert [Favorite] off
+
+USE [Sunnie];
+GO
+ALTER TABLE Precaution
+DROP COLUMN SkinTypeId;

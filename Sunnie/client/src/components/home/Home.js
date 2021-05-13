@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { OpenUVContext } from "../../providers/OpenUVProvider";
-import { Container, Card, Row, Toast } from "react-bootstrap";
+import { Container, Card, Row, Col } from "react-bootstrap";
 
 export const Home = () => {
 
@@ -94,17 +94,27 @@ export const Home = () => {
     // JSX for the Home page view
     return (
         <Container>
-            <h1>Hi, {userProfile.firstName}</h1>
-            <h2>Skin Type {userProfile.skinTypeId}</h2>
             <Row>
-                <Card className="UVLevel">
-                    <h2>Current UV Level</h2>
-                    <h1>{roundedUVLevel}</h1>
-                </Card>
-                <Card>
-                    <h2>Safe Exposure Time</h2>
-                    <h1>{uvLevel.result?.safe_exposure_time['st' + userSkinType]} mins</h1>
-                </Card>
+                <Col xs={3}>
+                    <h1>Hi, {userProfile.firstName}</h1>
+                    <h2>Skin Type {userProfile.skinTypeId}</h2>
+                </Col>
+                <Col xs={4}>
+                    <Card className="homepage-card">
+                        <h1 className="homepage-h1">{roundedUVLevel}</h1>
+                        <h2>Current UV Level</h2>
+                    </Card>
+                </Col>
+                <Col xs={4}>
+                    <Card className="homepage-card">
+                        <h1 className="homepage-h1">{uvLevel.result?.safe_exposure_time['st' + userSkinType]} mins</h1>
+                        <h2>Safe Exposure Time</h2>
+                    </Card>
+                </Col>
+
+
+            </Row>
+            <Row>
                 {/* <Card>
                     <h2>Take Care</h2>
                     <h1>Wear sunglasses on bright days</h1>
