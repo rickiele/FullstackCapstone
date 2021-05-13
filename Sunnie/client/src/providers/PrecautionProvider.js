@@ -14,9 +14,7 @@ export const PrecautionProvider = (props) => {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-            })
-                .then((res) => res.json())
-                .then(setPrecaution));
+            }).then(res => res.json()))
     }
 
 

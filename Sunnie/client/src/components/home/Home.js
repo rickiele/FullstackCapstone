@@ -8,12 +8,13 @@ export const Home = () => {
 
     // Use contexts
     const { getUserProfileById } = useContext(UserProfileContext);
-    const { precautions, getAllPrecautions } = useContext(PrecautionContext);
+    const { getAllPrecautions } = useContext(PrecautionContext);
     const { uvLevel, getTheCurrentUVLevel } = useContext(OpenUVContext);
 
     // Get the current logged in user
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const [userProfile, setUserProfile] = useState([]);
+    const [precautions, setPrecautions] = useState([]);
 
     // Function which takes the current position of the user as a params
     const successCallback = (position) => {
@@ -67,6 +68,9 @@ export const Home = () => {
             })
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
         getAllPrecautions()
+            .then((res) => {
+                setPrecautions(res)
+            })
     }, []);
 
     // If I watch the userProfile again - I may get a infinite loop
@@ -131,14 +135,15 @@ export const Home = () => {
                 <Col xs={3}>
                 </Col>
                 <Col xs={8}>
-                    {/* <Card className="homepage-card">
+                    <Card className="homepage-card">
                         <h2>Take Care</h2>
                         <h1>Precautions</h1>
-                        <ul>
-                            <li>Wear sunglasses on bright days.</li>
-                            <li>If you burn easily, cover up and use broad spectrum SPF 30+ sunscreen.</li>
-                        </ul>
-                    </Card> */}
+                        {precautions.uvLevelId === roundedUVLevel ?
+                            <p>{precautions.precautions}</p>
+                            :
+                            <p>OINK</p>
+                        }
+                    </Card>
                 </Col>
             </Row>
         </Container >
