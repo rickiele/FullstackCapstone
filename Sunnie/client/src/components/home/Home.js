@@ -1,18 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
 import { OpenUVContext } from "../../providers/OpenUVProvider";
-import { Container, Card, Row, Toast } from "react-bootstrap";
+import { Container, Card, Row, Col } from "react-bootstrap";
+import { PrecautionContext } from "../../providers/PrecautionProvider";
 
 export const Home = () => {
 
     // Use contexts
     const { getUserProfileById } = useContext(UserProfileContext);
+    const { getAllPrecautions } = useContext(PrecautionContext);
     const { uvLevel, getTheCurrentUVLevel } = useContext(OpenUVContext);
 
     // Get the current logged in user
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const [userProfile, setUserProfile] = useState([]);
-
+    const [precautions, setPrecautions] = useState([]);
 
     // Function which takes the current position of the user as a params
     const successCallback = (position) => {
@@ -64,16 +66,20 @@ export const Home = () => {
             .then((response) => {
                 setUserProfile(response)
             })
-        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
+        getAllPrecautions()
+            .then((res) => {
+                setPrecautions(res)
+            })
     }, []);
 
-    useEffect(() => {
-        getUserProfileById(currentUser.id)
-            .then((response) => {
-                setUserProfile(response)
-            })
-        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-    }, [userProfile]);
+    // If I watch the userProfile again - I may get a infinite loop
+    // useEffect(() => {
+    //     getUserProfileById(currentUser.id)
+    //         .then((response) => {
+    //             setUserProfile(response)
+    //         })
+    // }, [userProfile]);
 
 
 
@@ -89,31 +95,56 @@ export const Home = () => {
     let hours = minutes / 60;
     console.log(uvLevel, "result")
 
-    console.log(currentUser, "current user")
+    console.log(precautions, "precaution")
 
     // JSX for the Home page view
     return (
         <Container>
-            <h1>Hi, {userProfile.firstName}</h1>
-            <h2>Skin Type {userProfile.skinTypeId}</h2>
             <Row>
-                <Card className="UVLevel">
-                    <h2>Current UV Level</h2>
-                    <h1>{roundedUVLevel}</h1>
-                </Card>
-                <Card>
-                    <h2>Safe Exposure Time</h2>
-                    <h1>{uvLevel.result?.safe_exposure_time['st' + userSkinType]} mins</h1>
-                </Card>
-                {/* <Card>
-                    <h2>Take Care</h2>
-                    <h1>Wear sunglasses on bright days</h1>
-                    <ul>
-                        <li>Wear sunglasses on bright days.</li>
-                        <li>If you burn easily, cover up and use broad spectrum SPF 30+ sunscreen.</li>
-                        <li>Watch out for bright surfaces, like sand, water and snow, which reflect UV and increase exposure.</li>
-                    </ul>
-                </Card> */}
+                <Col xs={3}>
+                    <h1 className="homepage-hello">Hi, {userProfile.firstName}</h1>
+                    <h2>Skin Type {userProfile.skinTypeId}</h2>
+                </Col>
+                <Col xs={4}>
+                    <Card className="homepage-card">
+                        {roundedUVLevel === 0 ?
+                            <>
+                                <h1 className="homepage-h1">0</h1>
+                                <h2>Current UV Level For Your Location</h2>
+                            </>
+                            :
+                            <>
+                                <h1 className="homepage-h1">{roundedUVLevel}</h1>
+                                <h2>Current UV Level For Your Location</h2></>
+                        }
+                    </Card>
+                </Col>
+                <Col xs={4}>
+                    <Card className="homepage-card">
+                        {minutes === null ?
+                            <><h1 className="homepage-h1">0</h1></>
+                            :
+                            <><h1 className="homepage-h1">{minutes}</h1></>
+                        }
+                        {/* <h1 className="homepage-h1">{uvLevel.result?.safe_exposure_time['st' + userSkinType]}</h1> */}
+                        <h2>Safe Exposure Time In Minutes</h2>
+                    </Card>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={3}>
+                </Col>
+                <Col xs={8}>
+                    {/* <Card className="homepage-card">
+                        <h2>Take Care</h2>
+                        <h1>Precautions</h1>
+                        {precautions.uvLevelId === roundedUVLevel ?
+                            <p>{precautions.precautions}</p>
+                            :
+                            <p>OINK</p>
+                        }
+                    </Card> */}
+                </Col>
             </Row>
         </Container >
 

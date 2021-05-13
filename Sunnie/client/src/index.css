@@ -5,6 +5,7 @@ body {
   font-family: 'Work Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #FFFBF3;
 }
 
 code {
@@ -16,6 +17,20 @@ header {
   background-color: #F4C782;
 }
 
+/* Navigation */
+.sunnie-logo {
+  margin: .75em;
+}
+
+.logout-btn {
+  border-radius: 5em;
+  color:#3A291E !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 2em;
+}
+
+/* Text Styles */
 h1 {
   font-family: 'Fraunces', serif;
   font-weight: 300;
@@ -26,7 +41,7 @@ h1 {
 h2 {
   font-family: 'Work Sans', sans-serif;
   font-weight: 400;
-  font-size: 1.5em;
+  font-size: 1.25em;
   text-transform: uppercase;
   color: #f75e38;
 }
@@ -39,48 +54,20 @@ h3 {
   color: #f75e38;
 }
 
-/* React Bootstrap Components */
-.container {
-  padding: 2em;
-}
-
-.card {
+/* Homepage */
+.homepage-card {
+  background-color: #FDE5BE;
+  border: 0px;
   padding: 1em;
-  margin: .25em;
+  margin: 1em;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #f75e38;
-  border-color: #f75e38;
+.homepage-h1 {
+  font-size: 5em;
 }
 
-.btn-primary:hover {
-  color: #fff;
-  background-color: yellow;
-  border-color: yellow;
-}
-
-.btn-primary:active {
-  color: #fff;
-  background-color: green;
-  border-color: green;
-}
-
-.nav-bar-link-container {
-  display: flex;
-}
-
-.nav-link {
-  display: flex;
-  flex-direction: row;
-  margin: .25em;
-} 
-
-
-/* Home */
-.UVLevel {
-  
+.homepage-hello {
+  font-weight: 400;
 }
 
 /* User Profile Details */
@@ -92,7 +79,6 @@ h3 {
 }
 
 /* Quiz */
-
 .answer-section {
   display: flex;
   flex-direction: column;
@@ -117,7 +103,99 @@ h3 {
   float: right;
 }
 
+/* Community */
+.community-cardList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.community-card {
+  background-color: #FDE5BE;
+  display: flex;
+  justify-content: space-evenly;
+  margin: .25em;
+}
+
+.community-card:hover {
+  background-color:#f79c6493;
+}
+
+.community-name {
+  color:#3A291E;
+}
+
+/* .community-name:hover {
+  color:#E25632;
+} */
+
+a:hover {
+  text-decoration: none;
+}
+
+/* React Bootstrap Components */
+.container {
+  padding: 2em;
+}
+
+#button {
+  background-color: #E25632;
+  border: 0px;
+  border-radius: 2em;
+}
+
+#button:hover {
+  background-color: #c43d1c;
+}
+
+#button:active {
+  background-color: #c43d1c;
+}
+
+#button:focus {
+  background-color: #c43d1c;
+}
+
+
+/* .btn-primary {
+  background-color: #E67C3B;
+  border-color: #E67C3B;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #E25632;
+  border-color: #E25632;
+  color: #fff;
+} */
+
+.btn-primary:active {
+  background-color: green;
+  border-color: green;
+  color: #fff;
+}
+
+.nav-bar-link-container {
+  display: flex;
+}
+
+.nav-link {
+  color: #3A291E;
+  display: flex;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.25em;
+  flex-direction: row;
+  margin: .25em;
+} 
+
+.nav-link:active {
+  color: #E25632;
+}
+
+
+
 /* Font awesome */
 svg.svg-inline--fa.fa-heart.fa-w-16 {
   color: red;
 }
+

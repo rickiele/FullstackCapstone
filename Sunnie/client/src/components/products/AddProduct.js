@@ -81,12 +81,12 @@ export const AddProduct = () => {
 
     // Get the userProfile by the Id
     // Then gets the products by the user
-    useEffect(() => {
-        getUserProfileById(userId)
-            .then((response) => {
-                setUserProfile(response)
-            }).then(() => getProductsByUser(userId))
-    }, []);
+    // useEffect(() => {
+    //     getUserProfileById(userId)
+    //         .then((response) => {
+    //             setUserProfile(response)
+    //         }).then(() => getProductsByUser(userId))
+    // }, []);
 
     // Modal - setting states
     const [show, setShow] = useState(false);

@@ -109,6 +109,7 @@ export const QuizList = () => {
                     skinTypeId: 1,
                     firstName: currentUser.firstName,
                     lastName: currentUser.lastName,
+                    createDateTime: currentUser.createDateTime,
                     age: currentUser.age,
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
@@ -121,6 +122,7 @@ export const QuizList = () => {
                     skinTypeId: 2,
                     firstName: currentUser.firstName,
                     lastName: currentUser.lastName,
+                    createDateTime: currentUser.createDateTime,
                     age: currentUser.age,
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
@@ -133,6 +135,7 @@ export const QuizList = () => {
                     skinTypeId: 3,
                     firstName: currentUser.firstName,
                     lastName: currentUser.lastName,
+                    createDateTime: currentUser.createDateTime,
                     age: currentUser.age,
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
@@ -145,6 +148,7 @@ export const QuizList = () => {
                     skinTypeId: 4,
                     firstName: currentUser.firstName,
                     lastName: currentUser.lastName,
+                    createDateTime: currentUser.createDateTime,
                     age: currentUser.age,
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
@@ -157,6 +161,7 @@ export const QuizList = () => {
                     skinTypeId: 5,
                     firstName: currentUser.firstName,
                     lastName: currentUser.lastName,
+                    createDateTime: currentUser.createDateTime,
                     age: currentUser.age,
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
@@ -170,6 +175,7 @@ export const QuizList = () => {
                     skinTypeId: 6,
                     firstName: currentUser.firstName,
                     lastName: currentUser.lastName,
+                    createDateTime: currentUser.createDateTime,
                     age: currentUser.age,
                     email: currentUser.email,
                     imageLocation: currentUser.imageLocation
@@ -210,6 +216,7 @@ export const QuizList = () => {
             console.log(score + weight, "total")
             // setShowScore(true);
             updateUserSkinType();
+            console.log(userProfile, "Quiz taken")
             history.push("/")
 
         }
@@ -234,7 +241,7 @@ export const QuizList = () => {
                         </> :
                         null
                     } */}
-                    <Button onClick={toHome}>Get started!</Button>
+                    {/* <Button onClick={toHome}>Get started!</Button> */}
 
                 </div>
             ) : (
@@ -249,7 +256,7 @@ export const QuizList = () => {
                     </div>
                     <div className='answer-section'>
                         {questions[currentQuestion].answerOptions.map((answerOption) => (
-                            <Button className="answer" onClick={() => handleAnswerClick(answerOption.weight)}>{answerOption.answerText}</Button>
+                            <Button id="button" className="answer" onClick={() => handleAnswerClick(answerOption.weight)}>{answerOption.answerText}</Button>
                         ))}
                     </div>
                     <div className='question-count'>

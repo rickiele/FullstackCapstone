@@ -69,6 +69,7 @@ export default function Register() {
             }
             register(userProfile, password)
                 .then(() => history.push("/quiz"));
+            console.log(userProfile, "userProfile quiz")
         }
     };
 

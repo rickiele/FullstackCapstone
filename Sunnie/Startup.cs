@@ -27,7 +27,7 @@ namespace Sunnie
             services.AddTransient<ISkinTypeRepository, SkinTypeRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IFavoriteRepository, FavoriteRepository>();
-
+            services.AddTransient<IPrecautionRepository, PrecautionRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";

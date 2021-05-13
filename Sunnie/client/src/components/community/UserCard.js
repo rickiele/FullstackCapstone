@@ -7,16 +7,12 @@ export const UserCard = ({ userProfile }) => {
 
     // JSX for the UserCard
     return (
-        <section className="userProfile">
-            <h3 className="userProfileTitle">
-                <Card>
-                    <img className="userProfilePicture" src={userProfile.imageLocation} />
-                    <Link to={`/userProfiles/detail/getById/${userProfile.id}`}>
-                        <h1>{userProfile.firstName} {userProfile.lastName}</h1>
-                    </Link>
-                    <h3>{userProfile.skinType.typeDescription}</h3>
-                </Card>
-            </h3>
-        </section>
+        <Link className="community-link" to={`/userProfiles/detail/getById/${userProfile.id}`}>
+            <Card className="community-card" style={{ width: '16em' }}>
+                <img className="community-userImage" src={userProfile.imageLocation} />
+                <h1 className="community-name">{userProfile.firstName} {userProfile.lastName}</h1>
+                <h3>{userProfile.skinType.typeDescription}</h3>
+            </Card>
+        </Link>
     )
 }

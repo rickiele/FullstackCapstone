@@ -18,7 +18,6 @@ export const CommunityList = () => {
     const filterBySkinType1 = userProfiles.filter(userProfile => userProfile.skinTypeId === 1)
     console.log(filterBySkinType1, "skintype1")
 
-
     // JSX for the Community page
     return (
         <Container className="container">
@@ -33,11 +32,12 @@ export const CommunityList = () => {
                     <Dropdown.Item onClick={filterBySkinType1}>Skin Type</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown> */}
-            {
-                userProfiles.filter(userProfile => userProfile.id != currentUser.id).map(userProfile => (
-                    <UserCard key={userProfile.id} userProfile={userProfile} />
-                ))}
-
+            <div className="community-cardList">
+                {
+                    userProfiles.filter(userProfile => userProfile.id != currentUser.id).map(userProfile => (
+                        <UserCard key={userProfile.id} userProfile={userProfile} />
+                    ))}
+            </div>
         </Container>
     );
 }
