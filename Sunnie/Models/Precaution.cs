@@ -7,5 +7,8 @@ namespace Sunnie.Models
 {
     public class Precaution
     {
+        public int Id { get; set; }
+        public int UVLevelId { get; set; }
+        public string Precautions { get; set; }
     }
 }

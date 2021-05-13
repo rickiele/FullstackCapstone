@@ -115,14 +115,14 @@ export const Home = () => {
                 <Col xs={3}>
                 </Col>
                 <Col xs={8}>
-                    <Card className="homepage-card">
+                    {/* <Card className="homepage-card">
                         <h2>Take Care</h2>
                         <h1>Precautions</h1>
                         <ul>
                             <li>Wear sunglasses on bright days.</li>
                             <li>If you burn easily, cover up and use broad spectrum SPF 30+ sunscreen.</li>
                         </ul>
-                    </Card>
+                    </Card> */}
                 </Col>
             </Row>
         </Container >

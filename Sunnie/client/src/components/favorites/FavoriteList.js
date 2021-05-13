@@ -16,19 +16,19 @@ export const FavoriteList = () => {
     const [favorite, setFavorite] = useState({});
 
     // Get all of the 'Favorites' by the userProfileId
-    useEffect(() => {
-        getFavoritesByUserProfileId(userId)
-            .then((res) => {
-                setFavorite(res)
-            })
-    }, []);
+    // useEffect(() => {
+    //     getFavoritesByUserProfileId(userId)
+    //         .then((res) => {
+    //             setFavorite(res)
+    //         })
+    // }, []);
 
-    useEffect(() => {
-        getFavoritesByUserProfileId(userId)
-            .then((res) => {
-                setFavorite(res)
-            })
-    }, [favorite, products]);
+    // useEffect(() => {
+    //     getFavoritesByUserProfileId(userId)
+    //         .then((res) => {
+    //             setFavorite(res)
+    //         })
+    // }, [favorite, products]);
 
 
     // JSX for the 'Favorite' list

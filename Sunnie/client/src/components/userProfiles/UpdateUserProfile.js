@@ -65,12 +65,12 @@ export const UpdateUserProfile = ({ userProfile }) => {
         console.log("handle userProfile input")
     }
 
-    useEffect(() => {
-        getUserProfileById(currentUser.id)
-            .then((response) => {
-                setUserProfile(response)
-            })
-    }, []);
+    // useEffect(() => {
+    //     getUserProfileById(currentUser.id)
+    //         .then((response) => {
+    //             setUserProfile(response)
+    //         })
+    // }, []);
 
     // Save the user's updated product - GetUserProfileById is a promise
     const handleYesUpdate = () => {

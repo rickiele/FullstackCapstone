@@ -18,13 +18,13 @@ export const FavoriteCard = ({ favorite }) => {
     const userId = parseInt(userProfileId);
 
     const [product, setProduct] = useState({});
-    useEffect(() => {
-        getProductsByUser(userId)
-            .then((res) => {
-                setProduct(res)
-            })
-        getFavoritesByUserProfileId(userId);
-    }, []);
+    // useEffect(() => {
+    //     getProductsByUser(userId)
+    //         .then((res) => {
+    //             setProduct(res)
+    //         })
+    //     getFavoritesByUserProfileId(userId);
+    // }, []);
 
     // Modal - Setting states
     const [show, setShow] = useState(false);

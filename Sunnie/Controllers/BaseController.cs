@@ -12,6 +12,7 @@ namespace Sunnie.Controllers
         protected ISkinTypeRepository _skinTypeRepository;
         protected IProductRepository _productRepository;
         protected IFavoriteRepository _favoriteRepository;
+        protected IPrecautionRepository _precautionRepository;
         protected UserProfile UserProfile;
         public BaseController() { }
 
