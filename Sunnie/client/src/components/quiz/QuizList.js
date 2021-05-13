@@ -249,7 +249,7 @@ export const QuizList = () => {
                     </div>
                     <div className='answer-section'>
                         {questions[currentQuestion].answerOptions.map((answerOption) => (
-                            <Button className="answer" onClick={() => handleAnswerClick(answerOption.weight)}>{answerOption.answerText}</Button>
+                            <Button id="button" className="answer" onClick={() => handleAnswerClick(answerOption.weight)}>{answerOption.answerText}</Button>
                         ))}
                     </div>
                     <div className='question-count'>

@@ -17,30 +17,10 @@ header {
   background-color: #F4C782;
 }
 
+/* Navigation */
 .sunnie-logo {
   margin: .75em;
 }
-
-/* Homepage */
-.homepage-card {
-  background-color: #FDE5BE;
-  border: 0px;
-  padding: 1em;
-  margin: 1em;
-}
-
-.homepage-h1 {
-  font-size: 5em;
-}
-
-.homepage-hello {
-  font-weight: 400;
-}
-/* .card {
-  padding: 1em;
-  margin: .25em;
-} */
-
 
 .logout-btn {
   border-radius: 5em;
@@ -50,6 +30,7 @@ header {
   margin: 2em;
 }
 
+/* Text Styles */
 h1 {
   font-family: 'Fraunces', serif;
   font-weight: 300;
@@ -73,12 +54,109 @@ h3 {
   color: #f75e38;
 }
 
+/* Homepage */
+.homepage-card {
+  background-color: #FDE5BE;
+  border: 0px;
+  padding: 1em;
+  margin: 1em;
+}
+
+.homepage-h1 {
+  font-size: 5em;
+}
+
+.homepage-hello {
+  font-weight: 400;
+}
+
+/* User Profile Details */
+.userProfilePicture {
+  background-color: #f75e38;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+}
+
+/* Quiz */
+.answer-section {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+
+.answer {
+  margin: .25em;
+}
+
+.question-count {
+  float: right;
+}
+
+/* Product */
+.product-img {
+  width: 100%;
+  height: 100%
+}
+
+.favorite-btn {
+  float: right;
+}
+
+/* Community */
+.community-cardList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.community-card {
+  background-color: #FDE5BE;
+  display: flex;
+  justify-content: space-evenly;
+  margin: .25em;
+}
+
+.community-card:hover {
+  background-color:#f79c6493;
+}
+
+.community-name {
+  color:#3A291E;
+}
+
+/* .community-name:hover {
+  color:#E25632;
+} */
+
+a:hover {
+  text-decoration: none;
+}
+
 /* React Bootstrap Components */
 .container {
   padding: 2em;
 }
 
-.btn-primary {
+#button {
+  background-color: #E25632;
+  border: 0px;
+  border-radius: 2em;
+}
+
+#button:hover {
+  background-color: #c43d1c;
+}
+
+#button:active {
+  background-color: #c43d1c;
+}
+
+#button:focus {
+  background-color: #c43d1c;
+}
+
+
+/* .btn-primary {
   background-color: #E67C3B;
   border-color: #E67C3B;
   color: #fff;
@@ -88,7 +166,7 @@ h3 {
   background-color: #E25632;
   border-color: #E25632;
   color: #fff;
-}
+} */
 
 .btn-primary:active {
   background-color: green;
@@ -115,44 +193,6 @@ h3 {
 }
 
 
-/* Home */
-.UVLevel {
-  
-}
-
-/* User Profile Details */
-.userProfilePicture {
-  background-color: #f75e38;
-  margin: 0 auto;
-  height: 100%;
-  width: 100%;
-}
-
-/* Quiz */
-
-.answer-section {
-  display: flex;
-  flex-direction: column;
-  margin: 1em;
-}
-
-.answer {
-  margin: .25em;
-}
-
-.question-count {
-  float: right;
-}
-
-/* Product */
-.product-img {
-  width: 100%;
-  height: 100%
-}
-
-.favorite-btn {
-  float: right;
-}
 
 /* Font awesome */
 svg.svg-inline--fa.fa-heart.fa-w-16 {
