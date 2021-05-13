@@ -21,14 +21,20 @@ header {
   margin: .75em;
 }
 
+/* Homepage */
 .homepage-card {
   background-color: #FDE5BE;
   border: 0px;
   padding: 1em;
+  margin: 1em;
 }
 
 .homepage-h1 {
   font-size: 5em;
+}
+
+.homepage-hello {
+  font-weight: 400;
 }
 /* .card {
   padding: 1em;

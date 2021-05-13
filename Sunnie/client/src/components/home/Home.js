@@ -13,7 +13,6 @@ export const Home = () => {
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const [userProfile, setUserProfile] = useState([]);
 
-
     // Function which takes the current position of the user as a params
     const successCallback = (position) => {
         // In case you're not on a browser that supports date.toISOString
@@ -67,13 +66,13 @@ export const Home = () => {
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     }, []);
 
-    useEffect(() => {
-        getUserProfileById(currentUser.id)
-            .then((response) => {
-                setUserProfile(response)
-            })
-        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-    }, [userProfile]);
+    // If I watch the userProfile again - I may get a infinite loop
+    // useEffect(() => {
+    //     getUserProfileById(currentUser.id)
+    //         .then((response) => {
+    //             setUserProfile(response)
+    //         })
+    // }, [userProfile]);
 
 
 
@@ -96,34 +95,35 @@ export const Home = () => {
         <Container>
             <Row>
                 <Col xs={3}>
-                    <h1>Hi, {userProfile.firstName}</h1>
+                    <h1 className="homepage-hello">Hi, {userProfile.firstName}</h1>
                     <h2>Skin Type {userProfile.skinTypeId}</h2>
                 </Col>
                 <Col xs={4}>
                     <Card className="homepage-card">
-                        <h1 className="homepage-h1">{roundedUVLevel}</h1>
-                        <h2>Current UV Level</h2>
+                        <h1 className="homepage-h1">11{roundedUVLevel}</h1>
+                        <h2>Current UV Level For Your Location</h2>
                     </Card>
                 </Col>
                 <Col xs={4}>
                     <Card className="homepage-card">
-                        <h1 className="homepage-h1">{uvLevel.result?.safe_exposure_time['st' + userSkinType]} mins</h1>
-                        <h2>Safe Exposure Time</h2>
+                        <h1 className="homepage-h1">200{uvLevel.result?.safe_exposure_time['st' + userSkinType]}</h1>
+                        <h2>Safe Exposure Time In Minutes</h2>
                     </Card>
                 </Col>
-
-
             </Row>
             <Row>
-                {/* <Card>
-                    <h2>Take Care</h2>
-                    <h1>Wear sunglasses on bright days</h1>
-                    <ul>
-                        <li>Wear sunglasses on bright days.</li>
-                        <li>If you burn easily, cover up and use broad spectrum SPF 30+ sunscreen.</li>
-                        <li>Watch out for bright surfaces, like sand, water and snow, which reflect UV and increase exposure.</li>
-                    </ul>
-                </Card> */}
+                <Col xs={3}>
+                </Col>
+                <Col xs={8}>
+                    <Card className="homepage-card">
+                        <h2>Take Care</h2>
+                        <h1>Precautions</h1>
+                        <ul>
+                            <li>Wear sunglasses on bright days.</li>
+                            <li>If you burn easily, cover up and use broad spectrum SPF 30+ sunscreen.</li>
+                        </ul>
+                    </Card>
+                </Col>
             </Row>
         </Container >
 
