@@ -241,7 +241,7 @@ export const QuizList = () => {
                         </> :
                         null
                     } */}
-                    <Button onClick={toHome}>Get started!</Button>
+                    {/* <Button onClick={toHome}>Get started!</Button> */}
 
                 </div>
             ) : (
