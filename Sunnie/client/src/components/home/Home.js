@@ -5,6 +5,7 @@ import { Container, Card, Row, Col } from "react-bootstrap";
 import { PrecautionContext } from "../../providers/PrecautionProvider";
 
 export const Home = () => {
+    let precaution = [];
 
     // Use contexts
     const { getUserProfileById } = useContext(UserProfileContext);
@@ -73,29 +74,16 @@ export const Home = () => {
             })
     }, []);
 
-    // If I watch the userProfile again - I may get a infinite loop
-    // useEffect(() => {
-    //     getUserProfileById(currentUser.id)
-    //         .then((response) => {
-    //             setUserProfile(response)
-    //         })
-    // }, [userProfile]);
-
-
-
-
     // Get the user's skin type
     let userSkinType = userProfile.skinTypeId;
 
     // Round the UV level to the nearest whole number
-    let roundedUVLevel = Math.round(uvLevel.result?.uv);
+    let currentUVLevel = Math.round(uvLevel.result?.uv);
 
     // Safe exposure time numbers - In case you want to break them down by hour and minutes
     let minutes = uvLevel.result?.safe_exposure_time['st' + userSkinType];
     let hours = minutes / 60;
     console.log(uvLevel, "result")
-
-    console.log(precautions, "precaution")
 
     // JSX for the Home page view
     return (
@@ -107,14 +95,14 @@ export const Home = () => {
                 </Col>
                 <Col xs={4}>
                     <Card className="homepage-card">
-                        {roundedUVLevel === 0 ?
+                        {currentUVLevel === 0 ?
                             <>
                                 <h1 className="homepage-h1">0</h1>
                                 <h2>Current UV Level For Your Location</h2>
                             </>
                             :
                             <>
-                                <h1 className="homepage-h1">{roundedUVLevel}</h1>
+                                <h1 className="homepage-h1">{currentUVLevel}</h1>
                                 <h2>Current UV Level For Your Location</h2></>
                         }
                     </Card>
@@ -135,15 +123,18 @@ export const Home = () => {
                 <Col xs={3}>
                 </Col>
                 <Col xs={8}>
-                    {/* <Card className="homepage-card">
+                    <Card className="homepage-card">
                         <h2>Take Care</h2>
                         <h1>Precautions</h1>
-                        {precautions.uvLevelId === roundedUVLevel ?
-                            <p>{precautions.precautions}</p>
-                            :
-                            <p>OINK</p>
-                        }
-                    </Card> */}
+                        {
+                            precautions.filter(precaution => precaution.uvLevelId === 12).map(precaution => (
+                                <div>
+                                    <pre className="precautions-text">{precaution.precautions}</pre>
+                                </div>
+                            ))}
+
+
+                    </Card>
                 </Col>
             </Row>
         </Container >

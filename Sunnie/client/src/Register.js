@@ -77,24 +77,25 @@ export default function Register() {
     // JSX for the register
     return (
         <Container className="container">
-            <Form>
-                <fieldset>
+            <Form className="form">
+                <h1>Register for Sunnie</h1>
+                <div className="fieldset">
                     <Form.Label htmlFor="firstName">First Name</Form.Label>
                     <Form.Control id="firstName" type="text" onChange={e => setFirstName(e.target.value)} />
-                </fieldset>
-                <fieldset>
+                </div>
+                <div className="fieldset">
                     <Form.Label htmlFor="lastName">Last Name</Form.Label>
                     <Form.Control id="lastName" type="text" onChange={e => setLastName(e.target.value)} />
-                </fieldset>
-                <fieldset>
+                </div>
+                <div className="fieldset">
                     <Form.Label htmlFor="age">Age</Form.Label>
                     <Form.Control id="age" type="text" onChange={e => setAge(e.target.value)} />
-                </fieldset>
-                <fieldset>
+                </div>
+                <div className="fieldset">
                     <Form.Label for="email">Email</Form.Label>
                     <Form.Control id="email" type="text" onChange={e => setEmail(e.target.value)} />
-                </fieldset>
-                <fieldset>
+                </div>
+                <div className="fieldset">
                     <Form.Label htmlFor="imageLocation">Upload a profile image</Form.Label>
                     <Form.Control type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
                     {loading ? (
@@ -102,16 +103,16 @@ export default function Register() {
                     ) : (
                         <img src={image} style={{ width: '300px' }} />
                     )}
-                </fieldset>
-                <fieldset>
+                </div>
+                <div className="fieldset">
                     <Form.Label for="password">Password</Form.Label>
                     <Form.Control id="password" type="password" onChange={e => setPassword(e.target.value)} />
-                </fieldset>
-                <fieldset>
+                </div>
+                <div className="fieldset">
                     <Form.Label for="confirmPassword">Confirm Password</Form.Label>
                     <Form.Control id="confirmPassword" type="password" onChange={e => setConfirmPassword(e.target.value)} />
-                </fieldset>
-                <Button onClick={registerClick}>Register</Button>
+                </div>
+                <Button className="fieldset" id="button" onClick={registerClick}>Register</Button>
             </Form>
         </Container>
     );

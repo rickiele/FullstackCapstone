@@ -29,7 +29,7 @@ export const AddFavorite = ({ product }) => {
     // JSX for the 'Add Favorite' button
     return (
         <>
-            <Button onClick={handleAddFavorite} className="favorite-btn">Add Favorite</Button>
+            <Button id="button" onClick={handleAddFavorite} className="favorite-btn">Add Favorite</Button>
         </>
     )
 };

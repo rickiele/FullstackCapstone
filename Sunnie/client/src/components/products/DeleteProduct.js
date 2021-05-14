@@ -27,7 +27,7 @@ export const DeleteProduct = ({ product }) => {
     return (
         <>
             <>
-                <Button key={product.id} onClick={handleShow}>
+                <Button id="button" key={product.id} onClick={handleShow}>
                     Delete
                 </Button>
             </>
@@ -40,13 +40,13 @@ export const DeleteProduct = ({ product }) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        <p>Are you sure you want to delete the product</p>
+                        <p>Are you sure you want to delete</p>
                         <h1>{product.name}?</h1>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Footer>
-                    <Button onClick={handleYesDelete}> Yes </Button>
-                    <Button onClick={handleClose}> No </Button>
+                    <Button id="button" onClick={handleYesDelete}> Yes </Button>
+                    <Button id="button" onClick={handleClose}> No </Button>
                 </Modal.Footer>
             </Modal>
         </>

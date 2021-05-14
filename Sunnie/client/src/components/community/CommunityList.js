@@ -15,11 +15,11 @@ export const CommunityList = () => {
     }, []);
 
     // Filter by skin type
-    const filterBySkinType1 = userProfiles.filter(userProfile => userProfile.skinTypeId === 1)
-    console.log(filterBySkinType1, "skintype1")
+    // const filterBySkinType1 = userProfiles.filter(userProfile => userProfile.skinTypeId === 1)
+    // console.log(filterBySkinType1, "skintype1")
 
     // JSX for the Community page
-    return (
+    return userProfiles ? (
         <Container className="container">
             <h1>Community</h1>
             <p>Check out how other users protect themselves from the sun.</p>
@@ -39,6 +39,6 @@ export const CommunityList = () => {
                     ))}
             </div>
         </Container>
-    );
+    ) : null
 }
 

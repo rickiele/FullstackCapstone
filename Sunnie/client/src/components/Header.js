@@ -63,7 +63,7 @@ export default function Header() {
                         {isLoggedIn &&
                             <>
                                 <Nav.Item>
-                                    <Button className="logout-btn" style={{ cursor: "pointer" }} onClick={logout}>
+                                    <Button id="button" className="logout-btn" style={{ cursor: "pointer" }} onClick={logout}>
                                         Logout
                                     </Button>
                                 </Nav.Item>
@@ -71,10 +71,10 @@ export default function Header() {
                         }
                         {!isLoggedIn &&
                             <>
-                                <Nav.Item>
+                                <Nav.Item style={{ display: 'none' }}>
                                     <NavLink to="/login">Login</NavLink>
                                 </Nav.Item>
-                                <Nav.Item>
+                                <Nav.Item style={{ display: 'none' }}>
                                     <NavLink to="/register">Register</NavLink>
                                 </Nav.Item>
                             </>
