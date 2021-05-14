@@ -20,10 +20,10 @@ WHERE Id = 9;
 Print @A;
 
 Declare @A varchar(500);
-Set @A = N'Extra protection needed.\nBe careful outside, especially during late morning through mid-afternoon. \nIf your shadow is shorter than you, seek shade and wear protective clothing, a wide-brimmed hat, and sunglasses, and generously apply a minimum of  SPF-15, broad-spectrum sunscreen on exposed skin.';
+Set @A = N'Protection needed. Seek shade during late morning through mid-afternoon. \nWhen outside, generously apply broad-spectrum SPF-15 or higher sunscreen on exposed skin, and wear protective clothing, a wide-brimmed hat, and sunglasses.';
 Set @A = Replace(@A,'\n', CHAR(13)+CHAR(10));
 UPDATE Precaution
 SET Precautions = @A
-WHERE Id = 13;
+WHERE UVLevelId = 7;
 Print @A;
 
