@@ -127,7 +127,7 @@ export const Home = () => {
                         <h2>Take Care</h2>
                         <h1>Precautions</h1>
                         {
-                            precautions.filter(precaution => precaution.uvLevelId === currentUVLevel).map(precaution => (
+                            precautions.filter(precaution => precaution.uvLevelId === 12).map(precaution => (
                                 <div>
                                     <pre className="precautions-text">{precaution.precautions}</pre>
                                 </div>
