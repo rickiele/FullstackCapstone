@@ -126,18 +126,10 @@ export const Home = () => {
                     <Card className="homepage-card">
                         <h2>Take Care</h2>
                         <h1>Precautions</h1>
-
-                        {/* {
-                            precautions.map(precaution => {
-                                let Cat = precautions.find(precaution => precaution.uvLevelId === currentUVLevel)
-
-                                return precaution.precautions
-                            })
-                        } */}
                         {
                             precautions.filter(precaution => precaution.uvLevelId === currentUVLevel).map(precaution => (
                                 <div>
-                                    {precaution.precautions}
+                                    <pre className="precautions-text">{precaution.precautions}</pre>
                                 </div>
                             ))}
 
