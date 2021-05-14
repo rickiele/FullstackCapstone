@@ -47,7 +47,7 @@ export const UserProfileDetails = () => {
 
     //Parent component doesn't keep track of child's states
     // JSX for the 'User Profile' details
-    return (
+    return userProfile ? (
         <>
             <Container>
                 <Row>
@@ -87,5 +87,5 @@ export const UserProfileDetails = () => {
                 </Row>
             </Container>
         </>
-    )
+    ) : null
 };
