@@ -14,24 +14,13 @@ export const CommunityList = () => {
         getAllUserProfiles();
     }, []);
 
-    // Filter by skin type
-    // const filterBySkinType1 = userProfiles.filter(userProfile => userProfile.skinTypeId === 1)
-    // console.log(filterBySkinType1, "skintype1")
-
     // JSX for the Community page
     return userProfiles ? (
-        <Container className="container">
-            <h1>Community</h1>
-            <p>Check out how other users protect themselves from the sun.</p>
-            {/* Downdrop filter */}
-            {/* <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    Filter by
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                    <Dropdown.Item onClick={filterBySkinType1}>Skin Type</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown> */}
+        <Container className="community-container">
+            <div className="community-list">
+                <h1 className="homepage-hello">Community</h1>
+                <p>Check out how other users protect themselves from the sun.</p>
+            </div>
             <div className="community-cardList">
                 {
                     userProfiles.filter(userProfile => userProfile.id != currentUser.id).map(userProfile => (

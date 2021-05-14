@@ -89,11 +89,11 @@ export const Home = () => {
     return (
         <Container>
             <Row>
-                <Col xs={3}>
+                <Col lg={3}>
                     <h1 className="homepage-hello">Hi, {userProfile.firstName}</h1>
                     <h2>Skin Type {userProfile.skinTypeId}</h2>
                 </Col>
-                <Col xs={4}>
+                <Col lg={4}>
                     <Card className="homepage-card">
                         {currentUVLevel === 0 ?
                             <>
@@ -107,7 +107,7 @@ export const Home = () => {
                         }
                     </Card>
                 </Col>
-                <Col xs={4}>
+                <Col lg={4}>
                     <Card className="homepage-card">
                         {minutes === null ?
                             <><h1 className="homepage-h1">0</h1></>
@@ -120,9 +120,9 @@ export const Home = () => {
                 </Col>
             </Row>
             <Row>
-                <Col xs={3}>
+                <Col lg={3}>
                 </Col>
-                <Col xs={8}>
+                <Col lg={8}>
                     <Card className="homepage-card">
                         <h2>Take Care</h2>
                         <h1>Precautions</h1>
