@@ -4,13 +4,13 @@ Sunnie is a full stack application that helps you become more aware of how the s
 Sunnie helps you determine your skin type based on the Fitzpatrick Scale. Users can see what the current UV Level is based on their own location, and can see the precautions they need to take based on that UV Level. Users can also add sun protection products they are using to their profile and favorite them to showcase them to the Sunnie community.
 
 ## Table of Contents
-  * [Project Requirements and Features List](#project-requirements-and-features-list)
+  * [Features List](#project-requirements-and-features-list)
   * [Technologies Used](#technologies-used)
   * [Installing and Launching Sunnie](#instructions-for-installing-Sunnie)
-  * [Appendix 1: Planning Documentation](#appendix-1-planning-documentation)
+  * [Planning Documentation](#planning-documentation)
     * [Entity Relationship Diagrams](#entity-relationship-diagram)
     * [Wireframes](#wireframes)
-  * [Appendix 2: Set Up Instructions](#appendix-2-set-up-instructions)
+  * [Set Up Instructions](#set-up-instructions)
 
 ## Features List
 ### Determine Your Skin Type
