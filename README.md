@@ -12,7 +12,8 @@ Sunnie is a full stack application that helps you become more aware of how the s
 
 ## Features List
 ### Determine Your Skin Type
-When a user registers an account with Sunnie, they will be taken to a quiz that helps determine's the user's skin type based on the Fitzpatrick Scale. 
+When a user registers an account with Sunnie, they will be taken to a quiz that helps determine's the user's skin type based on the Fitzpatrick Scale.
+![](images/Quiz.gif)
 
 ### View Your Current Location's UV Level And Current Precautions
 After users are finished with the quiz, they will be redirected to the home page that displays their skin type result, current location's UV Level, and the precautions they need to take based on that UV level.
