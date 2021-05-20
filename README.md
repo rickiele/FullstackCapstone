@@ -1,82 +1,53 @@
 # Sunnie
 Sunnie is a full stack application that helps you become more aware of how the sun affects your skin.
 
+
 ## Table of Contents
-  * [Features List](#features-list)
-  * [Technologies Used](#technologies-used)
-  * [Installing and Launching Sunnie](#instructions-for-installing-Sunnie)
+  * [Features](#features)
   * [Planning Documentation](#planning-documentation)
     * [Entity Relationship Diagrams](#entity-relationship-diagram)
     * [Wireframes](#wireframes)
-  * [Set Up Instructions](#set-up-instructions)
+  * [Set Up Instructions](#set-up-and-installation-instructions)
 
-## Features List
+<br />
+
+# Features
 ### Determine Your Skin Type
-When a user registers an account with Sunnie, they will be taken to a quiz that helps determine's the user's skin type based on the Fitzpatrick Scale.
 ![](images/Quiz.gif)
+When a user registers an account with Sunnie, they will be taken to a quiz that helps determine's the user's skin type based on the Fitzpatrick Scale.
+
 
 ### View Your Current Location's UV Level And Current Precautions
-After users are finished with the quiz, they will be redirected to the home page that displays their skin type result, current location's UV Level, and the precautions they need to take based on that UV level.
 ![](images/Homepage.png)
+After users are finished with the quiz, they will be redirected to the home page that displays their skin type result, current location's UV Level, and the precautions they need to take based on that UV level.
 
 ### Create, Update, and Delete Sun Protection Products From Your Profile
+![](images/SaveProduct.png)
 Users can add products to their profile by click the '+' button. It will pull up a form that the user can fill out to add their product. Users can also update and delete those products by clicked the appropriately labeled buttons.
 
 ### Favorite a Sun Protection Product
-Users can favorite a product that they really love, and showcase that to the community when another user views it.
 ![](images/FavoriteProduct.gif)
+Users can favorite a product that they really love, and showcase that to the community when another user views it.
 
 ### Sunnie Community
-When clicking on the community tab, users can view other people of the Sunnie community and see what favorites they have.
 ![](images/Community.png)
+When clicking on the community tab, users can view other people of the Sunnie community and see what favorites they have.
 
 ### Update the User Profile
-Users can update their profile picture, and other details on their user profile page.
 ![](images/UpdateUser.png)
+Users can update their profile picture, and other details on their user profile page.
 
-## Technologies Used
-  ### Development Languages and Libraries
+<br />
 
-  ### Development Tools
- 
+ # Planning Documentation
 
+ ### Entity Relationship Diagram
 
+ ### Wireframes
 
-## Instructions for Installing Sunnie
-  To launch the Sunnie app, you will need to have access to command line tools, node package manager, JSON Server. If you do not have access to any of these tools, you can find instructions for installing them in the [Appendix.](#appendix-2-set-up-instructions)
+<br />
 
-  Clone this repo on you personal machine using the following command
-  ```sh
-    git clone git@github.com:rickiele/Sunnie.git
-  ```
-
-  Install the NPM dependencies for this project using the following commands
-  ```sh
-    cd Sunnie
-    npm install
-  ```
-
-  From your terminal window, type
-  ```sh
-    npm start
-  ```
-
-  Now that the server is up and running, you can open an internet browser and access the application
-  ```sh
-    http://localhost:8080/
-  ```
-
- ### Sweet! You are now using Sunnie!
-
-  ## Appendix 1: Planning Documentation
-
-  ### Entity Relationship Diagram
-  
-
-  ### Wireframes/ Mockups
-
-
-  ## Appendix 2: Set Up Instructions
+ # Set Up and Installation Instructions
 
   You will need to have command line tools installed for your computer to use terminal commands.
 
@@ -129,6 +100,3 @@ Users can update their profile picture, and other details on their user profile 
   Now you can follow the [installation instructions](#instructions-for-installing-Sunnie) to get Sunnie up and running on your machine.
 
   This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-
-
