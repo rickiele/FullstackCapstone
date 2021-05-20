@@ -2,7 +2,7 @@
 Sunnie is a full stack application that helps you become more aware of how the sun affects your skin.
 
 ## Table of Contents
-  * [Features List](#project-requirements-and-features-list)
+  * [Features List](#features-list)
   * [Technologies Used](#technologies-used)
   * [Installing and Launching Sunnie](#instructions-for-installing-Sunnie)
   * [Planning Documentation](#planning-documentation)
@@ -17,6 +17,7 @@ When a user registers an account with Sunnie, they will be taken to a quiz that 
 
 ### View Your Current Location's UV Level And Current Precautions
 After users are finished with the quiz, they will be redirected to the home page that displays their skin type result, current location's UV Level, and the precautions they need to take based on that UV level.
+![](images/Home.png)
 
 ### Create, Update, and Delete Sun Protection Products From Your Profile
 Users can add products to their profile by click the '+' button. It will pull up a form that the user can fill out to add their product. Users can also update and delete those products by clicked the appropriately labeled buttons.
