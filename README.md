@@ -42,8 +42,11 @@ Users can update their profile picture, and other details on their user profile 
  # Planning Documentation
 
  ### Entity Relationship Diagram
+![](images/ERD.png)
 
  ### Wireframes
+ ![](images/Wireframes.png)
+
 
 <br />
 
