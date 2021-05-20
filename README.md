@@ -17,19 +17,22 @@ When a user registers an account with Sunnie, they will be taken to a quiz that 
 
 ### View Your Current Location's UV Level And Current Precautions
 After users are finished with the quiz, they will be redirected to the home page that displays their skin type result, current location's UV Level, and the precautions they need to take based on that UV level.
-![](images/Home.png)
+![](images/Homepage.png)
 
 ### Create, Update, and Delete Sun Protection Products From Your Profile
 Users can add products to their profile by click the '+' button. It will pull up a form that the user can fill out to add their product. Users can also update and delete those products by clicked the appropriately labeled buttons.
 
 ### Favorite a Sun Protection Product
 Users can favorite a product that they really love, and showcase that to the community when another user views it.
+![](images/FavoriteProduct.gif)
 
 ### Sunnie Community
-When clicking on the community tab, users can view other people of the Sunnie community and see what favorites they have. 
+When clicking on the community tab, users can view other people of the Sunnie community and see what favorites they have.
+![](images/Community.png)
 
 ### Update the User Profile
 Users can update their profile picture, and other details on their user profile page.
+![](images/UpdateUser.png)
 
 ## Technologies Used
   ### Development Languages and Libraries
